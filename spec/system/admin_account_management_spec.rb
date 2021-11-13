@@ -3,12 +3,12 @@ require 'rails_helper'
 describe 'Admin account management' do
   context 'log in' do
     it 'successfully' do
-      john = User.create!(email: 'john@gamestream.com.br', password: '123456789')
+      User.create!(email: 'john@gamestream.com.br', password: '123456789')
 
       visit root_path
       click_on 'Login'
-      fill_in 'Email', with: john.email
-      fill_in 'Password', with: john.password
+      fill_in 'Email', with: 'john@gamestream.com.br'
+      fill_in 'Password', with: '123456789'
       click_on 'Log in'
 
       expect(page).to have_content('Signed in successfully.')
@@ -18,7 +18,7 @@ describe 'Admin account management' do
     end
 
     it 'cannot log in with blank fields' do
-      john = User.create!(email: 'john@gamestream.com.br', password: '123456789')
+      User.create!(email: 'john@gamestream.com.br', password: '123456789')
 
       visit root_path
       click_on 'Login'
@@ -32,20 +32,18 @@ describe 'Admin account management' do
     end
 
     it 'See admin page' do
-      john = User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
+      User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
 
       visit root_path
       click_on 'Login'
-      fill_in 'Email', with: john.email
-      fill_in 'Password', with: john.password
+      fill_in 'Email', with: 'john@gamestream.com.br'
+      fill_in 'Password', with: '123456789'
       click_on 'Log in'
-
 
       expect(page).to have_content('Página do Admin')
       expect(page).to have_content('john@gamestream.com.br')
       expect(page).to have_content('Criar Playlist')
     end
-
   end
 
   context 'log out' do

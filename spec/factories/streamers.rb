@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :streamer do
-    name { "MyString" }
+    name { 'MyString' }
   end
 end
