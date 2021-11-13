@@ -1,0 +1,10 @@
+<% if @streamer.avatar.attached? %>
+  <%= image_tag @streamer.avatar, size: "250x250" %>
+<% end %>
+
+<p>Nome: <%= @streamer.name %></p>
+
+<p>Facebook: <%= @streamer.facebook_url %></p>
+<p>Youtube: <%= @streamer.youtube_url %></p>
+<p>Instagram: <%= @streamer.instagram_handle %></p>
+<p>Twitter: <%= @streamer.twitter_handle %></p>

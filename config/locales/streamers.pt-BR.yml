@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      streamer:
+        one: Streamer
+        other: Streamers
+    attributes:
+      streamer:
+        name: Nome

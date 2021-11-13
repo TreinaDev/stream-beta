@@ -37,6 +37,7 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
   config.before(type: :system) do
     driven_by :rack_test

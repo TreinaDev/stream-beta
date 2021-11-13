@@ -1,0 +1,7 @@
+<% @streamers.each do |streamer| %>
+  <ul>
+    <li><%= link_to streamer.name, streamer_path(streamer) %></li>
+  </ul>
+<% end %>
+
+<%= link_to 'Novo Streamer', new_streamer_path %>
