@@ -1,0 +1,7 @@
+<% @subscription_plans.each do |subscription_plan| %>
+  <ul>
+    <li><%= link_to subscription_plan.title, subscription_plan_path(subscription_plan) %></li>
+  </ul>
+<% end %>
+
+<%= link_to 'Novo Plano', new_subscription_plan_path %>

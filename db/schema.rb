@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_213055) do
+ActiveRecord::Schema.define(version: 2021_11_14_194715) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2021_11_13_213055) do
     t.string "youtube_url"
     t.string "instagram_handle"
     t.string "twitter_handle"
+  end
+
+  create_table "subscription_plans", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.decimal "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
