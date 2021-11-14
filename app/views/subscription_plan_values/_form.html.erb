@@ -1,0 +1,16 @@
+<%= form_with model: [@subscription_plan, @subscription_plan_value] do |f| %>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+  <div>
+    <%= f.label :value %>
+    <%= f.number_field :value %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrator creates new subscription plan' do 
+describe 'Administrator creates new subscription plan' do
   it 'successfully' do
     admin = create(:user, :admin)
 

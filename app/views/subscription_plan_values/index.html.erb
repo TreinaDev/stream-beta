@@ -1,0 +1,11 @@
+<%= @subscription_plan.title %>
+
+<% @subscription_plan_values.each do |spv| %>
+  <ul>
+    <li><%= spv.start_date %></li>
+    <li><%= spv.end_date %></li>
+    <li><%= number_to_currency(spv.value) %></li>
+  </ul>
+<% end %>
+
+<%= link_to 'Incluir novo preço', new_subscription_plan_subscription_plan_value_path(@subscription_plan) %>

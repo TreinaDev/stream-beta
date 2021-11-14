@@ -1,3 +1,5 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:title)}: #{@subscription_plan.title}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
+
+<div><%= link_to 'Preços dinâmicos', subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
