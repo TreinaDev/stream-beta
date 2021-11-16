@@ -20,7 +20,7 @@ describe 'Administrator creates subscription plan value' do
 
     expect(current_path).to eq(subscription_plan_subscription_plan_values_path(subscription_plan))
     expect(page).to have_content('Plano de teste')
-    expect(page).to have_content(15.days.from_now.to_date)
+    expect(page).to have_content(I18n.l(15.days.from_now.to_date))
     expect(page).to have_content('R$ 99,90')
   end
 
