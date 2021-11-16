@@ -4,7 +4,7 @@ class VideoCategoriesController < ApplicationController
   end
 
   def create
-    @video_category = VideoCategory.new(params.require(:video_category).permit(:title, :video_category_id))
+    @video_category = VideoCategory.new(params.require(:video_category).permit(:title))
     if @video_category.save
       flash[:notice] = 'Categoria de Vídeo criada com sucesso!'
       redirect_to @video_category
