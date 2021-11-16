@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_003757) do
+ActiveRecord::Schema.define(version: 2021_11_16_214256) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_003757) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
   end
 
   create_table "videos", force: :cascade do |t|
@@ -104,4 +105,5 @@ ActiveRecord::Schema.define(version: 2021_11_16_003757) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "subscription_plan_values", "subscription_plans"
+  add_foreign_key "video_categories", "video_categories", column: "parent_id"
 end

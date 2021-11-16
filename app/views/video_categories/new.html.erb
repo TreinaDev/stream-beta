@@ -7,6 +7,7 @@
 <%= form_with(model: @video_category) do |f| %>
   <%= f.label :title, 'Categoria de Vídeo' %>
   <%= f.text_field :title %>
-  <%= f.collection_select :video_category_id, VideoCategory.order(:title), :id, :title %>
+  <%= f.collection_select :parent_id, VideoCategory.order(:title), :id, :title %>
+  <%= f.label :parent_id, 'Sub-categoria' %>
   <%= f.submit 'Cadastrar'%>
 <% end %>
