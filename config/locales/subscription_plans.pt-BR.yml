@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      subscription_plan:
+        one: Plano
+        other: Planos
+    attributes:
+      subscription_plan:
+        title: Título
+        description: Descrição
+        value: Valor padrão
+        current_value: Valor atual
+  subscription_plans:
+    index:
+      title: Planos

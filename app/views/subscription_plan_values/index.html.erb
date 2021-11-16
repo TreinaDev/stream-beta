@@ -1,0 +1,26 @@
+<h1><%= t('.title') %></h1>
+
+<h3><%= SubscriptionPlan.model_name.human %>: <%= @subscription_plan.title %></h3>
+
+<%= link_to 'Incluir novo preço', new_subscription_plan_subscription_plan_value_path(@subscription_plan) %>
+
+<% if @subscription_plan_values.present? %>
+  <table>
+    <tr>
+      <th><%= SubscriptionPlanValue.human_attribute_name(:start_date) %></th>
+      <th><%= SubscriptionPlanValue.human_attribute_name(:end_date) %></th>
+      <th><%= SubscriptionPlanValue.human_attribute_name(:value) %></th>
+    </tr>
+    <% @subscription_plan_values.each do |spv| %>
+      <tr>
+        <td><%= l(spv.start_date) %></td>
+        <td><%= l(spv.end_date) %></td>
+        <td><%= number_to_currency(spv.value) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há preços dinâmicos cadastrados para esse plano</p>
+<% end %>
+
+<div><%= link_to 'Voltar', :back %></div>
