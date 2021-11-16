@@ -1,0 +1,29 @@
+<%= form_with model: @streamer do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :facebook_url %>
+    <%= f.text_field :facebook_url %>
+  </div>
+  <div>
+    <%= f.label :youtube_url %>
+    <%= f.text_field :youtube_url %>
+  </div>
+  <div>
+    <%= f.label :instagram_handle %>
+    <%= f.text_field :instagram_handle %>
+  </div>
+  <div>
+    <%= f.label :twitter_handle %>
+    <%= f.text_field :twitter_handle %>
+  </div>
+
+  <div>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
