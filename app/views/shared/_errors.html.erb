@@ -1,0 +1,7 @@
+<% if resource.respond_to?(:errors) && resource.errors.any? %>
+  <ul>
+    <% resource.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
