@@ -42,7 +42,8 @@ RSpec.describe SubscriptionPlanValue, type: :model do
 
       it {
         subject.valid?
-        expect(subject.errors.full_messages_for(:start_date)).to include('Data inicial corresponde a um período já cadastrado')
+        expect(subject.errors.full_messages_for(:start_date)).to include('Data inicial corresponde a um período '\
+                                                                         'já cadastrado')
       }
     end
 
@@ -54,7 +55,8 @@ RSpec.describe SubscriptionPlanValue, type: :model do
 
       it {
         subject.valid?
-        expect(subject.errors.full_messages_for(:end_date)).to include('Data final corresponde a um período já cadastrado')
+        expect(subject.errors.full_messages_for(:end_date)).to include('Data final corresponde a um período '\
+                                                                       'já cadastrado')
       }
     end
   end
@@ -102,7 +104,8 @@ RSpec.describe SubscriptionPlanValue, type: :model do
 
       it {
         subject.valid?
-        expect(subject.errors.full_messages_for(:start_date)).to include('Data inicial deve ser maior ou igual a data atual')
+        expect(subject.errors.full_messages_for(:start_date)).to include('Data inicial deve ser maior ou igual '\
+                                                                         'a data atual')
       }
     end
 

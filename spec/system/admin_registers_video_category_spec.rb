@@ -7,7 +7,7 @@ describe 'Admin registers video category' do
     login_as john, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
-    fill_in 'Categoria de Vídeo', with: 'Games'
+    fill_in 'Título', with: 'Games'
     click_on 'Cadastrar'
 
     expect(page).to have_content('Categoria de Vídeo criada com sucesso!')
@@ -20,38 +20,37 @@ describe 'Admin registers video category' do
     login_as john, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
-    fill_in 'Categoria de Vídeo', with: ''
+    fill_in 'Título', with: ''
     click_on 'Cadastrar'
 
-    expect(page).to have_content('Title não pode ficar em branco')
+    expect(page).to have_content('Título não pode ficar em branco')
   end
-  
+
   it 'cannot be duplicates' do
     VideoCategory.create!(title: 'Games')
     john = User.create!(email: 'john@gamestream.com.br', password: '123456')
-    
+
     login_as john, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
-    fill_in 'Categoria de Vídeo', with: 'Games'
+    fill_in 'Título', with: 'Games'
     click_on 'Cadastrar'
 
-    expect(page).to have_content('Title já está em uso')
+    expect(page).to have_content('Título já está em uso')
   end
 
   it 'a subcategory successfully' do
     VideoCategory.create!(title: 'Games')
     john = User.create!(email: 'john@gamestream.com.br', password: '123456')
-    
+
     login_as john, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
-    fill_in 'Categoria de Vídeo', with: 'RPG'
+    fill_in 'Título', with: 'RPG'
     select 'Games', from: 'Sub-categoria'
     click_on 'Cadastrar'
 
     expect(page).to have_content('Categoria de Vídeo criada com sucesso!')
     expect(current_path).to eq(video_category_path(VideoCategory.last.id))
-  end 
-
+  end
 end
