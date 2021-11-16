@@ -14,7 +14,7 @@ describe 'Administrator creates streamer profile' do
       click_button 'Criar Streamer'
     end
 
-    expect(current_path).to eq streamer_path(Streamer.last)
+    expect(current_path).to eq(streamer_path(Streamer.last))
     expect(page).to have_content('Cadastro realizado com sucesso!')
     expect(page).to have_content('Nome: Fulano')
   end
@@ -31,7 +31,7 @@ describe 'Administrator creates streamer profile' do
       click_button 'Criar Streamer'
     end
 
-    expect(current_path).to eq streamers_path
+    expect(current_path).to eq(streamers_path)
     expect(page).to have_content('Nome não pode ficar em branco')
     expect(page).to have_content('Avatar não pode ficar em branco')
   end
@@ -50,7 +50,7 @@ describe 'Administrator creates streamer profile' do
       click_button 'Criar Streamer'
     end
 
-    expect(current_path).to eq streamers_path
+    expect(current_path).to eq(streamers_path)
     expect(page).to have_content('Nome já está em uso')
   end
 end
