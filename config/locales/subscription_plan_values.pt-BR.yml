@@ -10,3 +10,6 @@ pt-BR:
         start_date: Data inicial
         end_date: Data final
         value: Valor
+  subscription_plan_values:
+    index:
+      title: Preços dinâmicos

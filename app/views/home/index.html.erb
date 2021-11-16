@@ -1,2 +1,8 @@
+<% if user_signed_in? %>
+  <%= current_user.email %> 
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Login', new_user_session_path %>
+<% end %>	
 <%= link_to 'Streamers', streamers_path %>
 <%= link_to 'Planos', subscription_plans_path %>

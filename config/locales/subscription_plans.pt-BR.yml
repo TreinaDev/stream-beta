@@ -11,3 +11,6 @@ pt-BR:
         description: Descrição
         value: Valor padrão
         current_value: Valor atual
+  subscription_plans:
+    index:
+      title: Planos
