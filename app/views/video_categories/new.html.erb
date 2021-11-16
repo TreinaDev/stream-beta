@@ -1,3 +1,9 @@
+<% if @video_category.errors.any? %>
+    <% @video_category.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  <% end %>
+
 <%= form_with(model: @video_category) do |f| %>
   <%= f.label :title, 'Categoria de Vídeo' %>
   <%= f.text_field :title %>
