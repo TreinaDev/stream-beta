@@ -19,7 +19,7 @@ describe 'Administrator creates streamer profile' do
     expect(page).to have_content('Nome: Fulano')
   end
 
-  it 'successfully' do
+  it 'fails due to empty fields' do
     admin = create(:user, :admin)
 
     login_as admin, scope: :user
