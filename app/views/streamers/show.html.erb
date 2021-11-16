@@ -1,7 +1,7 @@
 <% if @streamer.avatar.attached? %>
   <%= image_tag @streamer.avatar, size: "250x250" %>
 <% end %>
-
+<%= link_to 'Editar Streamer', edit_streamer_path %>
 <p>Nome: <%= @streamer.name %></p>
 
 <p>Facebook: <%= @streamer.facebook_url %></p>

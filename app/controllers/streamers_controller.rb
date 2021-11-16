@@ -21,6 +21,9 @@ class StreamersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def streamer_params

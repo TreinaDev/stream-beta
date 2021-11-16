@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home, only: %i[index]
   end
-  resources :streamers, only: %i[index show new create]
+  resources :streamers, only: %i[index show new create edit]
 end
