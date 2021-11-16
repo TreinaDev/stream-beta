@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionPlanValue, type: :model do
+  describe 'associations' do
+    it { should belong_to(:subscription_plan) }
+  end
+
   describe 'enum' do
     it { should define_enum_for(:status).with_values(active: 10, canceled: 90) }
   end
@@ -102,7 +106,7 @@ RSpec.describe SubscriptionPlanValue, type: :model do
       }
     end
 
-    context 'start_date is the same current date' do
+    context 'start_date is the same as current date' do
       let(:start_date) { Date.current }
 
       it {

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SubscriptionPlan, type: :model do
+  describe 'associations' do
+    it { should have_many(:subscription_plan_values).dependent(:destroy) }
+  end
+
   describe 'presence' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }
