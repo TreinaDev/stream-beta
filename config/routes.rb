@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :streamers, only: %i[index show new create]
   root to: 'home#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    resources :home, only: %i[index]
+  end
+  resources :streamers, only: %i[index show new create]
 end

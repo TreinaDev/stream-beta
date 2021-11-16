@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :video do
-    title { "MyString" }
+    title { 'MyString' }
   end
 end

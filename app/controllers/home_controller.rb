@@ -1,5 +1,3 @@
 class HomeController < ApplicationController
-  def index
-    @streamers = Streamer.all
-  end
+  def index; end
 end
