@@ -14,4 +14,32 @@ RSpec.describe SubscriptionPlan, type: :model do
   describe 'numericality' do
     it { should validate_numericality_of(:value).is_greater_than(0) }
   end
+
+  describe '.current_value' do
+    subject do
+      create(:subscription_plan, value: 20)
+    end
+
+    context 'when there are values for the current date' do
+      it {
+        create(:subscription_plan_value, subscription_plan: subject, start_date: Date.current,
+                                         end_date: 2.days.from_now, value: 30)
+
+        expect(subject.current_value).to eq 30
+      }
+    end
+
+    context 'when there are not values for the current date' do
+      it {
+        create(:subscription_plan_value, subscription_plan: subject, start_date: 1.day.from_now,
+                                         end_date: 2.days.from_now, value: 30)
+
+        expect(subject.current_value).to eq 20
+      }
+    end
+
+    context 'when there are no dynamic values' do
+      it { expect(subject.current_value).to eq 20 }
+    end
+  end
 end
