@@ -11,10 +11,10 @@ describe 'Admin account management' do
       fill_in 'Password', with: '123456789'
       click_on 'Log in'
 
-      expect(page).to have_content('Signed in successfully.')
+      expect(page).to have_content('Login efetuado com sucesso!')
       expect(page).to have_content('john@gamestream.com.br')
-      expect(page).not_to have_content('Login')
-      expect(page).to have_content('Logout')
+      expect(page).not_to have_link('Login')
+      expect(page).to have_link('Logout')
     end
 
     it 'cannot log in with blank fields' do
@@ -26,9 +26,9 @@ describe 'Admin account management' do
       fill_in 'Password', with: ''
       click_on 'Log in'
 
-      expect(page).to have_content('Invalid Email or password.')
-      expect(page).to have_content('Log in')
-      expect(page).not_to have_content('Logout')
+      expect(page).to have_content('Email ou senha inválida.')
+      expect(page).to have_button('Log in')
+      expect(page).not_to have_link('Logout')
     end
 
     it 'See admin page' do
@@ -56,10 +56,10 @@ describe 'Admin account management' do
       click_on 'Logout'
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('Signed out successfully.')
+      expect(page).to have_content('Saiu com sucesso.')
       expect(page).not_to have_content('john@gamestream.com.br')
-      expect(page).to have_content('Login')
-      expect(page).not_to have_content('Logout')
+      expect(page).to have_link('Login')
+      expect(page).not_to have_link('Logout')
     end
   end
 end

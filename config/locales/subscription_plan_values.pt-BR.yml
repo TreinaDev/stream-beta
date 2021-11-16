@@ -1,0 +1,15 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      subscription_plan_value:
+        one: Preço dinâmico
+        other: Preços dinâmicos
+    attributes:
+      subscription_plan_value:
+        start_date: Data inicial
+        end_date: Data final
+        value: Valor
+  subscription_plan_values:
+    index:
+      title: Preços dinâmicos
