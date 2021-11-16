@@ -29,7 +29,7 @@ RSpec.describe SubscriptionPlan, type: :model do
       }
     end
 
-    context 'when there are not values for the current date' do
+    context 'when there are no values for the current date' do
       it {
         create(:subscription_plan_value, subscription_plan: subject, start_date: 1.day.from_now,
                                          end_date: 2.days.from_now, value: 30)

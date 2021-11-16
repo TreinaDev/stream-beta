@@ -2,7 +2,7 @@ class SubscriptionPlanValuesController < ApplicationController
   before_action :set_subscription_plan, only: %i[index new create]
 
   def index
-    @subscription_plan_values = SubscriptionPlanValue.where(subscription_plan: @subscription_plan)
+    @subscription_plan_values = @subscription_plan.subscription_plan_values
   end
 
   def new
