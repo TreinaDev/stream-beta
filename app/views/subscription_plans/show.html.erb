@@ -3,3 +3,5 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 
 <div><%= link_to 'Preços dinâmicos', subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
+
+<div><%= link_to 'Voltar', :back %></div>

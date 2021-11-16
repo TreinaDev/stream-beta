@@ -1,7 +1,22 @@
-<% @subscription_plans.each do |subscription_plan| %>
-  <ul>
-    <li><%= link_to subscription_plan.title, subscription_plan_path(subscription_plan) %></li>
-  </ul>
+<h1><%= SubscriptionPlan.model_name.human(count: 2) %></h1>
+
+<% if @subscription_plans.present? %>
+  <table>
+    <tr>
+      <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
+      <th><%= SubscriptionPlan.human_attribute_name(:current_value) %></th>
+    </tr>
+    <% @subscription_plans.each do |subscription_plan| %>
+      <tr>
+        <td><%= link_to subscription_plan.title, subscription_plan_path(subscription_plan) %></td>
+        <td><%= subscription_plan.current_value %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há planos cadastrados</p>
 <% end %>
 
-<%= link_to 'Novo Plano', new_subscription_plan_path %>
+<div><%= link_to 'Novo Plano', new_subscription_plan_path %></div>
+
+<div><%= link_to 'Voltar', :back %></div>

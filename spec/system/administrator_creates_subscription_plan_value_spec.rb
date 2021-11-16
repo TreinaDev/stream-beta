@@ -4,6 +4,7 @@ describe 'Administrator creates subscription plan value' do
   it 'successfully' do
     admin = create(:user, :admin)
     subscription_plan = create(:subscription_plan, title: 'Plano de teste')
+
     login_as admin, scope: :user
     visit root_path
     click_link 'Planos'
@@ -26,6 +27,7 @@ describe 'Administrator creates subscription plan value' do
   it 'fails due to empty fields' do
     admin = create(:user, :admin)
     subscription_plan = create(:subscription_plan, title: 'Plano de teste')
+
     login_as admin, scope: :user
     visit root_path
     click_link 'Planos'
@@ -40,5 +42,21 @@ describe 'Administrator creates subscription plan value' do
     expect(page).to have_content('Data inicial não pode ficar em branco')
     expect(page).to have_content('Data final não pode ficar em branco')
     expect(page).to have_content('Valor não pode ficar em branco')
+  end
+
+  it 'and can only see values for the current plan' do
+    admin = create(:user, :admin)
+    first_subscription_plan = create(:subscription_plan, title: 'Primeiro Plano')
+    second_subscription_plan = create(:subscription_plan, title: 'Segundo Plano')
+    create(:subscription_plan_value, subscription_plan: first_subscription_plan)
+
+    login_as admin, scope: :user
+    visit root_path
+    click_link 'Planos'
+    click_link 'Segundo Plano'
+    click_link 'Preços dinâmicos'
+
+    expect(current_path).to eq subscription_plan_subscription_plan_values_path(second_subscription_plan)
+    expect(page).to have_content('Ainda não há preços dinâmicos cadastrados para esse plano')
   end
 end

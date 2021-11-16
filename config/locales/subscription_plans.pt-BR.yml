@@ -10,3 +10,4 @@ pt-BR:
         title: Título
         description: Descrição
         value: Valor padrão
+        current_value: Valor atual
