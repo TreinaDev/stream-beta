@@ -13,8 +13,8 @@
     </tr>
     <% @subscription_plan_values.each do |spv| %>
       <tr>
-        <td><%= spv.start_date %></td>
-        <td><%= spv.end_date %></td>
+        <td><%= l(spv.start_date) %></td>
+        <td><%= l(spv.end_date) %></td>
         <td><%= number_to_currency(spv.value) %></td>
       </tr>
     <% end %>
