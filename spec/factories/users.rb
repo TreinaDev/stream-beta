@@ -4,8 +4,8 @@ FactoryBot.define do
     password { '123456' }
 
     trait :admin do
-      sequence(:email) { |n| "administrador#{n}@gamestream.com.br"}
-      admin {true}
+      sequence(:email) { |n| "administrador#{n}@gamestream.com.br" }
+      admin { true }
     end
   end
 end

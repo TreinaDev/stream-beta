@@ -40,7 +40,7 @@ describe 'User authentication' do
       expect(response).to redirect_to(new_user_session_path)
     end
   end
-  
+
   context 'subscription plan values' do
     it 'cannot registers subsciption plan values without login' do
       post '/subscription_plans/1/subscription_plan_values'
