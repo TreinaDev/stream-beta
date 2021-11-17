@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Admin registers video category' do
   it 'successfully' do
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456789')
+    john = User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
 
     login_as john, scope: :user
     visit admin_home_index_path
@@ -15,7 +15,7 @@ describe 'Admin registers video category' do
   end
 
   it 'cannot be blank' do
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456789')
+    john = User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
 
     login_as john, scope: :user
     visit admin_home_index_path
@@ -28,7 +28,7 @@ describe 'Admin registers video category' do
 
   it 'cannot be duplicates' do
     VideoCategory.create!(title: 'Games')
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456')
+    john = User.create!(email: 'john@gamestream.com.br', password: '123456', admin: true)
 
     login_as john, scope: :user
     visit admin_home_index_path
@@ -41,7 +41,7 @@ describe 'Admin registers video category' do
 
   it 'a subcategory successfully' do
     VideoCategory.create!(title: 'Games')
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456')
+    john = User.create!(email: 'john@gamestream.com.br', password: '123456', admin: true)
 
     login_as john, scope: :user
     visit admin_home_index_path

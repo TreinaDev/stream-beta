@@ -1,4 +1,7 @@
 class VideoCategoriesController < ApplicationController
+  before_action :authenticate_user!, only: :show
+  before_action :authenticate_admin!, only: %i[create new]
+
   def new
     @video_category = VideoCategory.new
   end
@@ -6,10 +9,9 @@ class VideoCategoriesController < ApplicationController
   def create
     @video_category = VideoCategory.new(params.require(:video_category).permit(:title, :parent_id))
     if @video_category.save
-      flash[:notice] = 'Categoria de Vídeo criada com sucesso!'
-      redirect_to @video_category
+      redirect_to @video_category, success: 'Categoria de Vídeo criada com sucesso!'
     else
-      render action: 'new'
+      render :new
     end
   end
 
