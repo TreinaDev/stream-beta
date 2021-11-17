@@ -9,7 +9,7 @@ RSpec.describe Video, type: :model do
   end
 
   describe 'format' do
-    it {
+    it do
       should allow_values('vimeo.com/123456789').for(:video_url)
       should allow_values('http://vimeo.com/123456789').for(:video_url)
       should allow_values('https://vimeo.com/123456789').for(:video_url)
@@ -25,7 +25,7 @@ RSpec.describe Video, type: :model do
       should allow_values('vimeo.com/groups/shortfilms/videos/123456789').for(:video_url)
       should allow_values('http://vimeo.com/groups/shortfilms/videos/123456789').for(:video_url)
       should allow_values('https://vimeo.com/groups/shortfilms/videos/123456789').for(:video_url)
-    }
+    end
 
     it { should_not allow_values('https://youtube.com').for(:video_url) }
   end

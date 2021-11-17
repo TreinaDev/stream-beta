@@ -41,4 +41,14 @@ describe 'Administrator creates video' do
     expect(page).to have_content('URL do vídeo não pode ficar em branco')
     expect(page).to have_content('Faixa etária não pode ficar em branco')
   end
+
+  it 'but fails due to not being an admin' do
+    user = create(:user)
+
+    login_as user, scope: :user
+    visit root_path
+    click_link 'Vídeos'
+
+    expect(page).to have_no_link('Novo vídeo')
+  end
 end
