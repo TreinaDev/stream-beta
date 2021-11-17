@@ -4,7 +4,7 @@ FactoryBot.define do
       username { FFaker::Internet.user_name }
     end
 
-    name { FFaker::NameBR.name }
+    name { username.split(/\.|_/).map(&:capitalize).join }
     facebook_url { "https://www.facebook.com/#{username}" }
     youtube_url { "https://www.youtube.com/c/#{username}" }
     instagram_handle { username.to_s }

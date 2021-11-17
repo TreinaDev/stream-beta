@@ -11,4 +11,6 @@ class Playlist < ApplicationRecord
   has_many :original_playlists, through: :related_relations, inverse_of: :related_playlists
 
   has_one_attached :playlist_cover
+
+  validates :title, :description, :playlist_cover, presence: true
 end

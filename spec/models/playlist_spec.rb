@@ -13,4 +13,10 @@ RSpec.describe Playlist, type: :model do
 
     it { should have_one_attached(:playlist_cover) }
   end
+
+  describe 'presence' do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:playlist_cover) }
+  end
 end

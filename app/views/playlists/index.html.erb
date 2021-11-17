@@ -1,0 +1,22 @@
+<h1><%= t('.title') %></h1>
+
+<% if @playlists.present? %>
+  <table>
+    <tr>
+      <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
+      <th><%= SubscriptionPlan.human_attribute_name(:description) %></th>
+    </tr>
+    <% @playlists.each do |playlist| %>
+      <tr>
+        <td><%= link_to playlist.title, playlist_path(playlist) %></td>
+        <td><%= playlist.description %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há playlists cadastradas</p>
+<% end %>
+
+<div><%= link_to 'Nova Playlist', new_playlist_path %></div>
+
+<div><%= link_to 'Voltar', :back %></div>
