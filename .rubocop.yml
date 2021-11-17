@@ -22,3 +22,6 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
  Enabled: false
+
+Layout/EndOfLine:
+  Enabled: False

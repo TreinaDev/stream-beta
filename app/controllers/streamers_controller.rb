@@ -22,6 +22,17 @@ class StreamersController < ApplicationController
   end
 
   def edit
+    @streamer = Streamer.find(params[:id])
+  end
+
+  def update
+    @streamer = Streamer.find(params[:id])
+
+    if @streamer.update streamer_params
+      redirect_to streamer_path(@streamer), success: 'Cadastro atualizado com sucesso!'
+    else
+      render :edit
+    end
   end
 
   private
