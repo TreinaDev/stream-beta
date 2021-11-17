@@ -52,5 +52,7 @@ describe 'Admin registers video category' do
 
     expect(page).to have_content('Categoria de Vídeo criada com sucesso!')
     expect(current_path).to eq(video_category_path(VideoCategory.last.id))
+    expect(page).to have_content('Games')
+    expect(page).to have_content('RPG')
   end
 end
