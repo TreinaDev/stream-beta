@@ -15,5 +15,6 @@ class VideoCategoriesController < ApplicationController
 
   def show
     @video_category = VideoCategory.find(params[:id])
+    @video_category_parent = @video_category.parent
   end
 end
