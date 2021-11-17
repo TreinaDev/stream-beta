@@ -1,4 +1,6 @@
 class SubscriptionPlansController < ApplicationController
+  before_action :authenticate_admin!, only: %i[create new]
+  
   def index
     @subscription_plans = SubscriptionPlan.all
   end
