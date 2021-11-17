@@ -26,5 +26,7 @@ RSpec.describe Video, type: :model do
       should allow_values('http://vimeo.com/groups/shortfilms/videos/123456789').for(:video_url)
       should allow_values('https://vimeo.com/groups/shortfilms/videos/123456789').for(:video_url)
     }
+
+    it { should_not allow_values('https://youtube.com').for(:video_url) }
   end
 end
