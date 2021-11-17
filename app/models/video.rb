@@ -6,13 +6,4 @@ class Video < ApplicationRecord
               with: %r{(?:http|https)?(?:://)?(?:player\.)?vimeo\.com/(?:.*/)?\d{9}},
               message: 'não está formatada corretamente'
             }
-
-  def obtain_video_info_from_vimeo
-    source = "https://vimeo.com/api/oembed.json?url=#{video_url}"
-    response = Net::HTTP.get_response(URI.parse(source))
-
-    return false unless response.message == 'OK'
-
-    JSON.parse(response.body, symbolize_names: true)
-  end
 end

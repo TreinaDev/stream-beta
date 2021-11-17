@@ -19,6 +19,8 @@
   <p>Ainda não há vídeos cadastrados</p>
 <% end %>
 
-<div><%= link_to 'Novo vídeo', new_video_path %></div>
+<% if current_user.admin? %>
+  <div><%= link_to 'Novo vídeo', new_video_path %></div>
+<% end %>
 
 <div><%= link_to 'Voltar', :back %></div>

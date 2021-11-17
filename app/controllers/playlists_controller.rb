@@ -1,4 +1,6 @@
 class PlaylistsController < ApplicationController
+  before_action :require_admin_login, only: %i[new create]
+
   def index
     @playlists = Playlist.all
   end

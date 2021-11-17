@@ -11,6 +11,6 @@ pt-BR:
         duration: Duração
         maturity_rating: Faixa etária
         video_url: URL do vídeo
-  video:
+  videos:
     index:
       title: Vídeos
