@@ -4,6 +4,7 @@ class SubscriptionPlanValue < ApplicationRecord
   enum status: { active: 10, canceled: 90 }
 
   default_scope { active.order(start_date: :asc) }
+  scope :filter_by_date, ->(date) { where('? BETWEEN start_date AND end_date', date) }
 
   validates :start_date, :end_date, :value, presence: true
   validates :start_date, :end_date, uniqueness: { scope: :subscription_plan_id }
@@ -15,20 +16,15 @@ class SubscriptionPlanValue < ApplicationRecord
 
   private
 
+  def date_overlapping?(date)
+    SubscriptionPlanValue.where('? BETWEEN start_date AND end_date', date).where.not(id: id).any?
+  end
+
   def dates_cannot_overlap
     return unless start_date && end_date
 
-    if SubscriptionPlanValue.where(subscription_plan: subscription_plan).where(
-      '? BETWEEN start_date AND end_date', start_date
-    ).where.not(id: id).any?
-      errors.add(:start_date, 'corresponde a um período já cadastrado')
-    end
-
-    if SubscriptionPlanValue.where(subscription_plan: subscription_plan).where(
-      '? BETWEEN start_date AND end_date', end_date
-    ).where.not(id: id).any?
-      errors.add(:end_date, 'corresponde a um período já cadastrado')
-    end
+    errors.add(:start_date, 'corresponde a um período já cadastrado') if date_overlapping?(start_date)
+    errors.add(:end_date, 'corresponde a um período já cadastrado') if date_overlapping?(end_date)
   end
 
   def end_date_cannot_come_before_start_date

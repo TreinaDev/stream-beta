@@ -5,6 +5,7 @@ FactoryBot.define do
 
     trait :admin do
       sequence(:email) { |n| "administrador#{n}@gamestream.com.br" }
+      admin { true }
     end
   end
 end
