@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_202321) do
+ActiveRecord::Schema.define(version: 2021_11_17_200259) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,9 +40,25 @@ ActiveRecord::Schema.define(version: 2021_11_16_202321) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "playlist_streamers", force: :cascade do |t|
+    t.integer "playlist_id", null: false
+    t.integer "streamer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["playlist_id"], name: "index_playlist_streamers_on_playlist_id"
+    t.index ["streamer_id"], name: "index_playlist_streamers_on_streamer_id"
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "related_playlists", force: :cascade do |t|
+    t.integer "original_playlist_id", null: false
+    t.integer "related_playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -84,7 +100,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_202321) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -106,5 +122,9 @@ ActiveRecord::Schema.define(version: 2021_11_16_202321) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "playlist_streamers", "playlists"
+  add_foreign_key "playlist_streamers", "streamers"
+  add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
+  add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_values", "subscription_plans"
 end
