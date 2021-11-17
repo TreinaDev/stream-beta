@@ -64,4 +64,14 @@ describe 'Administrator creates streamer profile' do
     expect(page).to have_content('Instagram já está em uso')
     expect(page).to have_content('Twitter já está em uso')
   end
+
+  it 'due to admin not be logged in' do
+    admin = create(:user, :admin)
+    create(:streamer, name: 'Fulano')
+
+    visit root_path
+    click_link 'Streamers'
+
+    expect(page).not_to have_link 'Novo Streamer'
+  end
 end

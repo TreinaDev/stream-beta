@@ -33,7 +33,7 @@ describe 'Administrator edit streamer profile' do
   end
 
   context 'fails' do
-    it 'due to not be logged in' do
+    it 'due to admin not be logged in' do
       admin = create(:user, :admin)
       create(:streamer, name: 'Fulano')
 
