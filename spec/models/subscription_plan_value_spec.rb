@@ -40,11 +40,11 @@ RSpec.describe SubscriptionPlanValue, type: :model do
                                         end_date: 10.days.from_now)
       end
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:start_date))
           .to include('Data inicial corresponde a um período já cadastrado')
-      }
+      end
     end
 
     context 'end_date overlaps' do
@@ -53,11 +53,11 @@ RSpec.describe SubscriptionPlanValue, type: :model do
                                         end_date: 5.days.from_now)
       end
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:end_date))
           .to include('Data final corresponde a um período já cadastrado')
-      }
+      end
     end
   end
 
@@ -68,31 +68,31 @@ RSpec.describe SubscriptionPlanValue, type: :model do
       let(:start_date) { 2.days.from_now }
       let(:end_date) { 3.days.from_now }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:end_date)).to be_empty
-      }
+      end
     end
 
     context 'start_date is the same as end_date' do
       let(:start_date) { 2.days.from_now }
       let(:end_date) { 2.days.from_now }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:end_date)).to be_empty
-      }
+      end
     end
 
     context 'start_date comes after end_date' do
       let(:start_date) { 3.days.from_now }
       let(:end_date) { 2.days.from_now }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:end_date))
           .to include('Data final deve ser maior ou igual a data inicial')
-      }
+      end
     end
   end
 
@@ -102,29 +102,29 @@ RSpec.describe SubscriptionPlanValue, type: :model do
     context 'start_date comes before current date' do
       let(:start_date) { 1.day.ago }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:start_date))
           .to include('Data inicial deve ser maior ou igual a data atual')
-      }
+      end
     end
 
     context 'start_date is the same as current date' do
       let(:start_date) { Date.current }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:start_date)).to eq []
-      }
+      end
     end
 
     context 'start_date comes after current date' do
       let(:start_date) { 1.day.from_now }
 
-      it {
+      it do
         subject.valid?
         expect(subject.errors.full_messages_for(:start_date)).to eq []
-      }
+      end
     end
   end
 end
