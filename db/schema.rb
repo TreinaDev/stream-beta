@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_200259) do
+ActiveRecord::Schema.define(version: 2021_11_17_205112) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,11 @@ ActiveRecord::Schema.define(version: 2021_11_17_200259) do
     t.string "youtube_url"
     t.string "instagram_handle"
     t.string "twitter_handle"
+    t.index ["facebook_url"], name: "index_streamers_on_facebook_url", unique: true
+    t.index ["instagram_handle"], name: "index_streamers_on_instagram_handle", unique: true
+    t.index ["name"], name: "index_streamers_on_name", unique: true
+    t.index ["twitter_handle"], name: "index_streamers_on_twitter_handle", unique: true
+    t.index ["youtube_url"], name: "index_streamers_on_youtube_url", unique: true
   end
 
   create_table "subscription_plan_values", force: :cascade do |t|
@@ -81,6 +86,8 @@ ActiveRecord::Schema.define(version: 2021_11_17_200259) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 10
+    t.index ["subscription_plan_id", "end_date"], name: "by_plan_and_end_date", unique: true
+    t.index ["subscription_plan_id", "start_date"], name: "by_plan_and_start_date", unique: true
     t.index ["subscription_plan_id"], name: "index_subscription_plan_values_on_subscription_plan_id"
   end
 
@@ -90,6 +97,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_200259) do
     t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_subscription_plans_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|
