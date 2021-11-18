@@ -43,7 +43,7 @@ describe 'Admin account management' do
       expect(current_path).to eq(admin_home_index_path)
       expect(page).to have_content('Página do Admin')
       expect(page).to have_content('john@gamestream.com.br')
-      expect(page).to have_content('Criar Playlist')
+      expect(page).to have_link('Playlist')
     end
   end
 

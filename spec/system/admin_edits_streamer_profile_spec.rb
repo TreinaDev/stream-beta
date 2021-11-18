@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Administrator edit streamer profile' do
   context 'successfully' do
     it 'changes streamer profile' do
-      admin = create(:user, admin: true)
+      admin = create(:user, :admin)
       create(:streamer, name: 'Fulano')
 
       login_as admin, scope: :user
@@ -34,7 +34,7 @@ describe 'Administrator edit streamer profile' do
 
   context 'fails' do
     it 'due to admin not be logged in' do
-      create(:user, admin: true)
+      create(:user, :admin)
       create(:streamer, name: 'Fulano')
 
       visit root_path
@@ -45,7 +45,7 @@ describe 'Administrator edit streamer profile' do
     end
 
     it 'due to empty fields' do
-      admin = create(:user, admin: true)
+      admin = create(:user, :admin)
       create(:streamer, name: 'Fulano')
 
       login_as admin, scope: :user
