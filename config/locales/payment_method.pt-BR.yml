@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      payment_method:
+        one: Método de Pagamento
+        other: Métodos de Pagamentos
+    attributes:
+      payment_method:
+        token: Token
+        user_id: Usuário
+  payment_methods:
+    new:
+      title: Cadastro de Método de Pagamento
+    create:
+      success: Método de pagamento adicionado com sucesso

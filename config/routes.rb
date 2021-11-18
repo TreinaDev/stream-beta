@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :subscription_plans, only: %i[index show new create], shallow: true do
     resources :subscription_plan_values, only: %i[index show new create]
   end
+  resources :payment_methods, only: %i[new create show]
 
   resources :videos, only: %i[index show new create]
 end

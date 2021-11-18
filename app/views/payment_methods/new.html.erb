@@ -1,0 +1,10 @@
+<h2><%= t('.title') %></h2>
+<%= form_with(model: @payment_method) do |f| %>
+  <%= f.select :payment_type, ['Pix,', 'Boleto', 'Cartão de Crédito'] %>
+  <%= f.select :pix_type, ['Email', 'Telefone', 'Chave Aleatória', 'CPF', 'CNPJ'] %>
+  <%= f.label :pix_key, 'Chave' %>
+  <%= f.text_field :pix_key %>
+  <%= f.label :code_bank, 'Código do banco' %>
+  <%= f.text_field :code_bank %>
+  <%= f.submit 'Enviar' %>
+<% end %>
