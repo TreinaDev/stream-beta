@@ -11,6 +11,7 @@ describe 'User accesses playlists' do
 
       expect(current_path).to eq(playlists_path)
       expect(page).to have_content('Playlists')
+      expect(page).to have_no_content('Nova Playlist')
     end
   end
 
