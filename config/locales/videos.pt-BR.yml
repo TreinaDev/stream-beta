@@ -14,3 +14,7 @@ pt-BR:
   videos:
     index:
       title: Vídeos
+    new:
+      title: Cadastro de Vídeo
+    create:
+      success: Vídeo criado com sucesso!

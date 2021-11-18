@@ -8,3 +8,10 @@ pt-BR:
     attributes:
       streamer:
         name: Nome
+  streamers:
+    index:
+      title: Streamers
+    new:
+      title: Cadastro de Streamer
+    create:
+      success: Cadastro realizado com sucesso!

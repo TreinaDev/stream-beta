@@ -11,8 +11,9 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
+
     if @video.save
-      redirect_to video_path(@video), success: 'Vídeo criado com sucesso!'
+      redirect_to video_path(@video), success: t('.success')
     else
       render :new
     end

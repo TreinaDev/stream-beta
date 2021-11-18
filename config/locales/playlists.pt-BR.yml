@@ -14,5 +14,7 @@ pt-BR:
   playlists:
     index:
       title: Playlists
+    new:
+      title: Cadastro de Playlist
     create:
       success: Playlist criada com sucesso!

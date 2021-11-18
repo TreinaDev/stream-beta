@@ -10,11 +10,10 @@ class SubscriptionPlanValuesController < ApplicationController
   end
 
   def create
-    @subscription_plan_value = SubscriptionPlanValue.new(subscription_plan_values_params)
-    @subscription_plan_value.subscription_plan = @subscription_plan
+    @subscription_plan_value = @subscription_plan.subscription_plan_values.new(subscription_plan_values_params)
 
     if @subscription_plan_value.save
-      redirect_to subscription_plan_subscription_plan_values_path, success: 'Preço dinâmico criado com sucesso!'
+      redirect_to subscription_plan_subscription_plan_values_path, success: t('.success')
     else
       render :new
     end
