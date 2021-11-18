@@ -45,6 +45,7 @@ describe 'Administrator creates video' do
 
   it 'but fails due to not being an admin' do
     user = create(:user)
+    create(:user_profile, user: user)
 
     login_as user, scope: :user
     visit root_path

@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   end
 
   resources :videos, only: %i[index show new create]
+
+  resources :user_profiles, only: %i[show new create]
 end

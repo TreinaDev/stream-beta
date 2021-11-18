@@ -4,6 +4,7 @@ describe 'User accesses playlists' do
   context 'and can access' do
     it 'index page' do
       user = create(:user)
+      create(:user_profile, user: user)
 
       login_as user, scope: :user
       visit root_path
