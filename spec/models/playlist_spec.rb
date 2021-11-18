@@ -9,14 +9,16 @@ RSpec.describe Playlist, type: :model do
     it { should have_many(:videos).through(:playlist_videos) }
 
     it do
-      should have_many(:original_relations)
-        .with_foreign_key(:original_playlist_id).inverse_of(:original_playlist).dependent(:destroy)
+      should have_many(:original_relations).class_name('RelatedPlaylist')
+                                           .with_foreign_key(:original_playlist_id).inverse_of(:original_playlist)
+                                           .dependent(:destroy)
     end
     it { should have_many(:related_playlists).through(:original_relations).inverse_of(:original_playlists) }
 
     it do
-      should have_many(:related_relations)
-        .with_foreign_key(:related_playlist_id).inverse_of(:related_playlist).dependent(:destroy)
+      should have_many(:related_relations).class_name('RelatedPlaylist')
+                                          .with_foreign_key(:related_playlist_id).inverse_of(:related_playlist)
+                                          .dependent(:destroy)
     end
     it { should have_many(:original_playlists).through(:related_relations).inverse_of(:related_playlists) }
 

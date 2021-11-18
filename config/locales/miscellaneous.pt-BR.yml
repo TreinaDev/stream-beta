@@ -16,3 +16,4 @@ pt-BR:
     unlock_instructions: Não recebeu as instruções de desbloqueio?
   messages:
     are_you_sure?: Tem certeza?
+    unauthorized_access: Acesso não autorizado!

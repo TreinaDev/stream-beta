@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :require_admin_login, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create]
 
   def index
     @videos = Video.all
