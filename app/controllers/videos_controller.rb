@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :require_admin_login, only: %i[new create]
+  before_action :user_must_fill_profile
 
   def index
     @videos = Video.all

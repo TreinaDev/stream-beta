@@ -1,4 +1,5 @@
 class SubscriptionPlansController < ApplicationController
+  before_action :user_must_fill_profile
   def index
     @subscription_plans = SubscriptionPlan.all
   end

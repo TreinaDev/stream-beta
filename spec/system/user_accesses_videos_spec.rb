@@ -4,6 +4,7 @@ describe 'User accesses videos' do
   context 'and can access' do
     it 'index page' do
       user = create(:user)
+      create(:user_profile, user: user)
 
       login_as user, scope: :user
       visit root_path
@@ -17,6 +18,7 @@ describe 'User accesses videos' do
   context 'and can not access' do
     it 'new page' do
       user = create(:user)
+      create(:user_profile, user: user)
 
       login_as user, scope: :user
       visit new_video_path

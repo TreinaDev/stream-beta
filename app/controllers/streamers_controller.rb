@@ -1,4 +1,5 @@
 class StreamersController < ApplicationController
+  before_action :user_must_fill_profile
   def index
     @streamers = Streamer.all
   end

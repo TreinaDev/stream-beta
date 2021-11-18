@@ -16,4 +16,10 @@ class ApplicationController < ActionController::Base
 
     redirect_to root_path, notice: 'Acesso não autorizado!'
   end
+
+  def user_must_fill_profile
+    return if current_user&.user_profile || current_user&.admin?
+
+    redirect_to new_user_profile_path, notice: 'Preencha seu perfil para continuar navegando'
+  end
 end

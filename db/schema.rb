@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_001716) do
+ActiveRecord::Schema.define(version: 2021_11_17_200259) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,45 +40,11 @@ ActiveRecord::Schema.define(version: 2021_11_18_001716) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "playlist_streamers", force: :cascade do |t|
-    t.integer "playlist_id", null: false
-    t.integer "streamer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["playlist_id"], name: "index_playlist_streamers_on_playlist_id"
-    t.index ["streamer_id"], name: "index_playlist_streamers_on_streamer_id"
-  end
-
-  create_table "playlist_videos", force: :cascade do |t|
-    t.integer "playlist_id", null: false
-    t.integer "video_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["playlist_id"], name: "index_playlist_videos_on_playlist_id"
-    t.index ["video_id"], name: "index_playlist_videos_on_video_id"
-  end
-
   create_table "playlists", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "related_playlists", force: :cascade do |t|
-    t.integer "original_playlist_id", null: false
-    t.integer "related_playlist_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "streamer_videos", force: :cascade do |t|
-    t.integer "streamer_id", null: false
-    t.integer "video_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["streamer_id"], name: "index_streamer_videos_on_streamer_id"
-    t.index ["video_id"], name: "index_streamer_videos_on_video_id"
   end
 
   create_table "streamers", force: :cascade do |t|
@@ -89,11 +55,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_001716) do
     t.string "youtube_url"
     t.string "instagram_handle"
     t.string "twitter_handle"
-    t.index ["facebook_url"], name: "index_streamers_on_facebook_url", unique: true
-    t.index ["instagram_handle"], name: "index_streamers_on_instagram_handle", unique: true
-    t.index ["name"], name: "index_streamers_on_name", unique: true
-    t.index ["twitter_handle"], name: "index_streamers_on_twitter_handle", unique: true
-    t.index ["youtube_url"], name: "index_streamers_on_youtube_url", unique: true
   end
 
   create_table "subscription_plan_values", force: :cascade do |t|
@@ -104,8 +65,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_001716) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 10
-    t.index ["subscription_plan_id", "end_date"], name: "by_plan_and_end_date", unique: true
-    t.index ["subscription_plan_id", "start_date"], name: "by_plan_and_start_date", unique: true
     t.index ["subscription_plan_id"], name: "index_subscription_plan_values_on_subscription_plan_id"
   end
 
@@ -115,7 +74,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_001716) do
     t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["title"], name: "index_subscription_plans_on_title", unique: true
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -166,14 +124,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_001716) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "playlist_streamers", "playlists"
-  add_foreign_key "playlist_streamers", "streamers"
-  add_foreign_key "playlist_videos", "playlists"
-  add_foreign_key "playlist_videos", "videos"
-  add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
-  add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
-  add_foreign_key "streamer_videos", "streamers"
-  add_foreign_key "streamer_videos", "videos"
   add_foreign_key "subscription_plan_values", "subscription_plans"
   add_foreign_key "user_profiles", "users"
 end
