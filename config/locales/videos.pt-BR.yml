@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      video:
+        one: Vídeo
+        other: Vídeos
+    attributes:
+      video:
+        title: Título
+        duration: Duração
+        maturity_rating: Faixa etária
+        video_url: URL do vídeo
+  videos:
+    index:
+      title: Vídeos
