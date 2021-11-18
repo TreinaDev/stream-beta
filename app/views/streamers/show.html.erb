@@ -2,8 +2,11 @@
   <%= image_tag @streamer.avatar, size: "250x250" %>
 <% end %>
 
-<p>Nome: <%= @streamer.name %></p>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'Editar Streamer', edit_streamer_path %>
+<% end %>
 
+<p>Nome: <%= @streamer.name %></p>
 <p>Facebook: <%= @streamer.facebook_url %></p>
 <p>Youtube: <%= @streamer.youtube_url %></p>
 <p>Instagram: <%= @streamer.instagram_handle %></p>
