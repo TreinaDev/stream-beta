@@ -12,6 +12,7 @@ describe 'User accesses videos' do
 
       expect(current_path).to eq(videos_path)
       expect(page).to have_content('Vídeos')
+      expect(page).to have_no_content('Novo vídeo')
     end
   end
 

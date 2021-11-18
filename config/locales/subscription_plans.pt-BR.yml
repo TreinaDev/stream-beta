@@ -14,3 +14,7 @@ pt-BR:
   subscription_plans:
     index:
       title: Planos
+    new:
+      title: Cadastro de Plano
+    create:
+      success: Plano criado com sucesso!

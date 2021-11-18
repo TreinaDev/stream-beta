@@ -1,0 +1,20 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      playlist:
+        one: Playlist
+        other: Playlists
+    attributes:
+      playlist:
+        title: Título
+        description: Descrição
+        playlist_cover: Capa da playlist
+        video_url: URL do vídeo
+  playlists:
+    index:
+      title: Playlists
+    new:
+      title: Cadastro de Playlist
+    create:
+      success: Playlist criada com sucesso!

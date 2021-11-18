@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Video, type: :model do
+  describe 'associations' do
+    it { should have_many(:playlist_videos).dependent(:destroy) }
+    it { should have_many(:playlists).through(:playlist_videos) }
+
+    it { should have_one(:streamer_video).dependent(:destroy) }
+    it { should have_one(:streamer).through(:streamer_video) }
+  end
+
   describe 'presence' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:duration) }

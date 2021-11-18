@@ -3,18 +3,20 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_resource)
     if current_user.admin?
-      admin_home_index_path
+      stored_location_for(resource) || admin_home_index_path
     else
-      root_path
+      stored_location_for(resource) || root_path
     end
   end
 
   private
 
-  def require_admin_login
+  def authenticate_admin!
     return if current_user&.admin?
 
-    redirect_to root_path, notice: 'Acesso não autorizado!'
+    return redirect_to new_user_session_path unless user_signed_in?
+
+    redirect_to root_path, notice: t('messages.unauthorized_access')
   end
 
   def user_must_fill_profile

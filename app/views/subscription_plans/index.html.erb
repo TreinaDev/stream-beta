@@ -1,7 +1,7 @@
 <h1><%= t('.title') %></h1>
 
 <% if @subscription_plans.present? %>
-  <table>
+  <table class="table">
     <tr>
       <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
       <th><%= SubscriptionPlan.human_attribute_name(:current_value) %></th>

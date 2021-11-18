@@ -1,0 +1,19 @@
+---
+pt-BR:
+  buttons:
+    cancel_my_account: Cancelar minha conta
+    sign_in: Entrar
+    sign_up: Registrar
+    update: Atualizar
+  links:
+    confirmation_instructions: Não recebeu as instruções de confirmação?
+    forgot_your_password?: Esqueceu sua senha?
+    go_back: Voltar
+    sign_in: Entrar
+    sign_in_with: Entrar com
+    sign_out: Sair
+    sign_up: Registrar
+    unlock_instructions: Não recebeu as instruções de desbloqueio?
+  messages:
+    are_you_sure?: Tem certeza?
+    unauthorized_access: Acesso não autorizado!

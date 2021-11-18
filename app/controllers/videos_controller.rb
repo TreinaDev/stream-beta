@@ -1,6 +1,5 @@
 class VideosController < ApplicationController
-  before_action :require_admin_login, only: %i[new create]
-  before_action :user_must_fill_profile
+  before_action :authenticate_admin!, only: %i[new create]
 
   def index
     @videos = Video.all
@@ -12,8 +11,9 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
+
     if @video.save
-      redirect_to video_path(@video), success: 'Vídeo criado com sucesso!'
+      redirect_to video_path(@video), success: t('.success')
     else
       render :new
     end

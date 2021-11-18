@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      video_category:
+        one: Categoria de Vídeo
+        other: Categoria de Vídeos
+    attributes:
+      video_category:
+        title: Título

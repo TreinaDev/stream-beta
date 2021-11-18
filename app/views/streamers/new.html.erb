@@ -1,3 +1,7 @@
+<h1><%= t('.title') %></h1>
+
 <%= render "shared/errors", resource: @streamer %>
 
 <%= render 'form' %>
+
+<div><%= link_to 'Voltar', streamers_path %></div>

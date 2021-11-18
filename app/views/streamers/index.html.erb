@@ -1,7 +1,12 @@
+<h1><%= t('.title') %></h1>
+
 <% @streamers.each do |streamer| %>
   <ul>
     <li><%= link_to streamer.name, streamer_path(streamer) %></li>
   </ul>
 <% end %>
 
-<%= link_to 'Novo Streamer', new_streamer_path %>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'Novo Streamer', new_streamer_path %>
+<% end %>
+
