@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_205112) do
+ActiveRecord::Schema.define(version: 2021_11_18_001716) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2021_11_17_205112) do
     t.index ["streamer_id"], name: "index_playlist_streamers_on_streamer_id"
   end
 
+  create_table "playlist_videos", force: :cascade do |t|
+    t.integer "playlist_id", null: false
+    t.integer "video_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["playlist_id"], name: "index_playlist_videos_on_playlist_id"
+    t.index ["video_id"], name: "index_playlist_videos_on_video_id"
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -61,6 +70,15 @@ ActiveRecord::Schema.define(version: 2021_11_17_205112) do
     t.integer "related_playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "streamer_videos", force: :cascade do |t|
+    t.integer "streamer_id", null: false
+    t.integer "video_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["streamer_id"], name: "index_streamer_videos_on_streamer_id"
+    t.index ["video_id"], name: "index_streamer_videos_on_video_id"
   end
 
   create_table "streamers", force: :cascade do |t|
@@ -132,7 +150,11 @@ ActiveRecord::Schema.define(version: 2021_11_17_205112) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "playlist_streamers", "playlists"
   add_foreign_key "playlist_streamers", "streamers"
+  add_foreign_key "playlist_videos", "playlists"
+  add_foreign_key "playlist_videos", "videos"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
+  add_foreign_key "streamer_videos", "streamers"
+  add_foreign_key "streamer_videos", "videos"
   add_foreign_key "subscription_plan_values", "subscription_plans"
 end
