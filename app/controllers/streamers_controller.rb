@@ -1,4 +1,6 @@
 class StreamersController < ApplicationController
+  before_action :authenticate_admin!, only: %i[create new]
+
   def index
     @streamers = Streamer.all
   end

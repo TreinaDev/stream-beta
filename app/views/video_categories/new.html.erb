@@ -1,0 +1,14 @@
+<% if @video_category.errors.any? %>
+    <% @video_category.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  <% end %>
+<h2>Categoria de Vídeo:</h2>
+
+<%= form_with(model: @video_category) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.collection_select :parent_id, VideoCategory.order(:title), :id, :title %>
+  <%= f.label :parent_id, 'Sub-categoria' %>
+  <%= f.submit 'Cadastrar'%>
+<% end %>
