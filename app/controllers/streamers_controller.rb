@@ -18,7 +18,7 @@ class StreamersController < ApplicationController
     @streamer = Streamer.new(streamer_params)
 
     if @streamer.save
-      redirect_to streamer_path(@streamer), success: 'Cadastro realizado com sucesso!'
+      redirect_to streamer_path(@streamer), success: t('.success')
     else
       render :new
     end

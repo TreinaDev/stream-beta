@@ -13,3 +13,7 @@ pt-BR:
   subscription_plan_values:
     index:
       title: Preços dinâmicos
+    new:
+      title: Cadastro de Preço Dinâmico
+    create:
+      success: Preço dinâmico criado com sucesso!

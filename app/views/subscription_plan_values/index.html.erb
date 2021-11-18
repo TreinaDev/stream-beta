@@ -5,7 +5,7 @@
 <%= link_to 'Incluir novo preço', new_subscription_plan_subscription_plan_value_path(@subscription_plan) %>
 
 <% if @subscription_plan_values.present? %>
-  <table>
+  <table class="table">
     <tr>
       <th><%= SubscriptionPlanValue.human_attribute_name(:start_date) %></th>
       <th><%= SubscriptionPlanValue.human_attribute_name(:end_date) %></th>
@@ -23,4 +23,4 @@
   <p>Ainda não há preços dinâmicos cadastrados para esse plano</p>
 <% end %>
 
-<div><%= link_to 'Voltar', :back %></div>
+<div><%= link_to 'Voltar', @subscription_plan %></div>

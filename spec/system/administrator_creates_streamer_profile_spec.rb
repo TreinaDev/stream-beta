@@ -15,7 +15,7 @@ describe 'Administrator creates streamer profile' do
     end
 
     expect(current_path).to eq(streamer_path(Streamer.last))
-    expect(page).to have_content('Cadastro realizado com sucesso!')
+    expect(page).to have_css('div', text: 'Cadastro realizado com sucesso!')
     expect(page).to have_content('Nome: Fulano')
   end
 

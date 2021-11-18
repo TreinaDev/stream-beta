@@ -1,7 +1,7 @@
 <h1><%= t('.title') %></h1>
 
 <% if @videos.present? %>
-  <table>
+  <table class="table">
     <tr>
       <th><%= Video.human_attribute_name(:title) %></th>
       <th><%= Video.human_attribute_name(:duration) %></th>

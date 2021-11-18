@@ -16,7 +16,7 @@ describe 'Administrator creates new subscription plan' do
     end
 
     expect(current_path).to eq(subscription_plan_path(SubscriptionPlan.last))
-    expect(page).to have_content('Plano criado com sucesso!')
+    expect(page).to have_css('div', text: 'Plano criado com sucesso!')
     expect(page).to have_content('Plano Padrão')
     expect(page).to have_content('Esse plano é o plano padrão')
     expect(page).to have_content('R$ 50,00')

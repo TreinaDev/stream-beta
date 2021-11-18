@@ -18,6 +18,7 @@ describe 'Admin authentication' do
       expect(response).to redirect_to(root_path)
     end
   end
+
   context 'streamers' do
     it 'cannot registers streamers without login' do
       user = create(:user)
