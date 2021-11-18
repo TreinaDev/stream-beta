@@ -26,6 +26,22 @@ describe 'User subscribes to plan' do
 
     it 'but fails due to payment not authorized' do
       # TODO: Necessário comunicação com API de pagamentos
+      user = create(:user)
+      create(:user_profile, user: user)
+      create(:subscription_plan, title: 'Plano legal')
+      allow_any_instance_of(UserSubscriptionPlan).to receive(:validate_payment).and_return(false)
+
+      login_as user, scope: :user
+      visit root_path
+      click_link 'Planos'
+      click_link 'Plano legal'
+      click_link 'Assinar plano'
+      click_button 'Confirmar assinatura'
+
+      expect(page).to have_button('Confirmar assinatura')
+      expect(page).to have_no_content('Assinar plano')
+      expect(page).to have_css('div', text: 'Pagamento não autorizado')
+      expect(user.subscription_plans.count).to eq 0
     end
   end
 
