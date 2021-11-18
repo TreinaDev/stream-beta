@@ -17,6 +17,8 @@
   <p>Ainda não há planos cadastrados</p>
 <% end %>
 
-<div><%= link_to 'Novo Plano', new_subscription_plan_path %></div>
+<% if current_user&.admin? %>
+  <div><%= link_to 'Novo Plano', new_subscription_plan_path %></div>
+<% end %>
 
 <div><%= link_to 'Voltar', :back %></div>

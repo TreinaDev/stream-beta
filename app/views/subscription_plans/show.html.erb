@@ -5,4 +5,10 @@
 
 <div><%= link_to 'Preços dinâmicos', subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
 
+<% if current_user.has_subscription_plan?(@subscription_plan) %>
+  <p>Você possui uma assinatura desse plano.</p>
+<% else %>
+  <div><%= link_to 'Assinar plano', new_user_subscription_plan_path(subscription_plan_id: @subscription_plan) %></div>
+<% end %>
+
 <div><%= link_to 'Voltar', subscription_plans_path %></div>

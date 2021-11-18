@@ -17,7 +17,7 @@
   <p>Ainda não há playlists cadastradas</p>
 <% end %>
 
-<% if current_user.admin? %>
+<% if current_user&.admin? %>
   <div><%= link_to 'Nova Playlist', new_playlist_path %></div>
 <% end %>
 

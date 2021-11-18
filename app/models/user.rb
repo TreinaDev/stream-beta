@@ -4,9 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :user_subscription_plans
+  has_many :subscription_plans, through: :user_subscription_plans
+
   has_one :user_profile, dependent: :destroy
 
   before_save :admin_save
+
+  def has_subscription_plan?(plan)
+    subscription_plans.include?(plan)
+  end
 
   private
 

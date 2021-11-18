@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user_subscription_plan:
+        one: Assinatura de Plano
+        other: Assinaturas de Plano
+  user_subscription_plans:
+    new:
+      title: Assinatura de Plano
+    create:
+      success: 'Assinatura realizada com sucesso!'

@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe SubscriptionPlan, type: :model do
   describe 'associations' do
     it { should have_many(:subscription_plan_values).dependent(:destroy) }
+
+    it { should have_many(:user_subscription_plans) }
+    it { should have_many(:users).through(:user_subscription_plans) }
   end
 
   describe 'presence' do

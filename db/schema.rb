@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_153507) do
+ActiveRecord::Schema.define(version: 2021_11_18_193958) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -136,6 +136,15 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
+  create_table "user_subscription_plans", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "subscription_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
+    t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -178,5 +187,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
   add_foreign_key "streamer_videos", "videos"
   add_foreign_key "subscription_plan_values", "subscription_plans"
   add_foreign_key "user_profiles", "users"
+  add_foreign_key "user_subscription_plans", "subscription_plans"
+  add_foreign_key "user_subscription_plans", "users"
   add_foreign_key "video_categories", "video_categories", column: "parent_id"
 end
