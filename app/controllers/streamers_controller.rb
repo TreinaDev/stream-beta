@@ -1,9 +1,9 @@
 class StreamersController < ApplicationController
   before_action :authenticate_admin!, only: %i[new create edit update]
+  before_action :user_must_fill_profile
 
   def index
     @streamers = Streamer.all
-    @user = current_user
   end
 
   def show
@@ -32,7 +32,7 @@ class StreamersController < ApplicationController
     @streamer = Streamer.find(params[:id])
 
     if @streamer.update streamer_params
-      redirect_to streamer_path(@streamer), success: 'Cadastro atualizado com sucesso!'
+      redirect_to streamer_path(@streamer), success: t('.success')
     else
       render :edit
     end

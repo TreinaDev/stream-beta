@@ -1,6 +1,7 @@
 class VideoCategoriesController < ApplicationController
   before_action :authenticate_user!, only: :show
   before_action :authenticate_admin!, only: %i[create new]
+  before_action :user_must_fill_profile
 
   def new
     @video_category = VideoCategory.new

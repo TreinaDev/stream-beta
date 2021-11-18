@@ -1,5 +1,6 @@
 class SubscriptionPlansController < ApplicationController
   before_action :authenticate_admin!, only: %i[create new]
+  before_action :user_must_fill_profile
 
   def index
     @subscription_plans = SubscriptionPlan.all

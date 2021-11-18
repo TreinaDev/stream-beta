@@ -136,24 +136,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
-  create_table "user_profiles", force: :cascade do |t|
-    t.string "full_name"
-    t.string "social_name"
-    t.date "birth_date"
-    t.string "cpf"
-    t.string "zipcode"
-    t.string "address_line_one"
-    t.string "address_line_two"
-    t.string "city"
-    t.string "state"
-    t.string "country"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["cpf"], name: "index_user_profiles_on_cpf", unique: true
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

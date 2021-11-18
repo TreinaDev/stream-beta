@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :authenticate_admin!, only: %i[new create]
+  before_action :user_must_fill_profile
 
   def index
     @playlists = Playlist.all
