@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'Admin registers video category' do
   it 'successfully' do
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
+    admin = create(:user, :admin)
 
-    login_as john, scope: :user
+    login_as admin, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
     fill_in 'Título', with: 'Games'
@@ -15,9 +15,9 @@ describe 'Admin registers video category' do
   end
 
   it 'cannot be blank' do
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
+    admin = create(:user, :admin)
 
-    login_as john, scope: :user
+    login_as admin, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
     fill_in 'Título', with: ''
@@ -28,9 +28,9 @@ describe 'Admin registers video category' do
 
   it 'cannot be duplicates' do
     VideoCategory.create!(title: 'Games')
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456', admin: true)
+    admin = create(:user, :admin)
 
-    login_as john, scope: :user
+    login_as admin, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
     fill_in 'Título', with: 'Games'
@@ -41,9 +41,9 @@ describe 'Admin registers video category' do
 
   it 'a subcategory successfully' do
     VideoCategory.create!(title: 'Games')
-    john = User.create!(email: 'john@gamestream.com.br', password: '123456', admin: true)
+    admin = create(:user, :admin)
 
-    login_as john, scope: :user
+    login_as admin, scope: :user
     visit admin_home_index_path
     click_on 'Cadastrar Categoria de Vídeo'
     fill_in 'Título', with: 'RPG'
