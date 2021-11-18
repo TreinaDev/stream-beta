@@ -1,4 +1,7 @@
 class UserProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :already_has_profile?, only: %i[new create]
+
   def show
     @user_profile = UserProfile.find(params[:id])
   end
@@ -21,5 +24,9 @@ class UserProfilesController < ApplicationController
   def user_profile_params
     params.require(:user_profile).permit(:full_name, :social_name, :birth_date, :cpf, :zipcode, :address_line_one,
                                          :address_line_two, :city, :state, :country)
+  end
+
+  def already_has_profile?
+    redirect_to current_user.user_profile, notice: 'Usuário já possui perfil cadastrado!' if current_user.user_profile
   end
 end
