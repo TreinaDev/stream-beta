@@ -12,18 +12,10 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_admin!
-    if current_user
-      redirect_to root_path unless current_user.admin?
-    else
-      redirect_to new_user_session_path
-    end
-  end
-
-  private
-
-  def require_admin_login
     return if current_user&.admin?
 
-    redirect_to root_path, notice: 'Acesso não autorizado!'
+    return redirect_to new_user_session_path unless user_signed_in?
+
+    redirect_to root_path, notice: t('messages.unauthorized_access')
   end
 end
