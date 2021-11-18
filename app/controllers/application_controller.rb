@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  private
+
+  def require_admin_login
+    return if current_user&.admin?
+
+    redirect_to root_path, notice: 'Acesso não autorizado!'
+  end
 end
