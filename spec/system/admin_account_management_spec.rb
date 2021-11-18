@@ -11,7 +11,7 @@ describe 'Admin account management' do
       fill_in 'Senha', with: '123456789'
       click_button 'Entrar'
 
-      expect(page).to have_content('Login efetuado com sucesso!')
+      expect(page).to have_css('div', text: 'Login efetuado com sucesso!')
       expect(page).to have_content('john@gamestream.com.br')
       expect(page).not_to have_link('Entrar')
       expect(page).to have_link('Sair')
@@ -56,7 +56,7 @@ describe 'Admin account management' do
       click_link 'Sair'
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content('Saiu com sucesso.')
+      expect(page).to have_css('div', text: 'Saiu com sucesso.')
       expect(page).not_to have_content('john@gamestream.com.br')
       expect(page).to have_link('Entrar')
       expect(page).not_to have_link('Sair')

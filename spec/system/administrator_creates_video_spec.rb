@@ -17,7 +17,7 @@ describe 'Administrator creates video' do
     end
 
     expect(current_path).to eq(video_path(Video.last))
-    expect(page).to have_content('Vídeo criado com sucesso!')
+    expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
     expect(page).to have_content('Vídeo novo')
     expect(page).to have_content('00:59:12')
     expect(page).to have_content('https://vimeo.com/123456789')

@@ -16,7 +16,7 @@ describe 'Administrator creates playlist' do
     end
 
     expect(current_path).to eq(playlist_path(Playlist.last))
-    expect(page).to have_content('Playlist criada com sucesso!')
+    expect(page).to have_css('div', text: 'Playlist criada com sucesso!')
     expect(page).to have_content('Título: As melhores jogadas')
     expect(page).to have_content('Descrição: Playlist com as melhores jogadas dos streamers participantes')
   end

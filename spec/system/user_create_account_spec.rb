@@ -10,7 +10,7 @@ describe 'create accont' do
       fill_in 'Confirmação de Senha', with: '123456'
       click_button 'Registrar'
 
-      expect(page).to have_content('Login efetuado com sucesso')
+      expect(page).to have_css('div', text: 'Login efetuado com sucesso')
       expect(page).to have_link('Sair')
       expect(page).not_to have_content('Registrar')
       expect(current_path).not_to eq(admin_home_index_path)
@@ -26,7 +26,7 @@ describe 'create accont' do
       fill_in 'Confirmação de Senha', with: '123456'
       click_button 'Registrar'
 
-      expect(page).to have_content('Login efetuado com sucesso')
+      expect(page).to have_css('div', text: 'Login efetuado com sucesso')
       expect(page).to have_link('Sair')
       expect(page).not_to have_content('Registrar')
       expect(current_path).to eq(admin_home_index_path)
