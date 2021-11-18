@@ -6,8 +6,8 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.date :birth_date
       t.string :cpf
       t.string :zipcode
-      t.string :address_line_1
-      t.string :address_line_2
+      t.string :address_line_one
+      t.string :address_line_two
       t.string :city
       t.string :state
       t.string :country
@@ -15,5 +15,7 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :user_profiles, :cpf, unique: true
   end
 end

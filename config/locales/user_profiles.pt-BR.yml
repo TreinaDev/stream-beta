@@ -1,0 +1,22 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user_profile:
+        one: Perfil
+        other: Perfis
+    attributes:
+      user_profile:
+        full_name: Nome Completo
+        social_name: Nome Social
+        birth_date: Data de Nascimento
+        cpf: CPF
+        zipcode: CEP
+        address_line_one: Endereço (Rua e Número)
+        address_line_two: Endereço (Bairro e Complemento)
+        city: Cidade
+        state: Estado
+        country: País
+  user_profiles:
+    show:
+      title: Perfil
