@@ -38,9 +38,9 @@ class StreamersController < ApplicationController
     end
   end
 
-  def destroy
+  def disable_streamer
     streamer = Streamer.find(params[:id])
-    streamer.destroy
+    streamer.
     redirect_to streamers_path
   end
 
