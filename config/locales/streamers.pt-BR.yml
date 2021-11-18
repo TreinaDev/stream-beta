@@ -19,3 +19,5 @@ pt-BR:
       title: Cadastro de Streamer
     create:
       success: Cadastro realizado com sucesso!
+    update:
+      success: Cadastro atualizado com sucesso!

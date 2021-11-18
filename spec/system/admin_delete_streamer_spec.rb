@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrator delete streamer profile' do
+describe 'Administrator mark streamer as inactive' do
   context 'successfully' do
     it 'from platform' do
       admin = create(:user, :admin)
@@ -10,9 +10,10 @@ describe 'Administrator delete streamer profile' do
       visit root_path
       click_link 'Streamers'
       click_link 'Fulano'
-      click_link 'Excluir Streamer'
+      click_link 'Inativar Streamer'
 
-      expect(Streamer.count).to eq 0
+      expect(Streamer.count).to eq 1
+      expect(Streamer.last.status).to eq 'inactive'
       expect(current_path).to eq streamers_path
     end
   end
@@ -24,7 +25,7 @@ describe 'Administrator delete streamer profile' do
       click_link 'Streamers'
       click_link 'Fulano'
 
-      expect(page).not_to have_link 'Excluir Streamer'
+      expect(page).not_to have_link 'Inativar Streamer'
       expect(Streamer.count).to eq 1
     end
   end

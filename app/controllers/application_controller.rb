@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
 
     redirect_to root_path, notice: t('messages.unauthorized_access')
   end
+
+  def user_must_fill_profile
+    return unless user_signed_in?
+    return if current_user&.user_profile || current_user&.admin?
+
+    redirect_to new_user_profile_path, notice: 'Preencha seu perfil para continuar navegando'
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_153507) do
+ActiveRecord::Schema.define(version: 2021_11_18_191836) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.string "youtube_url"
     t.string "instagram_handle"
     t.string "twitter_handle"
+    t.integer "status", default: 0
     t.index ["facebook_url"], name: "index_streamers_on_facebook_url", unique: true
     t.index ["instagram_handle"], name: "index_streamers_on_instagram_handle", unique: true
     t.index ["name"], name: "index_streamers_on_name", unique: true
@@ -116,6 +117,24 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
+  end
+
+  create_table "user_profiles", force: :cascade do |t|
+    t.string "full_name"
+    t.string "social_name"
+    t.date "birth_date"
+    t.string "cpf"
+    t.string "zipcode"
+    t.string "address_line_one"
+    t.string "address_line_two"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cpf"], name: "index_user_profiles_on_cpf", unique: true
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -159,5 +178,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
   add_foreign_key "streamer_videos", "streamers"
   add_foreign_key "streamer_videos", "videos"
   add_foreign_key "subscription_plan_values", "subscription_plans"
+  add_foreign_key "user_profiles", "users"
   add_foreign_key "video_categories", "video_categories", column: "parent_id"
 end

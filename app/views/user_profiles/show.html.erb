@@ -1,0 +1,12 @@
+<p><%= "#{UserProfile.human_attribute_name(:full_name)}: #{@user_profile.full_name}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:social_name)}: #{@user_profile.social_name}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:birth_date)}: #{l(@user_profile.birth_date)}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:cpf)}: #{CPF.new(@user_profile.cpf).formatted}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:zipcode)}: #{@user_profile.zipcode}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:address_line_one)}: #{@user_profile.address_line_one}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:address_line_two)}: #{@user_profile.address_line_two}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:city)}: #{@user_profile.city}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:state)}: #{@user_profile.state}" %></p>
+<p><%= "#{UserProfile.human_attribute_name(:country)}: #{@user_profile.country}" %></p>
+
+<div><%= link_to 'Voltar', :back %></div>
