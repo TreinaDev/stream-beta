@@ -38,6 +38,12 @@ class StreamersController < ApplicationController
     end
   end
 
+  def destroy
+    streamer = Streamer.find(params[:id])
+    streamer.destroy
+    redirect_to streamers_path
+  end
+
   private
 
   def streamer_params

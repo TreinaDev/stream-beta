@@ -4,6 +4,7 @@
 
 <% if current_user.try(:admin?) %>
   <%= link_to 'Editar Streamer', edit_streamer_path %>
+  <%= link_to 'Excluir Streamer', streamer_path, method: :delete %>
 <% end %>
 
 <p>Nome: <%= @streamer.name %></p>
