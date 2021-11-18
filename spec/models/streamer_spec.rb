@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Streamer, type: :model do
   describe 'associations' do
+    it { should have_many(:playlist_streamers).dependent(:destroy) }
+    it { should have_many(:playlists).through(:playlist_streamers) }
+
+    it { should have_many(:streamer_videos).dependent(:destroy) }
+    it { should have_many(:videos).through(:streamer_videos) }
+
     it { should have_one_attached(:avatar) }
   end
 

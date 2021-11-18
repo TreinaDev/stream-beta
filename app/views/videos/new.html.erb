@@ -1,5 +1,7 @@
+<h1><%= t('.title') %></h1>
+
 <%= render "shared/errors", resource: @video %>
 
 <%= render 'form' %>
 
-<div><%= link_to 'Voltar', :back %></div>
+<div><%= link_to 'Voltar', videos_path %></div>

@@ -6,10 +6,15 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
-  resources :streamers
+  resources :playlists, only: %i[index show new create]
+
+  resources :streamers, only: %i[index show new create edit update]
+
   resources :video_categories, only: %i[new create show]
+
   resources :subscription_plans, only: %i[index show new create], shallow: true do
     resources :subscription_plan_values, only: %i[index show new create]
   end
+
   resources :videos, only: %i[index show new create]
 end

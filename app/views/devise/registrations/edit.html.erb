@@ -1,0 +1,39 @@
+<h2><%= t('.title') %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Aguardando confirmação de: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "#{User.human_attribute_name(:password)} \
+        (Mínimo de #{@minimum_password_length} caracteres)" if @minimum_password_length %>
+    <i>(Deixe em branco caso não queira alterar sua senha atual)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(Precisamos da sua senha atual para confirmar suas alterações)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('buttons.update') %>
+  </div>
+<% end %>
+
+<p><%= button_to t('buttons.cancel_my_account'), registration_path(resource_name), data: { confirm: t('messages.are_you_sure?') }, method: :delete %></p>
+
+<%= link_to t('links.go_back'), :back %>

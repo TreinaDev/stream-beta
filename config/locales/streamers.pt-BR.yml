@@ -11,4 +11,11 @@ pt-BR:
         youtube_url: Canal no Youtube
         facebook_url: Facebook
         instagram_handle: Instagram
-        twitter_handle: Twitter 
+        twitter_handle: Twitter
+  streamers:
+    index:
+      title: Streamers
+    new:
+      title: Cadastro de Streamer
+    create:
+      success: Cadastro realizado com sucesso!

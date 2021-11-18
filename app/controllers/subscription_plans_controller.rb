@@ -12,7 +12,7 @@ class SubscriptionPlansController < ApplicationController
   def create
     @subscription_plan = SubscriptionPlan.new(subscription_plan_params)
     if @subscription_plan.save
-      redirect_to subscription_plan_path(@subscription_plan), success: 'Plano criado com sucesso!'
+      redirect_to subscription_plan_path(@subscription_plan), success: t('.success')
     else
       render :new
     end

@@ -1,11 +1,10 @@
 FactoryBot.define do
   factory :user do
-    sequence(:email) { |n| "usuario#{n}@teste.com.br" }
+    email { FFaker::Internet.email }
     password { '123456' }
 
     trait :admin do
-      sequence(:email) { |n| "administrador#{n}@gamestream.com.br" }
-      admin { true }
+      email { "#{FFaker::Internet.user_name}@gamestream.com.br" }
     end
   end
 end
