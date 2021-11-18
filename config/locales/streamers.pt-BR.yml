@@ -8,3 +8,7 @@ pt-BR:
     attributes:
       streamer:
         name: Nome
+        youtube_url: Canal no Youtube
+        facebook_url: Facebook
+        instagram_handle: Instagram
+        twitter_handle: Twitter 

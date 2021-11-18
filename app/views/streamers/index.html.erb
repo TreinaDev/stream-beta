@@ -4,4 +4,7 @@
   </ul>
 <% end %>
 
-<%= link_to 'Novo Streamer', new_streamer_path %>
+<% if current_user.try(:admin?) %>
+  <%= link_to 'Novo Streamer', new_streamer_path %>
+<% end %>
+
