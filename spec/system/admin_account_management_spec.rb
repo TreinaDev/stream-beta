@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Admin account management' do
   context 'log in' do
     it 'successfully' do
-      User.create!(email: 'john@gamestream.com.br', password: '123456789')
+      create(:user, :admin, email: 'john@gamestream.com.br', password: '123456789')
 
       visit root_path
       click_link 'Entrar'
@@ -18,7 +18,6 @@ describe 'Admin account management' do
     end
 
     it 'cannot log in with blank fields' do
-      User.create!(email: 'john@gamestream.com.br', password: '123456789')
 
       visit root_path
       click_link 'Entrar'
@@ -32,7 +31,7 @@ describe 'Admin account management' do
     end
 
     it 'See admin page' do
-      User.create!(email: 'john@gamestream.com.br', password: '123456789', admin: true)
+      create(:user, :admin, email: 'john@gamestream.com.br', password: '123456789')
 
       visit root_path
       click_link 'Entrar'
@@ -49,9 +48,9 @@ describe 'Admin account management' do
 
   context 'log out' do
     it 'successfully' do
-      john = User.create!(email: 'john@gamestream.com.br', password: '123456789')
+      admin = create(:user, :admin, email: 'john@gamestream.com.br', password: '123456789')
 
-      login_as john, scope: :user
+      login_as admin, scope: :user
       visit root_path
       click_link 'Sair'
 

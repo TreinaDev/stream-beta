@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :redirect_admin_home
+
   def index; end
 
   private

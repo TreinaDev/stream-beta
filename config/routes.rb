@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources :payment_methods, only: %i[new create show]
 
   resources :videos, only: %i[index show new create]
+
+  resources :user_profiles, only: %i[show new create]
 end
