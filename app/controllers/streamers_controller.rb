@@ -1,6 +1,9 @@
 class StreamersController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update]
+
   def index
     @streamers = Streamer.all
+    @user = current_user  
   end
 
   def show

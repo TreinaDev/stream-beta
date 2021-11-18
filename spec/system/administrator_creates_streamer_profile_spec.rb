@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Administrator creates streamer profile' do
   it 'successfully' do
-    admin = create(:user, :admin)
+    admin = create(:user, admin: true)
 
     login_as admin, scope: :user
     visit root_path
@@ -20,7 +20,7 @@ describe 'Administrator creates streamer profile' do
   end
 
   it 'fails due to empty fields' do
-    admin = create(:user, :admin)
+    admin = create(:user, admin: true)
 
     login_as admin, scope: :user
     visit root_path
@@ -37,7 +37,7 @@ describe 'Administrator creates streamer profile' do
   end
 
   it 'fails due to attributes not being unique' do
-    admin = create(:user, :admin)
+    admin = create(:user, admin: true)
     create(:streamer, name: 'Fulano', facebook_url: 'www.facebook.com/fulano',
                       youtube_url: 'www.youtube.com/fulano',
                       instagram_handle: 'www.instagram.com/fulano',
@@ -66,7 +66,7 @@ describe 'Administrator creates streamer profile' do
   end
 
   it 'due to admin not be logged in' do
-    admin = create(:user, :admin)
+    create(:user, admin: true)
     create(:streamer, name: 'Fulano')
 
     visit root_path
