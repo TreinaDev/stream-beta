@@ -1,4 +1,5 @@
 class SubscriptionPlanValuesController < ApplicationController
+  before_action :authenticate_admin!, only: %i[create new]
   before_action :set_subscription_plan, only: %i[index new create]
 
   def index
