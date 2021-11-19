@@ -38,6 +38,12 @@ class StreamersController < ApplicationController
     end
   end
 
+  def inactive
+    streamer = Streamer.find(params[:id])
+    streamer.inactive!
+    redirect_to streamers_path
+  end
+
   private
 
   def streamer_params
