@@ -12,5 +12,11 @@ pt-BR:
   payment_methods:
     new:
       title: Cadastro de Método de Pagamento
+      pix_key: Chave
+      card_number: Número da Conta
+      agency_number: Número da Agência
+      code_bank: Código do banco
+      submit: Enviar
     create:
       success: Método de pagamento adicionado com sucesso
+      error: Método de Pagamento inválido

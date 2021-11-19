@@ -7,8 +7,12 @@ class PaymentMethodsController < ApplicationController
     @payment_method = PaymentMethod.new
     @payment_method.token = send_payment_method_to_pagamantos_beta
     @payment_method.user = current_user
-    @payment_method.save
-    redirect_to @payment_method, success: t('.success')
+    if @payment_method.save
+      redirect_to @payment_method, success: t('.success')
+    else
+      @error = t('.error')
+      render :new
+    end
   end
 
   def show
