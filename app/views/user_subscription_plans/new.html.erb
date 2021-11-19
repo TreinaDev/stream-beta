@@ -5,6 +5,7 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
 
 <div>
-  <%= button_to 'Confirmar assinatura', user_subscription_plans_path(subscription_plan_id: @subscription_plan),
-      data: { confirm: t('messages.confirm_subscription?') } %>
+  <%= button_to 'Confirmar assinatura', user_subscription_plans_path, params: {
+        subscription_plan: { id: @subscription_plan }
+      }, data: { confirm: t('messages.confirm_subscription?') } %>
 </div>

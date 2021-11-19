@@ -28,6 +28,6 @@ class UserSubscriptionPlansController < ApplicationController
   private
 
   def set_subscription_plan
-    @subscription_plan = SubscriptionPlan.find(params[:subscription_plan_id])
+    @subscription_plan = SubscriptionPlan.find(params[:subscription_plan][:id])
   end
 end
