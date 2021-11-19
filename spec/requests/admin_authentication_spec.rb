@@ -20,7 +20,7 @@ describe 'Admin authentication' do
   end
 
   context 'streamers' do
-    it 'cannot registers streamers without login' do
+    it 'cannot registers streamers without admin' do
       user = create(:user)
       login_as user, scope: :user
       post '/streamers'
@@ -28,21 +28,21 @@ describe 'Admin authentication' do
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot view new streamers without login' do
+    it 'cannot view new streamers without admin' do
       user = create(:user)
       login_as user, scope: :user
       get '/streamers/new'
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot view edit streamers without login' do
+    it 'cannot view edit streamers without admin' do
       user = create(:user)
       login_as user, scope: :user
       get '/streamers/1/edit'
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot updates streamers without login per put' do
+    it 'cannot updates streamers without admin per put' do
       user = create(:user)
       login_as user, scope: :user
       put '/streamers/1'
@@ -50,7 +50,7 @@ describe 'Admin authentication' do
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot updates streamers without login per patch' do
+    it 'cannot updates streamers without admin per patch' do
       user = create(:user)
       login_as user, scope: :user
       patch '/streamers/1'
@@ -60,7 +60,7 @@ describe 'Admin authentication' do
   end
 
   context 'subscription plan values' do
-    it 'cannot registers subscription plan values without login' do
+    it 'cannot registers subscription plan values without admin' do
       user = create(:user)
       login_as user, scope: :user
       post '/subscription_plans/1/subscription_plan_values'
@@ -68,7 +68,7 @@ describe 'Admin authentication' do
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot view new subscription plan values without login' do
+    it 'cannot view new subscription plan values without admin' do
       user = create(:user)
       login_as user, scope: :user
       get '/subscription_plans/1/subscription_plan_values/new'
@@ -77,7 +77,7 @@ describe 'Admin authentication' do
   end
 
   context 'subscription plans' do
-    it 'cannot registers subscription plan values without login' do
+    it 'cannot registers subscription plan values without admin' do
       user = create(:user)
       login_as user, scope: :user
       post '/subscription_plans'
@@ -85,7 +85,7 @@ describe 'Admin authentication' do
       expect(response).to redirect_to(root_path)
     end
 
-    it 'cannot view new subscription plan values without login' do
+    it 'cannot view new subscription plan values without admin' do
       user = create(:user)
       login_as user, scope: :user
       get '/subscription_plans/new'
