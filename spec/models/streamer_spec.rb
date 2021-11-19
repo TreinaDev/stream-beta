@@ -10,6 +10,10 @@ RSpec.describe Streamer, type: :model do
     it { should have_one_attached(:avatar) }
   end
 
+  describe 'enum' do
+    it { should define_enum_for(:status).with_values(active: 0, inactive: 10) }
+  end
+
   describe 'presence' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:avatar) }

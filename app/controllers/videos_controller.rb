@@ -14,7 +14,7 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
-      redirect_to video_path(@video), success: t('.success')
+      redirect_to @video, success: t('.success')
     else
       render :new
     end
