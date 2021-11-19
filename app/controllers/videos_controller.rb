@@ -14,7 +14,7 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
-      redirect_to video_path(@video), success: t('.success')
+      redirect_to @video, success: t('.success')
     else
       render :new
     end
@@ -27,6 +27,6 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating)
+    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id)
   end
 end

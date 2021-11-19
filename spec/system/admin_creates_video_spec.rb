@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Administrator creates video' do
   it 'successfully' do
     admin = create(:user, :admin)
+    create(:streamer, name: 'DarkStar')
 
     login_as admin, scope: :user
     visit root_path
@@ -13,6 +14,7 @@ describe 'Administrator creates video' do
       fill_in 'Duração', with: '00:59:12'
       fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
       fill_in 'Faixa etária', with: '18'
+      select 'DarkStar', from: 'Streamer'
       click_button 'Criar Vídeo'
     end
 

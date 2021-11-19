@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :video_category do
-    title { 'MyString' }
+    title { FFaker::Game.category }
   end
 end

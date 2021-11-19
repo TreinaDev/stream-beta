@@ -1,11 +1,24 @@
 <h1><%= t('.title') %></h1>
 
-<% @streamers.each do |streamer| %>
-  <ul>
-    <li><%= link_to streamer.name, streamer_path(streamer) %></li>
-  </ul>
+<% if @streamers.present? %>
+  <table class="table">
+    <tr>
+      <th><%= Streamer.human_attribute_name(:name) %></th>
+      <th><%= Video.model_name.human(count: 2) %></th>
+    </tr>
+    <% @streamers.each do |streamer| %>
+      <tr>
+        <td><%= link_to streamer.name, streamer_path(streamer) %></td>
+        <td><%= streamer.videos.count %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há streamers cadastrados</p>
 <% end %>
 
-<% if current_user.try(:admin?) %>
+<% if current_user&.admin? %>
   <%= link_to 'Novo Streamer', new_streamer_path %>
 <% end %>
+
+<div><%= link_to 'Voltar', :back %></div>

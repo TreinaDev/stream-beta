@@ -18,7 +18,6 @@ describe 'Admin account management' do
     end
 
     it 'cannot log in with blank fields' do
-
       visit root_path
       click_link 'Entrar'
       fill_in 'E-mail', with: ''
