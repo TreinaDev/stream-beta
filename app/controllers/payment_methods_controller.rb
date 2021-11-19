@@ -1,4 +1,6 @@
 class PaymentMethodsController < ApplicationController
+  before_action :authenticate_admin!, only: %i[new create show]
+
   def new
     @payment_method = PaymentMethod.new
   end
