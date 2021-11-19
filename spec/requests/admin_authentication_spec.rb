@@ -32,7 +32,16 @@ describe 'Admin authentication' do
       user = create(:user)
       login_as user, scope: :user
       get '/streamers/new'
+
       expect(response).to redirect_to(root_path)
+    end
+
+    it 'cannot inactive a streamer without login' do
+      user = create(:user)
+      login_as user, scope: :user
+      post inactive_streamer_path(1)
+
+      expect(response).to redirect_to(new_user_profile_path)
     end
   end
 

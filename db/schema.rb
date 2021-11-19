@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_153507) do
+ActiveRecord::Schema.define(version: 2021_11_18_191836) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.string "youtube_url"
     t.string "instagram_handle"
     t.string "twitter_handle"
+    t.integer "status", default: 0
     t.index ["facebook_url"], name: "index_streamers_on_facebook_url", unique: true
     t.index ["instagram_handle"], name: "index_streamers_on_instagram_handle", unique: true
     t.index ["name"], name: "index_streamers_on_name", unique: true
