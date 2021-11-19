@@ -34,6 +34,29 @@ describe 'Admin authentication' do
       get '/streamers/new'
       expect(response).to redirect_to(root_path)
     end
+
+    it 'cannot view edit streamers without login' do
+      user = create(:user)
+      login_as user, scope: :user
+      get '/streamers/1/edit'
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'cannot updates streamers without login per put' do
+      user = create(:user)
+      login_as user, scope: :user
+      put '/streamers/1'
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'cannot updates streamers without login per patch' do
+      user = create(:user)
+      login_as user, scope: :user
+      patch '/streamers/1'
+
+      expect(response).to redirect_to(root_path)
+    end
   end
 
   context 'subscription plan values' do

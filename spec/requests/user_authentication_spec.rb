@@ -27,6 +27,24 @@ describe 'User authentication' do
 
       expect(response).to redirect_to(new_user_session_path)
     end
+
+    it 'cannot view edit streamers without login' do
+      get '/streamers/1/edit'
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'cannot update streamers without login per put' do
+      put '/streamers/1'
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it 'cannot update streamers without login per patch' do
+      patch '/streamers/1'
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
 
   context 'subscription plan values' do
