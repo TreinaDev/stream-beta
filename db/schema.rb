@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_153507) do
+ActiveRecord::Schema.define(version: 2021_11_19_031804) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,15 +72,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "streamer_videos", force: :cascade do |t|
-    t.integer "streamer_id", null: false
-    t.integer "video_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["streamer_id"], name: "index_streamer_videos_on_streamer_id"
-    t.index ["video_id"], name: "index_streamer_videos_on_video_id"
-  end
-
   create_table "streamers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -136,6 +127,15 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
+  create_table "user_subscription_plans", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "subscription_plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
+    t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -163,7 +163,9 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
     t.string "duration"
     t.string "video_url"
     t.string "maturity_rating"
-    t.index ["title"], name: "index_videos_on_title", unique: true
+    t.integer "streamer_id", null: false
+    t.index ["streamer_id", "title"], name: "index_videos_on_streamer_id_and_title", unique: true
+    t.index ["streamer_id"], name: "index_videos_on_streamer_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -174,9 +176,10 @@ ActiveRecord::Schema.define(version: 2021_11_18_153507) do
   add_foreign_key "playlist_videos", "videos"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
-  add_foreign_key "streamer_videos", "streamers"
-  add_foreign_key "streamer_videos", "videos"
   add_foreign_key "subscription_plan_values", "subscription_plans"
   add_foreign_key "user_profiles", "users"
+  add_foreign_key "user_subscription_plans", "subscription_plans"
+  add_foreign_key "user_subscription_plans", "users"
   add_foreign_key "video_categories", "video_categories", column: "parent_id"
+  add_foreign_key "videos", "streamers"
 end
