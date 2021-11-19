@@ -2,7 +2,7 @@
   <%= image_tag @streamer.avatar, size: "250x250" %>
 <% end %>
 
-<% if current_user.try(:admin?) %>
+<% if current_user&.admin? %>
   <%= link_to 'Editar Streamer', edit_streamer_path %>
   <%= link_to 'Inativar Streamer', inactive_streamer_path, method: :post %>
 <% end %>

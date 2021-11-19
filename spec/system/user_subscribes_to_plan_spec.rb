@@ -64,6 +64,16 @@ describe 'User subscribes to plan' do
   end
 
   context 'when not authenticated' do
-    # TODO: Montar teste pra usuário não autenticado
+    # TODO: Ajustar teste quando for implementada a API de pagamentos e os meios de pagamento forem cadastrados
+    it 'trying to purchase a plan will redirect to sign_in screen' do
+      plan = create(:subscription_plan, title: 'Plano legal')
+
+      visit root_path
+      click_link 'Planos'
+      click_link 'Plano legal'
+      click_link 'Assinar plano'
+
+      expect(current_path).to eq(new_user_session_path)
+    end
   end
 end
