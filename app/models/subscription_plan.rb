@@ -1,7 +1,7 @@
 class SubscriptionPlan < ApplicationRecord
   has_many :subscription_plan_values, dependent: :destroy
 
-  has_many :user_subscription_plans
+  has_many :user_subscription_plans, dependent: :restrict_with_error
   has_many :users, through: :user_subscription_plans
 
   validates :title, :description, :value, presence: true
