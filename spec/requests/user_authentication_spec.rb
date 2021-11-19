@@ -29,20 +29,6 @@ describe 'User authentication' do
     end
   end
 
-  context 'subscription plan values' do
-    it 'cannot register subscription plan values without login' do
-      post '/subscription_plans/1/subscription_plan_values'
-
-      expect(response).to redirect_to(new_user_session_path)
-    end
-
-    it 'cannot view new subscription plan values without login' do
-      get '/subscription_plans/1/subscription_plan_values/new'
-
-      expect(response).to redirect_to(new_user_session_path)
-    end
-  end
-
   context 'subscription plans' do
     it 'cannot register subscription plan values without login' do
       post '/subscription_plans'

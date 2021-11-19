@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :playlists, only: %i[index show new create]
 
-  resources :streamers, only: %i[index show new create edit update]
+  resources :streamers, only: %i[index show new create edit update] do
+    post 'inactive', on: :member
+  end
 
   resources :video_categories, only: %i[new create show]
 

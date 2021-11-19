@@ -4,6 +4,7 @@
 
 <% if current_user.try(:admin?) %>
   <%= link_to 'Editar Streamer', edit_streamer_path %>
+  <%= link_to 'Inativar Streamer', inactive_streamer_path, method: :post %>
 <% end %>
 
 <p>Nome: <%= @streamer.name %></p>
