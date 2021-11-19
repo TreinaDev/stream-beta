@@ -5,7 +5,7 @@ RSpec.describe Streamer, type: :model do
     it { should have_many(:playlist_streamers).dependent(:destroy) }
     it { should have_many(:playlists).through(:playlist_streamers) }
 
-    it { should have_many(:videos) }
+    it { should have_many(:videos).dependent(:restrict_with_error) }
 
     it { should have_one_attached(:avatar) }
   end

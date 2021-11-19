@@ -11,3 +11,22 @@
 <p>Youtube: <%= @streamer.youtube_url %></p>
 <p>Instagram: <%= @streamer.instagram_handle %></p>
 <p>Twitter: <%= @streamer.twitter_handle %></p>
+
+<% if @streamer.videos.any? %>
+  <table class="table">
+    <tr>
+      <th><%= Video.human_attribute_name(:title) %></th>
+      <th><%= Video.human_attribute_name(:duration) %></th>
+      <th><%= Video.human_attribute_name(:maturity_rating) %></th>
+    </tr>
+    <% @streamer.videos.each do |video| %>
+      <tr>
+        <td><%= link_to video.title, video_path(video) %></td>
+        <td><%= video.duration %></td>
+        <td><%= video.maturity_rating%></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nenhum vídeo cadastrado</p>
+<% end %>

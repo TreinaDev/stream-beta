@@ -2,7 +2,7 @@ class Streamer < ApplicationRecord
   has_many :playlist_streamers, dependent: :destroy
   has_many :playlists, through: :playlist_streamers
 
-  has_many :videos
+  has_many :videos, dependent: :restrict_with_error
 
   has_one_attached :avatar
 

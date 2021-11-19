@@ -13,6 +13,8 @@ pt-BR:
         instagram_handle: Instagram
         twitter_handle: Twitter
   streamers:
+    edit:
+      title: Editar Cadastro de Usuário
     index:
       title: Streamers
     new:
