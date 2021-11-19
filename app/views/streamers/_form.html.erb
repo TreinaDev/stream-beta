@@ -1,29 +1,31 @@
 <%= form_with model: @streamer do |f| %>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :name, placeholder: :name, class: "form-control" %>
     <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :facebook_url, placeholder: :facebook_url, class: "form-control" %>
     <%= f.label :facebook_url %>
-    <%= f.text_field :facebook_url %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :youtube_url, placeholder: :youtube_url, class: "form-control" %>
     <%= f.label :youtube_url %>
-    <%= f.text_field :youtube_url %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :instagram_handle, placeholder: :instagram_handle, class: "form-control" %>
     <%= f.label :instagram_handle %>
-    <%= f.text_field :instagram_handle %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :twitter_handle, placeholder: :twitter_handle, class: "form-control" %>
     <%= f.label :twitter_handle %>
-    <%= f.text_field :twitter_handle %>
   </div>
 
-  <div>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
+  <div class="mb-3 row">
+    <%= f.label :avatar, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= f.file_field :avatar, class: "form-control" %>
+    </div>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-primary mt-3 mb-3" %>
 <% end %>

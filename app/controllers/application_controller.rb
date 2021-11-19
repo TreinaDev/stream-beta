@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success
 
   def after_sign_in_path_for(_resource)
-    if current_user.admin?
+    if current_user&.admin?
       stored_location_for(resource) || admin_home_index_path
     else
       stored_location_for(resource) || root_path

@@ -5,8 +5,7 @@ RSpec.describe Video, type: :model do
     it { should have_many(:playlist_videos).dependent(:destroy) }
     it { should have_many(:playlists).through(:playlist_videos) }
 
-    it { should have_one(:streamer_video).dependent(:destroy) }
-    it { should have_one(:streamer).through(:streamer_video) }
+    it { should belong_to(:streamer) }
   end
 
   describe 'presence' do
@@ -14,6 +13,12 @@ RSpec.describe Video, type: :model do
     it { should validate_presence_of(:duration) }
     it { should validate_presence_of(:video_url) }
     it { should validate_presence_of(:maturity_rating) }
+  end
+
+  describe 'uniqueness' do
+    subject { build(:video) }
+
+    it { should validate_uniqueness_of(:title).scoped_to(:streamer_id) }
   end
 
   describe 'format' do
