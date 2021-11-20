@@ -4,27 +4,27 @@
 
 <h2><%= t('.title') %></h2>
 <%= form_with(model: @payment_method) do |f| %>
-  <div>
+  <div class="mb-3">
     <%= f.select :payment_type, ['Pix', 'Boleto', 'Cartão de Crédito'] %>
   </div>
-  <div>
+  <div class="mb-3">
     <%= f.select :pix_type, ['Email', 'Telefone', 'Chave Aleatória', 'CPF', 'CNPJ'] %>
   </div>
   <div>
-    <%= f.label :pix_key, t('.pix_key') %>
+    <%= f.label :pix_key, t('.pix_key'), class: "col-sm-2 col-form-label" %>
     <%= f.text_field :pix_key %>
   </div>
   <div>
-    <%= f.label :card_number, t('.card_number') %>
+    <%= f.label :card_number, t('.card_number'), class: "col-sm-2 col-form-label" %>
     <%= f.text_field :card_number %>
   </div>
   <div>
-    <%= f.label :agency_number, t('.agency_number') %>
+    <%= f.label :agency_number, t('.agency_number'), class: "col-sm-2 col-form-label" %>
     <%= f.text_field :agency_number %>
   </div>
   <div>
-    <%= f.label :code_bank, t('.code_bank') %>
-    <%= f.text_field :code_bank %>
+    <%= f.label :code_bank, t('.code_bank'),  class: "col-sm-2 col-form-label" %>
+    <%= f.number_field :code_bank %>
   </div>
   <%= f.submit t('.submit') %>
 <% end %>
