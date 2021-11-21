@@ -1,0 +1,14 @@
+<h1><%= t('.title') %></h1>
+
+<%= render "shared/errors", resource: @subscription_plan_playlist %>
+
+<%= form_with model: [@subscription_plan, @subscription_plan_playlist] do |f| %>
+  <div class="form-floating mb-3">
+    <%= f.collection_select :playlist_id, @playlists, :id, :title, {}, class: "form-select" %>
+    <%= f.label :playlist_id, Playlist.model_name.human %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary mt-3 mb-3" %>
+<% end %>
+
+<div><%= link_to 'Voltar', subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>

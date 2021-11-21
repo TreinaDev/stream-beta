@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      subscription_plan_playlist:
+        one: Associação de Playlist
+        other: Associações de Playlists
+  subscription_plan_playlists:
+    index:
+      title: Playlists associadas
+    new:
+      title: Associar Playlist
+    create:
+      success: Playlist associada com sucesso!
