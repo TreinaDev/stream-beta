@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_041030) do
+ActiveRecord::Schema.define(version: 2021_11_21_145203) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -133,6 +133,10 @@ ActiveRecord::Schema.define(version: 2021_11_19_041030) do
     t.integer "subscription_plan_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "product_token"
+    t.string "payment_method_token"
+    t.integer "status", default: 10, null: false
+    t.datetime "status_date"
     t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
     t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
   end

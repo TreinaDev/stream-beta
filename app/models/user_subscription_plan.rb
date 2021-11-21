@@ -2,14 +2,9 @@ class UserSubscriptionPlan < ApplicationRecord
   belongs_to :user
   belongs_to :subscription_plan
 
-  # TODO: Necessário comunicação com API de pagamentos
-  # Idéia: Utilizar o método 'validate_payment' para obter autorização da plataforma de pagamentos
-  def validate_payment
-    true
-  end
+  enum status: { pending: 10, approved: 50, rejected: 90 }
 
-  # TODO: Necessário comunicação com API de pagamentos
-  # Idéia: Utilizar o método 'confirm_payment' para notificar o sistema de pagamentos que a cobrança pode ser efetuada
+  # TODO: Necessário montar comunicação com API de pagamentos
   def confirm_payment
     true
   end

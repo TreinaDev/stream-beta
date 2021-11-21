@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'User subscribes to plan' do
   context 'when authenticated' do
     it 'successfully with default value' do
-      # TODO: Ajustar teste quando for implementada a API de pagamentos e os meios de pagamento forem cadastrados
       user = create(:user)
       create(:user_profile, user: user)
       plan = create(:subscription_plan, title: 'Plano legal')
@@ -13,7 +12,10 @@ describe 'User subscribes to plan' do
       click_link 'Planos'
       click_link 'Plano legal'
       click_link 'Assinar plano'
-      click_button 'Confirmar assinatura'
+      # click_button 'Confirmar assinatura'
+      save_page
+      click_button 'Criar Assinatura de Plano'
+      # click_button 'Salvar'
 
       expect(current_path).to eq(subscription_plan_path(plan))
       expect(page).to have_css('div', text: 'Assinatura realizada com sucesso!')
@@ -22,7 +24,6 @@ describe 'User subscribes to plan' do
     end
 
     it 'successfully with dynamic value' do
-      # TODO: Ajustar teste quando for implementada a API de pagamentos e os meios de pagamento forem cadastrados
       user = create(:user)
       create(:user_profile, user: user)
       plan = create(:subscription_plan, title: 'Plano legal')
@@ -43,7 +44,6 @@ describe 'User subscribes to plan' do
     end
 
     it 'but fails due to payment not authorized' do
-      # TODO: Ajustar teste quando for implementada a API de pagamentos e os meios de pagamento forem cadastrados
       user = create(:user)
       create(:user_profile, user: user)
       create(:subscription_plan, title: 'Plano legal')
@@ -64,7 +64,6 @@ describe 'User subscribes to plan' do
   end
 
   context 'when not authenticated' do
-    # TODO: Ajustar teste quando for implementada a API de pagamentos e os meios de pagamento forem cadastrados
     it 'trying to purchase a plan will redirect to sign_in screen' do
       create(:subscription_plan, title: 'Plano legal')
 
