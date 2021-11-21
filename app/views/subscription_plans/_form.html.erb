@@ -12,12 +12,12 @@
     <%= f.number_field :value %>
   </div>
   <div class: "form-check">
-    <%= f.radio_button :plan_type, "Playlist", checked: true, class: "form-check-input" %>
-    <%= f.label :plan_type_playlist, "Playlist", class: "form-check-label" %>
+    <%= f.radio_button :plan_type, "playlist", checked: true, class: "form-check-input" %>
+    <%= f.label :plan_type_playlist, t('playlist'), class: "form-check-label" %>
   </div>
   <div class: "form-check">
-    <%= f.radio_button :plan_type, "Streamer", class: "form-check-input" %>
-    <%= f.label :plan_type_streamer, "Streamer", class: "form-check-label" %>
+    <%= f.radio_button :plan_type, "streamer", class: "form-check-input" %>
+    <%= f.label :plan_type_streamer, t('streamer'), class: "form-check-label" %>
   </div>
 
   <%= f.submit %>

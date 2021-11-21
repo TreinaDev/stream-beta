@@ -11,6 +11,10 @@ RSpec.describe SubscriptionPlan, type: :model do
     it { should have_one(:streamer).through(:subscription_plan_streamer) }
   end
 
+  describe 'enum' do
+    it { should define_enum_for(:plan_type).with_values(playlist: 10, streamer: 20) }
+  end
+
   describe 'presence' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:description) }

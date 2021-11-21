@@ -1,0 +1,19 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      subscription_plan_streamer:
+        one: Associação de Streamer
+        other: Associações de Streamers
+  subscription_plan_streamers:
+    new:
+      title: Associar Streamer
+    create:
+      success: Streamer associado com sucesso!
+    edit:
+      title: Associar streamer
+      no_streamers_available: Não há streamers disponíveis para associar a esse plano
+    update:
+      success: Streamer associado com sucesso!
+    check_plan_type:
+      invalid: Tipo do plano não permite essa operação!

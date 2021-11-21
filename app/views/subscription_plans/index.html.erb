@@ -5,11 +5,13 @@
     <tr>
       <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
       <th><%= SubscriptionPlan.human_attribute_name(:current_value) %></th>
+      <th><%= SubscriptionPlan.human_attribute_name(:plan_type) %></th>
     </tr>
     <% @subscription_plans.each do |subscription_plan| %>
       <tr>
         <td><%= link_to subscription_plan.title, subscription_plan_path(subscription_plan) %></td>
         <td><%= subscription_plan.current_value %></td>
+        <td><%= t(subscription_plan.plan_type) %></td>
       </tr>
     <% end %>
   </table>

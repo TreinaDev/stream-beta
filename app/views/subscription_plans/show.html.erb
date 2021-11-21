@@ -2,6 +2,14 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
+<% if @subscription_plan.streamer? %>
+  <% if @subscription_plan.streamer.present? %>
+    <%= @subscription_plan.streamer&.name %>
+    <div><%= link_to 'Editar Streamer', edit_subscription_plan_streamer_path(@subscription_plan.subscription_plan_streamer) %></div>
+  <% else %>
+    <div><%= link_to 'Associar Streamer', new_subscription_plan_subscription_plan_streamer_path(@subscription_plan) %></div>
+  <% end %>
+<% end %>
 
 <% if @subscription_plan.playlist? %>
   <div><%= link_to Playlist.model_name.human(count: 2), subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
