@@ -3,7 +3,9 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
 
-<div><%= link_to 'Playlists', subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
-<div><%= link_to 'Preços dinâmicos', subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
+<% if @subscription_plan.playlist? %>
+  <div><%= link_to Playlist.model_name.human(count: 2), subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
+<% end %>
+<div><%= link_to SubscriptionPlanValue.model_name.human(count: 2), subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
 
-<div><%= link_to 'Voltar', subscription_plans_path %></div>
+<div><%= link_to t('links.go_back'), subscription_plans_path %></div>

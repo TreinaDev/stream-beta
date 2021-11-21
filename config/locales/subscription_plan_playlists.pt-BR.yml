@@ -10,5 +10,10 @@ pt-BR:
       title: Playlists associadas
     new:
       title: Associar Playlist
+      no_plans_available: Não há playlists disponíveis para associar a esse plano
     create:
       success: Playlist associada com sucesso!
+    destroy:
+      success: Associação removida com sucesso!
+    check_plan_type:
+      invalid: Tipo do plano não permite essa operação!
