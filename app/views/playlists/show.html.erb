@@ -1,4 +1,4 @@
 <p><%= "#{Playlist.human_attribute_name(:title)}: #{@playlist.title}" %></p>
 <p><%= "#{Playlist.human_attribute_name(:description)}: #{@playlist.description}" %></p>
 
-<div><%= link_to t('links.go_back'), playlists_path %></div>
+<div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

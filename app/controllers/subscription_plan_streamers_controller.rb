@@ -11,11 +11,9 @@ class SubscriptionPlanStreamersController < ApplicationController
   def create
     @subscription_plan_streamer = @subscription_plan.build_subscription_plan_streamer(subscription_plan_streamer_params)
 
-    if @subscription_plan_streamer.save
-      redirect_to @subscription_plan, success: t('.success')
-    else
-      render :new
-    end
+    @subscription_plan_streamer.save
+
+    redirect_to @subscription_plan, success: t('.success')
   end
 
   def edit
