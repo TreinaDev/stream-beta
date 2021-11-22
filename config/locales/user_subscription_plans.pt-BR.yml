@@ -9,4 +9,6 @@ pt-BR:
     new:
       title: Assinatura de Plano
     create:
-      success: 'Assinatura realizada com sucesso!'
+      pending: Pagamento em análise
+      approved: Assinatura realizada com sucesso!
+      rejected: Pagamento reprovado

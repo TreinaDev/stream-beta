@@ -21,6 +21,7 @@ class SubscriptionPlansController < ApplicationController
 
   def show
     @subscription_plan = SubscriptionPlan.find(params[:id])
+    @user_subscription_plan = current_user&.user_subscription_plans&.find_by(subscription_plan: @subscription_plan)
   end
 
   private

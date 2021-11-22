@@ -4,26 +4,7 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
 
-<div>
-  <%#= button_to 'Confirmar assinatura', user_subscription_plans_path, params: {
-        subscription_plan: { id: @subscription_plan }
-      }, data: { confirm: t('messages.confirm_subscription?') } %>
-</div>
-
 <%= form_with model: @user_subscription_plan do |f| %>
-  <div>
-    <%#= f.label :title %>
-    <%#= f.text_field :title %>
-  </div>
-  <div>
-    <%#= f.label :description %>
-    <%#= f.text_field :description %>
-  </div>
-  <div>
-    <%#= f.label :value %>
-    <%#= f.number_field :value %>
-  </div>
-
   <%= f.hidden_field :subscription_plan_id, value: @subscription_plan.id %>
 
   <%= f.submit %>

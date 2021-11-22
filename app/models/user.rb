@@ -11,10 +11,6 @@ class User < ApplicationRecord
 
   before_save :admin_save
 
-  def subscription_plan?(plan)
-    subscription_plans.include?(plan)
-  end
-
   private
 
   def admin_save

@@ -8,32 +8,35 @@ class UserSubscriptionPlansController < ApplicationController
   end
 
   def create
-    byebug
-    # @user_subscription_plan = current_user.user_subscription_plans.new(subscription_plan: @subscription_plan)
-    # @user_subscription_plan = current_user.user_subscription_plans.new(user_subscription_plan_params)
-    UserSubscriptionPlan.new(user_subscription_plan_params)
-    byebug
+    @user_subscription_plan = current_user.user_subscription_plans.new(user_subscription_plan_params)
 
-    if @user_subscription_plan.save
-      @user_subscription_plan.confirm_payment
+    return render :new unless @user_subscription_plan.save
 
-      redirect_to @subscription_plan
-    else
-      flash[:alert] = 'Erro ao registrar assinatura'
-      render :new
-    end
+    @user_subscription_plan.confirm_payment
+
+    set_status_flash
+    redirect_to @subscription_plan
   end
 
   private
 
   def user_subscription_plan_params
-    byebug
     params.require(:user_subscription_plan).permit(:product_token, :payment_method_token, :subscription_plan_id)
   end
 
   def set_subscription_plan
-    byebug
-    subscription_plan_id = params[:user_subscription_plan][:subscription_plan_id] || params[:subscription_plan][:id]
+    subscription_plan_id = params[:subscription_plan_id] || params[:user_subscription_plan][:subscription_plan_id]
     @subscription_plan = SubscriptionPlan.find(subscription_plan_id)
+  end
+
+  def set_status_flash
+    case @user_subscription_plan.status
+    when 'pending'
+      flash[:notice] = t('.pending')
+    when 'approved'
+      flash[:success] = t('.approved')
+    when 'rejected'
+      flash[:alert] = t('.rejected')
+    end
   end
 end
