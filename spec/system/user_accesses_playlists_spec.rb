@@ -16,7 +16,7 @@ describe 'User accesses playlists' do
     end
   end
 
-  context 'and cannot access' do
+  context "and can't access" do
     it 'new page' do
       user = create(:user)
 

@@ -16,7 +16,7 @@ describe 'User accesses videos' do
     end
   end
 
-  context 'and cannot access' do
+  context "and can't access" do
     it 'new page' do
       user = create(:user)
       create(:user_profile, user: user)
