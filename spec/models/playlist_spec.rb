@@ -22,6 +22,9 @@ RSpec.describe Playlist, type: :model do
     end
     it { should have_many(:original_playlists).through(:related_relations).inverse_of(:related_playlists) }
 
+    it { should have_many(:subscription_plan_playlists).dependent(:destroy) }
+    it { should have_many(:playlists).through(:subscription_plan_playlists) }
+
     it { should have_one_attached(:playlist_cover) }
   end
 

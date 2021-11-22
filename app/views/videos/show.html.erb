@@ -3,4 +3,4 @@
 <p><%= "#{Video.human_attribute_name(:video_url)}: #{@video.video_url}" %></p>
 <p><%= "#{Video.human_attribute_name(:maturity_rating)}: #{@video.maturity_rating}" %></p>
 
-<div><%= link_to 'Voltar', :back %></div>
+<div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

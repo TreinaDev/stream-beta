@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_145203) do
+ActiveRecord::Schema.define(version: 2021_11_21_191839) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -88,6 +88,24 @@ ActiveRecord::Schema.define(version: 2021_11_21_145203) do
     t.index ["youtube_url"], name: "index_streamers_on_youtube_url", unique: true
   end
 
+  create_table "subscription_plan_playlists", force: :cascade do |t|
+    t.integer "subscription_plan_id", null: false
+    t.integer "playlist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["playlist_id"], name: "index_subscription_plan_playlists_on_playlist_id"
+    t.index ["subscription_plan_id"], name: "index_subscription_plan_playlists_on_subscription_plan_id"
+  end
+
+  create_table "subscription_plan_streamers", force: :cascade do |t|
+    t.integer "subscription_plan_id", null: false
+    t.integer "streamer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["streamer_id"], name: "index_subscription_plan_streamers_on_streamer_id"
+    t.index ["subscription_plan_id"], name: "index_subscription_plan_streamers_on_subscription_plan_id"
+  end
+
   create_table "subscription_plan_values", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -107,6 +125,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_145203) do
     t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "plan_type", default: 10, null: false
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
   end
 
@@ -182,6 +201,10 @@ ActiveRecord::Schema.define(version: 2021_11_21_145203) do
   add_foreign_key "playlist_videos", "videos"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
+  add_foreign_key "subscription_plan_playlists", "playlists"
+  add_foreign_key "subscription_plan_playlists", "subscription_plans"
+  add_foreign_key "subscription_plan_streamers", "streamers"
+  add_foreign_key "subscription_plan_streamers", "subscription_plans"
   add_foreign_key "subscription_plan_values", "subscription_plans"
   add_foreign_key "user_profiles", "users"
   add_foreign_key "user_subscription_plans", "subscription_plans"
