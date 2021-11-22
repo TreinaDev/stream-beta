@@ -5,6 +5,7 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
 
 <%= form_with model: @user_subscription_plan do |f| %>
+  <%= f.hidden_field :payment_method_token, value: 'bkDsZHl9XV' %>
   <%= f.hidden_field :subscription_plan_id, value: @subscription_plan.id %>
 
   <%= f.submit %>
