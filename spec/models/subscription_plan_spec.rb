@@ -3,6 +3,16 @@ require 'rails_helper'
 RSpec.describe SubscriptionPlan, type: :model do
   describe 'associations' do
     it { should have_many(:subscription_plan_values).dependent(:destroy) }
+
+    it { should have_many(:subscription_plan_playlists).dependent(:destroy) }
+    it { should have_many(:playlists).through(:subscription_plan_playlists) }
+
+    it { should have_one(:subscription_plan_streamer).dependent(:destroy) }
+    it { should have_one(:streamer).through(:subscription_plan_streamer) }
+  end
+
+  describe 'enum' do
+    it { should define_enum_for(:plan_type).with_values(playlist: 10, streamer: 20) }
   end
 
   describe 'presence' do

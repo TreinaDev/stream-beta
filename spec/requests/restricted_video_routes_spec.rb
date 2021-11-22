@@ -1,23 +1,37 @@
 require 'rails_helper'
 
-describe 'Restricted video routes' do
+describe 'Restricted Video routes' do
   context 'when logged in as an user' do
-    it "cannot access the 'new' action" do
-      user = create(:user)
-
-      login_as user, scope: :user
-      get new_video_path
-
-      expect(response).to have_http_status(302)
+    before :context do
+      @user = create(:user)
     end
 
-    it "cannot access the 'create' action" do
-      user = create(:user)
-
-      login_as user, scope: :user
+    it "can't access the 'create' action" do
+      login_as @user, scope: :user
       post videos_path
 
-      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(root_path)
+    end
+
+    it "can't access the 'new' action" do
+      login_as @user, scope: :user
+      get new_video_path
+
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  context 'when unauthenticated' do
+    it "can't access the 'create' action" do
+      post videos_path
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it "can't access the 'new' action" do
+      get new_video_path
+
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
 end
