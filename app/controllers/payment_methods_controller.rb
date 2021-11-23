@@ -1,27 +1,29 @@
 class PaymentMethodsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create show]
+  before_action :authenticate_user!
+  before_action :user_must_fill_profile
 
   def new
     @payment_method = PaymentMethod.new
   end
 
   def create
-    @payment_method = PaymentMethod.new
-    @payment_method.token = send_payment_method_to_pagamantos_beta
-    @payment_method.user = current_user
+    @payment_method = current_user.payment_methods.new(payment_method_params)
+
     if @payment_method.save
       redirect_to @payment_method, success: t('.success')
     else
-      @error = t('.error')
+      flash[:alert] = t('.error')
       render :new
     end
   end
 
   def show
-    PaymentMethod.find(params[:id])
+    @payment_method = PaymentMethod.find(params[:id])
   end
 
   private
 
-  def send_payment_method_to_pagamantos_beta; end
+  def payment_method_params
+    params.require(:payment_method).permit(:payment_type)
+  end
 end
