@@ -10,8 +10,10 @@ describe 'User add payment method' do
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
-      select 'Pix'
-      click_on 'Enviar'
+      within 'form' do
+        select 'Pix', from: 'Tipo'
+        click_button 'Enviar'
+      end
 
       expect(current_path).to eq payment_method_path(user.payment_methods.first)
       expect(page).to have_css('div', text: 'Método de pagamento adicionado com sucesso!')
@@ -27,11 +29,13 @@ describe 'User add payment method' do
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
-      select 'Cartão de Crédito'
-      fill_in 'Número do Cartão', with: '01234567890123456789'
-      fill_in 'Código de Segurança (CVV)', with: '042'
-      fill_in 'Validate (MM/AA)', with: '10/22'
-      click_on 'Enviar'
+      within 'form' do
+        select 'Cartão de Crédito', from: 'payment_method_payment_type'
+        fill_in 'Número do Cartão', with: '01234567890123456789'
+        fill_in 'Código de Segurança (CVV)', with: '042'
+        fill_in 'Validade (MM/AA)', with: '10/22'
+        click_button 'Enviar'
+      end
 
       expect(current_path).to eq payment_method_path(user.payment_methods.first)
       expect(page).to have_css('div', text: 'Método de pagamento adicionado com sucesso!')
@@ -45,11 +49,13 @@ describe 'User add payment method' do
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
-      select 'Cartão de Crédito'
-      fill_in 'Número do Cartão', with: ''
-      fill_in 'Código de Segurança (CVV)', with: ''
-      fill_in 'Validate (MM/AA)', with: ''
-      click_on 'Enviar'
+      within 'form' do
+        select 'Cartão de Crédito', from: 'Tipo'
+        fill_in 'Número do Cartão', with: ''
+        fill_in 'Código de Segurança (CVV)', with: ''
+        fill_in 'Validade (MM/AA)', with: ''
+        click_button 'Enviar'
+      end
 
       expect(page).not_to have_content('Método de pagamento adicionado com sucesso')
       expect(page).to have_content('Cadastro de Método de Pagamento')
@@ -66,8 +72,10 @@ describe 'User add payment method' do
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
-      select 'Boleto'
-      click_on 'Enviar'
+      within 'form' do
+        select 'Boleto', from: 'Tipo'
+        click_button 'Enviar'
+      end
 
       expect(current_path).to eq payment_method_path(user.payment_methods.first)
       expect(page).to have_css('div', text: 'Método de pagamento adicionado com sucesso!')
@@ -81,8 +89,10 @@ describe 'User add payment method' do
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
-      select 'Boleto'
-      click_on 'Enviar'
+      within 'form' do
+        select 'Boleto', from: 'Tipo'
+        click_button 'Enviar'
+      end
 
       expect(page).not_to have_content('Método de pagamento adicionado com sucesso')
       expect(page).to have_content('Cadastro de Método de Pagamento')

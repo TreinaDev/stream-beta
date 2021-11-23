@@ -19,7 +19,7 @@ pt-BR:
       card_number: Número do Cartão
       card_holder_name: Nome do Titular
       cvv_number: Código de Segurança (CVV)
-      expiry_date: Validate (MM/AA)
+      expiry_date: Validade (MM/AA)
       submit: Enviar
     create:
       success: Método de pagamento adicionado com sucesso!

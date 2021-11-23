@@ -11,6 +11,8 @@ class PaymentMethod < ApplicationRecord
     self.token = generate_new_token if token.nil?
   end
 
+  private
+
   def generate_new_token
     # TODO: Comunicar com API
     nil
