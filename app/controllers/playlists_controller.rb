@@ -17,9 +17,8 @@ class PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(playlist_params)
-
     if @playlist.save
-      redirect_to new_playlist_playlist_streamer_path(@playlist), success: t('.success')
+      redirect_to @playlist, success: t('.success')
     else
       render :new
     end
@@ -28,6 +27,6 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover, :streamers_id)
+    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [])
   end
 end

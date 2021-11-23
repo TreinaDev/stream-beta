@@ -8,6 +8,10 @@
     <%= f.text_field :description %>
   </div>
   <div>
+    <%= f.collection_check_boxes :streamer_ids, Streamer.all, :id, :name %>
+    <%= f.label :streamer_ids, Streamer.model_name.human%>
+  </div>
+  <div>
     <%= f.label :playlist_cover %>
     <%= f.file_field :playlist_cover %>
   </div>
