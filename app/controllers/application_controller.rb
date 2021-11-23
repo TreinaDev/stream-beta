@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, notice: t('messages.unauthorized_access')
   end
 
+  def deny_admin_access
+    redirect_to root_path, notice: t('messages.unauthorized_access') if current_user&.admin?
+  end
+
   def user_must_fill_profile
     return unless user_signed_in?
     return if current_user&.user_profile || current_user&.admin?
