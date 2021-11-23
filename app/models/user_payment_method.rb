@@ -5,10 +5,10 @@ class UserPaymentMethod
     @cpf = params['cpf']
     @payment_type = params['payment_type']
 
-    if @payment_type == 'credit_card'
-      @card_number = params['card_number']
-      @cvv_number = params['cvv_number']
-      @expiry_date = params['expiry_date']
-    end
+    return unless @payment_type == 'credit_card'
+
+    @card_number = params['card_number']
+    @cvv_number = params['cvv_number']
+    @expiry_date = params['expiry_date']
   end
 end

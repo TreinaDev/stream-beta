@@ -24,8 +24,6 @@ describe 'User add payment method' do
     it 'successfully' do
       user = create(:user)
       create(:user_profile, user: user)
-      user_payment_method = instance_double(UserPaymentMethod)
-      allow(UserPaymentMethod).to receive(:new).and_return(user_payment_method)
       allow_any_instance_of(PaymentMethod).to receive(:generate_new_token).and_return('abcABC1234')
 
       login_as user, scope: :user
