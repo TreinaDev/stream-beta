@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
-  resources :playlists, only: %i[index show new create]
+  resources :playlists, only: %i[index show new create] do
+    resources :playlist_streamers, only: %i[new create edit update]
+  end
 
   resources :streamers, only: %i[index show new create edit update] do
     post 'inactive', on: :member
@@ -25,4 +27,5 @@ Rails.application.routes.draw do
   resources :user_profiles, only: %i[show new create]
 
   resources :user_subscription_plans, only: %i[new create]
+
 end
