@@ -12,6 +12,7 @@
 <p>Youtube: <%= @streamer.youtube_url %></p>
 <p>Instagram: <%= @streamer.instagram_handle %></p>
 <p>Twitter: <%= @streamer.twitter_handle %></p>
+<p>Status: <%= Streamer.human_attribute_name("status.#{@streamer.status}") %></p>
 
 <% if @streamer.videos.any? %>
   <table class="table">

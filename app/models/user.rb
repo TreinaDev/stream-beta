@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :user_subscription_plans, dependent: :restrict_with_error
   has_many :subscription_plans, through: :user_subscription_plans
+  has_many :streamers, dependent: :restrict_with_error
 
   has_one :user_profile, dependent: :destroy
 

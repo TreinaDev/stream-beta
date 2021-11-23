@@ -1,10 +1,10 @@
 class StreamersController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create edit update]
+  before_action :authenticate_admin!, only: %i[new create edit update my_streamers]
   before_action :user_must_fill_profile
   before_action :set_streamer, only: %i[show edit update inactive]
 
   def index
-    @streamers = Streamer.all
+    @streamers = Streamer.all.reject(&:inactive?)
   end
 
   def show; end
@@ -14,7 +14,7 @@ class StreamersController < ApplicationController
   end
 
   def create
-    @streamer = Streamer.new(streamer_params)
+    @streamer = current_user.streamers.new(streamer_params)
 
     if @streamer.save
       redirect_to @streamer, success: t('.success')
@@ -39,11 +39,15 @@ class StreamersController < ApplicationController
     redirect_to streamers_path
   end
 
+  def my_streamers
+    @streamers = current_user.streamers
+  end
+
   private
 
   def streamer_params
     params.require(:streamer).permit(:name, :avatar, :facebook_url,
-                                     :youtube_url, :instagram_handle, :twitter_handle)
+                                     :youtube_url, :instagram_handle, :twitter_handle, :status)
   end
 
   def set_streamer

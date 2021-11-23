@@ -7,11 +7,14 @@ class Streamer < ApplicationRecord
 
   has_many :videos, dependent: :restrict_with_error
 
+  belongs_to :user
+
   has_one_attached :avatar
 
   enum status: { active: 0, inactive: 10 }
 
   validates :name, :avatar, presence: true
+  validates :user, presence: true
   validates :name, :facebook_url, :youtube_url, :instagram_handle, :twitter_handle,
             uniqueness: { case_sensitive: false }
 end

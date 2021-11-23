@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :streamers, only: %i[index show new create edit update] do
     post 'inactive', on: :member
+    get 'my_streamers', on: :collection
   end
 
   resources :video_categories, only: %i[new create show]

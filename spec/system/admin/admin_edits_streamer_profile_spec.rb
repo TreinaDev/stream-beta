@@ -30,6 +30,43 @@ describe 'Administrator edit streamer profile' do
       expect(page).to have_content('Instagram: www.instagram.com/sicrano')
       expect(page).to have_content('Twitter: www.twitter.com/sicrano')
     end
+
+    it 'inactive a streamer' do
+      admin = create(:user, :admin)
+      create(:streamer, name: 'Fulano')
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Streamers'
+      click_link 'Fulano'
+      click_link 'Editar Streamer'
+      within 'form' do
+        choose 'Inativo'
+        click_button 'Atualizar Streamer'
+      end
+
+      expect(current_path).to eq streamer_path(Streamer.last)
+      expect(page).to have_content('Inativo')
+    end
+
+    it 'active a streamer' do
+      admin = create(:user, :admin)
+      create(:streamer, name: 'Fulano', user: admin, status: :inactive)
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Meus Streamers'
+      click_link 'Fulano'
+      click_link 'Editar Streamer'
+      within 'form' do
+        choose 'Ativo'
+        click_button 'Atualizar Streamer'
+      end
+
+      expect(current_path).to eq streamer_path(Streamer.last)
+      expect(page).to have_content('Ativo')
+      expect(page).not_to have_content('Inativo')
+    end
   end
 
   context 'fails' do
