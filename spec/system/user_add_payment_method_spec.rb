@@ -24,13 +24,15 @@ describe 'User add payment method' do
     it 'successfully' do
       user = create(:user)
       create(:user_profile, user: user)
+      user_payment_method = instance_double(UserPaymentMethod)
+      allow(UserPaymentMethod).to receive(:new).and_return(user_payment_method)
       allow_any_instance_of(PaymentMethod).to receive(:generate_new_token).and_return('abcABC1234')
 
       login_as user, scope: :user
       visit root_path
       click_link 'Cadastrar método de pagamento'
       within 'form' do
-        select 'Cartão de Crédito', from: 'payment_method_payment_type'
+        select 'Cartão de Crédito', from: 'Tipo'
         fill_in 'Número do Cartão', with: '01234567890123456789'
         fill_in 'Código de Segurança (CVV)', with: '042'
         fill_in 'Validade (MM/AA)', with: '10/22'

@@ -3,17 +3,15 @@ class PaymentMethod < ApplicationRecord
 
   enum payment_type: { pix: 10, boleto: 20, credit_card: 30 }
 
-  before_validation :fill_token
-
   validates :token, format: { with: /\A[a-zA-Z0-9]{10}\z/ }
 
-  def fill_token
-    self.token = generate_new_token if token.nil?
+  def request_token(user_payment_method)
+    self.token = generate_new_token(user_payment_method) if token.nil?
   end
 
   private
 
-  def generate_new_token
+  def generate_new_token(_user_payment_method)
     # TODO: Comunicar com API
     nil
   end
