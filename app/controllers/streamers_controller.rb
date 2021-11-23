@@ -33,12 +33,6 @@ class StreamersController < ApplicationController
     end
   end
 
-  def inactive
-    @streamer.inactive!
-
-    redirect_to streamers_path
-  end
-
   def my_streamers
     @streamers = current_user.streamers
   end
