@@ -13,7 +13,7 @@ class SubscriptionPlansController < ApplicationController
   def create
     @subscription_plan = SubscriptionPlan.new(subscription_plan_params)
     if @subscription_plan.save
-      redirect_to subscription_plan_path(@subscription_plan), success: t('.success')
+      redirect_to @subscription_plan, success: t('.success')
     else
       render :new
     end
@@ -21,11 +21,12 @@ class SubscriptionPlansController < ApplicationController
 
   def show
     @subscription_plan = SubscriptionPlan.find(params[:id])
+    @user_subscription_plan = current_user&.user_subscription_plans&.find_by(subscription_plan: @subscription_plan)
   end
 
   private
 
   def subscription_plan_params
-    params.require(:subscription_plan).permit(:title, :description, :value)
+    params.require(:subscription_plan).permit(:title, :description, :value, :plan_type)
   end
 end

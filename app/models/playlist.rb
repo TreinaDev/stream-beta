@@ -13,6 +13,9 @@ class Playlist < ApplicationRecord
                                inverse_of: :related_playlist, dependent: :destroy
   has_many :original_playlists, through: :related_relations, inverse_of: :related_playlists
 
+  has_many :subscription_plan_playlists, dependent: :destroy
+  has_many :playlists, through: :subscription_plan_playlists
+
   has_one_attached :playlist_cover
 
   validates :title, :description, :playlist_cover, presence: true

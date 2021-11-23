@@ -10,6 +10,7 @@ FactoryBot.define do
     city { FFaker::AddressBR.city.to_s }
     state { FFaker::AddressBR.state.to_s }
     country { FFaker::AddressBR.country.to_s }
+
     user
   end
 end

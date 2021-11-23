@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user_subscription_plan:
+        one: Assinatura de Plano
+        other: Assinaturas de Plano
+  user_subscription_plans:
+    new:
+      title: Assinatura de Plano
+    create:
+      pending: Pagamento em análise
+      approved: Assinatura realizada com sucesso!
+      rejected: Pagamento reprovado

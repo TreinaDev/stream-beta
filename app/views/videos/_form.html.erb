@@ -1,19 +1,24 @@
 <%= form_with model: @video do |f| %>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :title, placeholder: :title, class: "form-control" %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :duration, placeholder: :duration, class: "form-control" %>
     <%= f.label :duration %>
-    <%= f.text_field :duration %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :video_url, placeholder: :video_url, class: "form-control" %>
     <%= f.label :video_url %>
-    <%= f.text_field :video_url %>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :maturity_rating, placeholder: :maturity_rating, class: "form-control" %>
     <%= f.label :maturity_rating %>
-    <%= f.text_field :maturity_rating %>
   </div>
-  <%= f.submit %>
+  <div class="form-floating mb-3">
+    <%= f.collection_select :streamer_id, Streamer.order(:name), :id, :name, {}, class: "form-select" %>
+    <%= f.label :streamer_id, Streamer.model_name.human %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary mt-3 mb-3" %>
 <% end %>
