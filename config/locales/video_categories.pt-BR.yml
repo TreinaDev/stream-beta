@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      video_category:
+        one: Categoria de Vídeo
+        other: Categorias de Vídeos
+    attributes:
+      video_category:
+        title: Título
+  video_categories:
+    index:
+      title: Categorias de Vídeos
+    new:
+      title: Cadastrar Categoria de Vídeo
+    create:
+      success: Categoria de Vídeo criada com sucesso!

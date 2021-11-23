@@ -8,7 +8,7 @@ describe 'User creates user profile' do
 
       login_as user, scope: :user
       visit root_path
-      click_on 'Streamers'
+      click_link 'Streamers'
 
       within 'form' do
         fill_in 'Nome Completo', with: 'Rogerinho'
@@ -43,7 +43,7 @@ describe 'User creates user profile' do
 
       login_as user, scope: :user
       visit root_path
-      click_on 'Streamers'
+      click_link 'Streamers'
 
       within 'form' do
         click_button 'Criar Perfil'
@@ -70,7 +70,7 @@ describe 'User creates user profile' do
 
       login_as user, scope: :user
       visit root_path
-      click_on 'Streamers'
+      click_link 'Streamers'
 
       within 'form' do
         fill_in 'Nome Completo', with: 'Rogerinho'
@@ -95,7 +95,7 @@ describe 'User creates user profile' do
 
       login_as user, scope: :user
       visit root_path
-      click_on 'Streamers'
+      click_link 'Streamers'
 
       expect(current_path).to eq(new_user_profile_path)
       expect(page).to have_content('Preencha seu perfil para continuar navegando')

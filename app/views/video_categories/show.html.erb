@@ -1,5 +1,6 @@
-
 <ul>
-<li><%= @video_category_parent.title unless @video_category_parent.nil? %></li>
-<li><%= @video_category.title %></li>
+  <% if @video_category.parent.present? %>
+    <li>Sub-categoria de: <%= @video_category.parent.title %></li>
+  <% end %>
+  <li>Título: <%= @video_category.title %></li>
 </ul>

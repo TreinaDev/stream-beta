@@ -6,12 +6,16 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Categorias de Vídeos'
-    fill_in 'Título', with: 'Games'
-    click_on 'Cadastrar'
+    click_link 'Categorias de Vídeos'
+    within 'form' do
+      fill_in 'Título', with: 'Games'
+      click_button 'Criar Categoria de Vídeo'
+    end
 
-    expect(page).to have_content('Categoria de Vídeo criada com sucesso!')
-    expect(current_path).to eq(video_category_path(VideoCategory.last.id))
+    expect(current_path).to eq(video_category_path(VideoCategory.last))
+    expect(page).to have_css('div', text: 'Categoria de Vídeo criada com sucesso!')
+    expect(page).to have_no_content('Sub-categoria')
+    expect(page).to have_content('Título: Games')
   end
 
   it 'cannot be blank' do
@@ -19,40 +23,46 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Categorias de Vídeos'
-    fill_in 'Título', with: ''
-    click_on 'Cadastrar'
+    click_link 'Categorias de Vídeos'
+    within 'form' do
+      fill_in 'Título', with: ''
+      click_button 'Criar Categoria de Vídeo'
+    end
 
-    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_css('div', text: 'Título não pode ficar em branco')
   end
 
-  it 'cannot be duplicates' do
-    VideoCategory.create!(title: 'Games')
+  it 'cannot be duplicated' do
+    create(:video_category, title: 'Games')
     admin = create(:user, :admin)
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Categorias de Vídeos'
-    fill_in 'Título', with: 'Games'
-    click_on 'Cadastrar'
+    click_link 'Categorias de Vídeos'
+    within 'form' do
+      fill_in 'Título', with: 'Games'
+      click_button 'Criar Categoria de Vídeo'
+    end
 
-    expect(page).to have_content('Título já está em uso')
+    expect(page).to have_css('div', text: 'Título já está em uso')
   end
 
-  it 'a subcategory successfully' do
-    VideoCategory.create!(title: 'Games')
+  it 'with a subcategory successfully' do
+    create(:video_category, title: 'Games')
     admin = create(:user, :admin)
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Categorias de Vídeos'
-    fill_in 'Título', with: 'RPG'
-    select 'Games', from: 'Sub-categoria'
-    click_on 'Cadastrar'
+    click_link 'Categorias de Vídeos'
+    within 'form' do
+      fill_in 'Título', with: 'RPG'
+      select 'Games', from: 'Sub-categoria'
+      click_button 'Criar Categoria de Vídeo'
+    end
 
-    expect(page).to have_content('Categoria de Vídeo criada com sucesso!')
     expect(current_path).to eq(video_category_path(VideoCategory.last.id))
-    expect(page).to have_content('Games')
-    expect(page).to have_content('RPG')
+    expect(page).to have_css('div', text: 'Categoria de Vídeo criada com sucesso!')
+    expect(page).to have_content('Sub-categoria de: Games')
+    expect(page).to have_content('Título: RPG')
   end
 end
