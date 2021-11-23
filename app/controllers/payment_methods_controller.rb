@@ -1,7 +1,7 @@
 class PaymentMethodsController < ApplicationController
   before_action :authenticate_user!
   before_action :user_must_fill_profile
-  before_action :deny_admin_access, only: %i[new create]
+  before_action :deny_admin_access, only: %i[new create show]
 
   def new
     @payment_method = PaymentMethod.new
