@@ -15,6 +15,8 @@ pt-BR:
     sign_up: Registrar
     unlock_instructions: Não recebeu as instruções de desbloqueio?
   messages:
-    confirm_subscription?: Confirma a assinatura?
     are_you_sure?: Tem certeza?
+    confirm_subscription?: Confirma a assinatura?
     unauthorized_access: Acesso não autorizado!
+    proceed?: Deseja continuar?
+    sending: Enviando
