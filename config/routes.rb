@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
-  resources :playlists, only: %i[index show new create] do
+  resources :playlists, only: %i[index show new create], shallow: true do
     resources :playlist_streamers, only: %i[new create edit update]
   end
 

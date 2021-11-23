@@ -15,12 +15,13 @@ describe 'admin links playlist to streamer' do
       attach_file('playlist[playlist_cover]', 'spec/fixtures/files/avatar_placeholder.png')
       click_button 'Criar Playlist'
     end
-    select 'Fulano', from: 'Streamers'
+    select 'Fulaninho', from: 'Streamer'
     click_button 'Associar Streamer'
 
     expect(current_path).to eq(playlist_path(Playlist.last))
-    expect(page).to have_css('div', text: 'Playlist criada com sucesso!')
+    expect(page).to have_css('div', text: 'Streamer associado com sucesso!')
     expect(page).to have_content('Título: As melhores jogadas')
+    expect(page).to have_content('Streamer: Fulaninho')
     expect(page).to have_content('Descrição: Playlist com as melhores jogadas dos streamers participantes')
   end
 end

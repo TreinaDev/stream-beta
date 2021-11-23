@@ -8,6 +8,7 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id])
+    @playlist_streamers = PlaylistStreamer.find_by(playlist: @playlist)
   end
 
   def new
