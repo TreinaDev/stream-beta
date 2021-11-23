@@ -6,7 +6,7 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Cadastrar Categoria de Vídeo'
+    click_on 'Categorias de Vídeos'
     fill_in 'Título', with: 'Games'
     click_on 'Cadastrar'
 
@@ -19,7 +19,7 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Cadastrar Categoria de Vídeo'
+    click_on 'Categorias de Vídeos'
     fill_in 'Título', with: ''
     click_on 'Cadastrar'
 
@@ -32,7 +32,7 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Cadastrar Categoria de Vídeo'
+    click_on 'Categorias de Vídeos'
     fill_in 'Título', with: 'Games'
     click_on 'Cadastrar'
 
@@ -45,7 +45,7 @@ describe 'Admin registers video category' do
 
     login_as admin, scope: :user
     visit admin_home_index_path
-    click_on 'Cadastrar Categoria de Vídeo'
+    click_on 'Categorias de Vídeos'
     fill_in 'Título', with: 'RPG'
     select 'Games', from: 'Sub-categoria'
     click_on 'Cadastrar'

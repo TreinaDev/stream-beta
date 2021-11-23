@@ -20,5 +20,5 @@
     <%= f.label :plan_type_streamer, t('streamer'), class: "form-check-label" %>
   </div>
 
-  <%= f.submit class: "btn btn-primary mt-3 mb-3" %>
+  <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
 <% end %>

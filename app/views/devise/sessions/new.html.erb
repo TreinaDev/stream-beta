@@ -1,25 +1,25 @@
 <h2><%= t('.title') %></h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, placeholder: :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, placeholder: :password, autocomplete: "current-password", class: "form-control" %>
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form-check">
+      <%= f.check_box :remember_me, class: "form-check-input" %>
+      <%= f.label :remember_me, class: "form-check-label" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit t('buttons.sign_in') %>
+    <%= f.submit t('buttons.sign_in'), data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
   </div>
 <% end %>
 
