@@ -1,7 +1,7 @@
 class StreamersController < ApplicationController
   before_action :authenticate_admin!, only: %i[new create edit update my_streamers]
   before_action :user_must_fill_profile
-  before_action :set_streamer, only: %i[show edit update inactive]
+  before_action :set_streamer, only: %i[show edit update]
 
   def index
     @streamers = Streamer.all.reject(&:inactive?)
