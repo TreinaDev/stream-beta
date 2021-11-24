@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
-  resources :playlists, only: %i[index show new create], shallow: true do
-    resources :playlist_streamers, only: %i[new create edit update]
+  resources :playlists, only: %i[index show new create edit update] do
+    post 'inactive', on: :member
   end
 
   resources :streamers, only: %i[index show new create edit update] do

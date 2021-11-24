@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive]
   before_action :user_must_fill_profile
 
   def index
@@ -22,6 +22,25 @@ class PlaylistsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def update
+    @playlist = Playlist.find(params[:id])
+
+    if @playlist.update(playlist_params)
+      redirect_to @playlist
+    end
+  end
+
+  def inactive
+    @playlist = Playlist.find(params[:id])
+    @playlist.inactive!
+
+    redirect_to @playlist, success: t('.success')
   end
 
   private
