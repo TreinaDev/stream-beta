@@ -1,0 +1,12 @@
+<%= form_with model: @video_category do |f| %>
+  <div class="form-floating mb-3">
+    <%= f.text_field :title, placeholder: :title, class: "form-control" %>
+    <%= f.label :title %>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.collection_select :parent_id, VideoCategory.order(:title), :id, :title, { include_blank: true }, class: "form-control" %>
+    <%= f.label :parent_id, 'Sub-categoria de' %>
+  </div>
+
+  <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+<% end %>

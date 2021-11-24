@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :streamers, only: %i[index show new create edit update] do
-    post 'inactive', on: :member
+    get 'inactive_streamers', on: :collection
   end
 
   resources :video_categories, only: %i[new create show]
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :subscription_plan_streamers, only: %i[new create edit update]
     resources :subscription_plan_values, only: %i[index show new create]
   end
+  resources :payment_methods, only: %i[new create show]
 
   resources :videos, only: %i[index show new create]
 

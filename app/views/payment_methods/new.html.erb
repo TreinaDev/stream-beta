@@ -1,0 +1,30 @@
+<%= javascript_pack_tag 'payment_methods' %>
+<h2><%= t('.title') %></h2>
+
+<%= render "shared/errors", resource: @payment_method %>
+
+<%= form_with(model: @payment_method) do |f| %>
+  <div class="form-floating mb-3">
+    <%= f.select :payment_type, options_for_select(PaymentMethod.payment_types.keys.map { |k| [I18n.t(k), k.to_sym] },
+        :credit_card), {}, :onchange => "togglePaymentOptions()", class: "form-select" %>
+    <%= f.label :payment_type, 'Tipo' %>
+  </div>
+
+  <div id='credit_card_fields'>
+    <div class="form-floating mb-3">
+      <%= f.text_field :card_number, placeholder: :card_number, class: "form-control" %>
+      <%= f.label :card_number, t('.card_number') %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= f.text_field :cvv_number, placeholder: :cvv_number, class: "form-control" %>
+      <%= f.label :cvv_number, t('.cvv_number') %>
+    </div>
+    <div class="form-floating mb-3">
+      <%= f.text_field :expiry_date, placeholder: :expiry_date, class: "form-control" %>
+      <%= f.label :expiry_date, t('.expiry_date') %>
+    </div>
+  </div>
+
+  <%= f.submit t('.submit'), data: { confirm: t('messages.proceed?'), disable_with: t('messages.sending') },
+      class: "btn btn-primary mt-3 mb-3" %>
+<% end %>

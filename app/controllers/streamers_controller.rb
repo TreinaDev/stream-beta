@@ -1,10 +1,10 @@
 class StreamersController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create edit update]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive_streamers]
   before_action :user_must_fill_profile
-  before_action :set_streamer, only: %i[show edit update inactive]
+  before_action :set_streamer, only: %i[show edit update]
 
   def index
-    @streamers = Streamer.all
+    @streamers = Streamer.all.reject(&:inactive?)
   end
 
   def show; end
@@ -33,17 +33,15 @@ class StreamersController < ApplicationController
     end
   end
 
-  def inactive
-    @streamer.inactive!
-
-    redirect_to streamers_path
+  def inactive_streamers
+    @streamers = Streamer.select(&:inactive?)
   end
 
   private
 
   def streamer_params
     params.require(:streamer).permit(:name, :avatar, :facebook_url,
-                                     :youtube_url, :instagram_handle, :twitter_handle)
+                                     :youtube_url, :instagram_handle, :twitter_handle, :status)
   end
 
   def set_streamer

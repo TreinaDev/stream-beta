@@ -10,7 +10,7 @@ describe 'Admin links playlist to subscription plan' do
     visit root_path
     click_link 'Planos'
     click_link 'Jogos FPS'
-    click_link 'Playlists'
+    click_link 'Playlists do Plano'
     click_link 'Associar Playlist'
     select 'Dicas de BF', from: 'Playlist'
     click_button 'Criar Associação de Playlist'
@@ -29,7 +29,7 @@ describe 'Admin links playlist to subscription plan' do
     visit root_path
     click_link 'Planos'
     click_link 'Jogos FPS'
-    click_link 'Playlists'
+    click_link 'Playlists do Plano'
     click_link 'Associar Playlist'
     select 'Dicas de BF', from: 'Playlist'
     click_button 'Criar Associação de Playlist'
@@ -48,7 +48,7 @@ describe 'Admin links playlist to subscription plan' do
     visit root_path
     click_link 'Planos'
     click_link 'Jogos FPS'
-    click_link 'Playlists'
+    click_link 'Playlists do Plano'
 
     expect(current_path).to eq(subscription_plan_subscription_plan_playlists_path(plan))
     expect(page).to have_content('Ainda não há playlists associadas a esse plano')
@@ -63,7 +63,7 @@ describe 'Admin links playlist to subscription plan' do
     visit root_path
     click_link 'Planos'
     click_link 'Jogos FPS'
-    click_link 'Playlists'
+    click_link 'Playlists do Plano'
     click_link 'Associar Playlist'
     select 'Dicas de BF', from: 'Playlist'
     click_button 'Criar Associação de Playlist'

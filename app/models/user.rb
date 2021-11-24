@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :payment_methods, dependent: :destroy
+
   has_many :user_subscription_plans, dependent: :restrict_with_error
   has_many :subscription_plans, through: :user_subscription_plans
 

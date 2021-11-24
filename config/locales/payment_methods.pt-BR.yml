@@ -1,0 +1,29 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      payment_method:
+        one: Método de Pagamento
+        other: Métodos de Pagamentos
+    attributes:
+      payment_method:
+        payment_type:
+          boleto: Boleto
+          credit_card: Cartão de Crédito
+          pix: Pix
+        token: Token
+        user_id: Usuário
+  payment_methods:
+    new:
+      title: Cadastro de Método de Pagamento
+      card_number: Número do Cartão
+      card_holder_name: Nome do Titular
+      cvv_number: Código de Segurança (CVV)
+      expiry_date: Validade (MM/AA)
+      submit: Enviar
+    create:
+      success: Método de pagamento adicionado com sucesso!
+      error: Método de Pagamento inválido
+  boleto: Boleto
+  credit_card: Cartão de Crédito
+  pix: Pix

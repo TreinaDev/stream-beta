@@ -8,9 +8,10 @@ class VideoCategoriesController < ApplicationController
   end
 
   def create
-    @video_category = VideoCategory.new(params.require(:video_category).permit(:title, :parent_id))
+    @video_category = VideoCategory.new(video_category_params)
+
     if @video_category.save
-      redirect_to @video_category, success: 'Categoria de Vídeo criada com sucesso!'
+      redirect_to @video_category, success: t('.success')
     else
       render :new
     end
@@ -18,6 +19,11 @@ class VideoCategoriesController < ApplicationController
 
   def show
     @video_category = VideoCategory.find(params[:id])
-    @video_category_parent = @video_category.parent
+  end
+
+  private
+
+  def video_category_params
+    params.require(:video_category).permit(:title, :parent_id)
   end
 end
