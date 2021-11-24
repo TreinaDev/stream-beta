@@ -35,13 +35,13 @@ describe 'Admin authentication' do
 
       expect(response).to redirect_to(root_path)
     end
-
-    it 'cannot inactive a streamer without login' do
+    it 'cannot update streamers without login' do
       user = create(:user)
+      streamer = create(:streamer)
       login_as user, scope: :user
-      post inactive_streamer_path(1)
+      patch "/streamers/#{streamer.id}"
 
-      expect(response).to redirect_to(new_user_profile_path)
+      expect(response).to redirect_to(root_path)
     end
   end
 
