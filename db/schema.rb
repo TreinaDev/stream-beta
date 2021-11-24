@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_020720) do
+
+ActiveRecord::Schema.define(version: 2021_11_24_193600) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_020720) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "payment_type", default: 10, null: false
+    t.index ["token"], name: "index_payment_methods_on_token", unique: true
     t.index ["user_id", "payment_type"], name: "index_payment_methods_on_user_id_and_payment_type", unique: true
     t.index ["user_id"], name: "index_payment_methods_on_user_id"
   end
@@ -137,7 +139,9 @@ ActiveRecord::Schema.define(version: 2021_11_24_020720) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_type", default: 10, null: false
+    t.string "token", null: false
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
+    t.index ["token"], name: "index_subscription_plans_on_token", unique: true
   end
 
   create_table "user_profiles", force: :cascade do |t|
