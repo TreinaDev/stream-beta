@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Administrator creates new subscription plan' do
   it 'successfully' do
     admin = create(:user, :admin)
+    allow_any_instance_of(SubscriptionPlan).to receive(:generate_new_token).and_return('abcABC1234')
 
     login_as admin, scope: :user
     visit root_path
@@ -24,6 +25,7 @@ describe 'Administrator creates new subscription plan' do
 
   it 'fails due to empty fields' do
     admin = create(:user, :admin)
+    allow_any_instance_of(SubscriptionPlan).to receive(:generate_new_token).and_return('abcABC1234')
 
     login_as admin, scope: :user
     visit root_path
