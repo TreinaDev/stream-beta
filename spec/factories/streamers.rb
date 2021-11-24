@@ -9,7 +9,6 @@ FactoryBot.define do
     youtube_url { "https://www.youtube.com/c/#{username}" }
     instagram_handle { username.to_s }
     twitter_handle { username.to_s }
-
     avatar do
       Rack::Test::UploadedFile.new(
         File.join("#{::Rails.root}/spec/fixtures", 'files/avatar_placeholder.png'), 'image/png'

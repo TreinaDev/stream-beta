@@ -4,7 +4,6 @@
 
 <% if current_user&.admin? %>
   <%= link_to 'Editar Streamer', edit_streamer_path %>
-  <%= link_to 'Inativar Streamer', inactive_streamer_path, method: :post %>
 <% end %>
 
 <p>Nome: <%= @streamer.name %></p>
@@ -12,6 +11,7 @@
 <p>Youtube: <%= @streamer.youtube_url %></p>
 <p>Instagram: <%= @streamer.instagram_handle %></p>
 <p>Twitter: <%= @streamer.twitter_handle %></p>
+<p>Status: <%= Streamer.human_attribute_name("status.#{@streamer.status}") %></p>
 
 <% if @streamer.videos.any? %>
   <table class="table">
