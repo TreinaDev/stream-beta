@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_193236) do
+ActiveRecord::Schema.define(version: 2021_11_23_021056) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,12 +91,10 @@ ActiveRecord::Schema.define(version: 2021_11_23_193236) do
     t.string "instagram_handle"
     t.string "twitter_handle"
     t.integer "status", default: 0
-    t.integer "user_id", null: false
     t.index ["facebook_url"], name: "index_streamers_on_facebook_url", unique: true
     t.index ["instagram_handle"], name: "index_streamers_on_instagram_handle", unique: true
     t.index ["name"], name: "index_streamers_on_name", unique: true
     t.index ["twitter_handle"], name: "index_streamers_on_twitter_handle", unique: true
-    t.index ["user_id"], name: "index_streamers_on_user_id"
     t.index ["youtube_url"], name: "index_streamers_on_youtube_url", unique: true
   end
 
@@ -214,7 +212,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_193236) do
   add_foreign_key "playlist_videos", "videos"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
-  add_foreign_key "streamers", "users"
   add_foreign_key "subscription_plan_playlists", "playlists"
   add_foreign_key "subscription_plan_playlists", "subscription_plans"
   add_foreign_key "subscription_plan_streamers", "streamers"

@@ -1,5 +1,5 @@
 class StreamersController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create edit update my_streamers]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive_streamers]
   before_action :user_must_fill_profile
   before_action :set_streamer, only: %i[show edit update]
 
@@ -14,7 +14,7 @@ class StreamersController < ApplicationController
   end
 
   def create
-    @streamer = current_user.streamers.new(streamer_params)
+    @streamer = Streamer.new(streamer_params)
 
     if @streamer.save
       redirect_to @streamer, success: t('.success')
@@ -33,8 +33,8 @@ class StreamersController < ApplicationController
     end
   end
 
-  def my_streamers
-    @streamers = current_user.streamers
+  def inactive_streamers
+    @streamers = Streamer.select(&:inactive?)
   end
 
   private

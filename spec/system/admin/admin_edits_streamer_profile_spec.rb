@@ -51,11 +51,11 @@ describe 'Administrator edit streamer profile' do
 
     it 'active a streamer' do
       admin = create(:user, :admin)
-      create(:streamer, name: 'Fulano', user: admin, status: :inactive)
+      create(:streamer, name: 'Fulano', status: :inactive)
 
       login_as admin, scope: :user
       visit root_path
-      click_link 'Meus Streamers'
+      click_link 'Streamers Inativos'
       click_link 'Fulano'
       click_link 'Editar Streamer'
       within 'form' do

@@ -14,6 +14,5 @@ FactoryBot.define do
         File.join("#{::Rails.root}/spec/fixtures", 'files/avatar_placeholder.png'), 'image/png'
       )
     end
-    user { build(:user, :admin) }
   end
 end

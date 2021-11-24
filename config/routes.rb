@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :playlists, only: %i[index show new create]
 
   resources :streamers, only: %i[index show new create edit update] do
-    get 'my_streamers', on: :collection
+    get 'inactive_streamers', on: :collection
   end
 
   resources :video_categories, only: %i[new create show]

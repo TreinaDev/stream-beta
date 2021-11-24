@@ -5,7 +5,6 @@ RSpec.describe Streamer, type: :model do
     it { should have_many(:playlist_streamers).dependent(:destroy) }
     it { should have_many(:playlists).through(:playlist_streamers) }
 
-    it { should belong_to(:user).class_name('User') }
     it { should have_many(:subscription_plan_streamers).dependent(:destroy) }
     it { should have_many(:subscription_plans).through(:subscription_plan_streamers) }
 
@@ -21,11 +20,9 @@ RSpec.describe Streamer, type: :model do
   describe 'presence' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:avatar) }
-    it { should validate_presence_of(:user) }
   end
 
   describe 'uniqueness' do
-    subject { build(:streamer) }
     it { should validate_uniqueness_of(:name).case_insensitive }
     it { should validate_uniqueness_of(:facebook_url).case_insensitive }
     it { should validate_uniqueness_of(:youtube_url).case_insensitive }
