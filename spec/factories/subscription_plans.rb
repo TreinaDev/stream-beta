@@ -3,6 +3,7 @@ FactoryBot.define do
     title { FFaker::Game.category }
     description { FFaker::LoremBR.phrase }
     value { FFaker::Number.decimal }
+    token { SecureRandom.alphanumeric(10) }
 
     trait :playlist do
       plan_type { :playlist }
