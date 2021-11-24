@@ -20,5 +20,5 @@ class Playlist < ApplicationRecord
 
   validates :title, :description, :playlist_cover, presence: true
 
-  enum status: {active: 5, inactive: 10}
+  enum status: { active: 5, inactive: 10 }
 end

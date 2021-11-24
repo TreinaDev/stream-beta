@@ -27,5 +27,4 @@ Rails.application.routes.draw do
   resources :user_profiles, only: %i[show new create]
 
   resources :user_subscription_plans, only: %i[new create]
-
 end

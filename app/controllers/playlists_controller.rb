@@ -31,9 +31,7 @@ class PlaylistsController < ApplicationController
   def update
     @playlist = Playlist.find(params[:id])
 
-    if @playlist.update(playlist_params)
-      redirect_to @playlist
-    end
+    redirect_to @playlist if @playlist.update(playlist_params)
   end
 
   def inactive
