@@ -12,7 +12,7 @@
 <% end %>
 
 <% if @subscription_plan.playlist? %>
-  <div><%= link_to Playlist.model_name.human(count: 2), subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
+  <div><%= link_to t('plan_playlists'), subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
 <% end %>
 <div><%= link_to SubscriptionPlanValue.model_name.human(count: 2), subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
 

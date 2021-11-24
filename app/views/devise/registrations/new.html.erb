@@ -3,24 +3,24 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= f.email_field :email, placeholder: :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= f.password_field :password, placeholder: :password, autocomplete: "new-password", class: "form-control" %>
     <%= f.label :password, "#{User.human_attribute_name(:password)} \
         (Mínimo de #{@minimum_password_length} caracteres)" if @minimum_password_length %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
+  <div class="form-floating mb-3">
+    <%= f.password_field :password_confirmation, placeholder: :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit t('buttons.sign_up') %>
+    <%= f.submit t('buttons.sign_up'), data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
   </div>
 <% end %>
 

@@ -19,5 +19,6 @@ pt-BR:
       title: Cadastro de Plano
     create:
       success: Plano criado com sucesso!
+  plan_playlists: Playlists do Plano
   playlist: Playlist
   streamer: Streamer
