@@ -64,8 +64,8 @@ describe 'Administrator edit streamer profile' do
       end
 
       expect(current_path).to eq streamer_path(Streamer.last)
-      expect(page).to have_content('Ativo')
-      expect(page).not_to have_content('Inativo')
+      expect(page).to have_content('Status: Ativo')
+      expect(page).not_to have_content('Status: Inativo')
     end
   end
 
