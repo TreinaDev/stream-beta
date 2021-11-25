@@ -1,24 +1,30 @@
-# README
+# Stream Beta
+## Plataforma de videos e streamers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requisitos:
 
-Things you may want to cover:
+    NodeJs e Yarn
 
-* Ruby version
+## Ruby version
 
-* System dependencies
+    ruby '3.0.2'
 
-* Configuration
+## Setup:
 
-* Database creation
+    bin/setup
 
-* Database initialization
+## Criação do banco de dados
 
-* How to run the test suite
+    bin/rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+## Seeds
 
-* Deployment instructions
+    bin/rails seed
 
-* ...
+### Usuários para login:
+ - Usuario  -- email: user@email.com, password: '123456'
+ - Admin    -- email: admin@gamestream.com.br, password: '123456'
+
+## Tests
+
+    bin/bundle exec rspec
