@@ -19,6 +19,20 @@ describe 'Restricted playlist routes' do
 
       expect(response).to redirect_to(root_path)
     end
+
+    it "can't access the 'edit' action" do
+      login_as @user, scope: :user
+      get edit_playlist_path(1)
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it "can't access the 'update' action" do
+      login_as @user, scope: :user
+      patch playlist_path(1)
+
+      expect(response).to redirect_to(root_path)
+    end
   end
 
   context 'when unauthenticated' do

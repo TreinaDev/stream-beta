@@ -1,0 +1,6 @@
+<%= render "shared/errors", resource: @playlist %>
+
+<%= render 'form' %>
+
+<div><%= link_to Playlist.human_attribute_name(:inactivate_playlist), inactive_playlist_path(@playlist.id), method: :post, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

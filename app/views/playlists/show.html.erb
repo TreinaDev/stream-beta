@@ -1,4 +1,10 @@
 <p><%= "#{Playlist.human_attribute_name(:title)}: #{@playlist.title}" %></p>
 <p><%= "#{Playlist.human_attribute_name(:description)}: #{@playlist.description}" %></p>
+<p><%= "#{Playlist.human_attribute_name(:status)}: #{Playlist.human_attribute_name(@playlist.status)}" %></p>
 
+<% @playlist.streamers.each do |s| %>
+ <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
+<% end %>
+
+<div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
 <div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
