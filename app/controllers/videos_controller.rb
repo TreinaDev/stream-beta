@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create edit update]
   before_action :user_must_fill_profile
   before_action :set_video, only: %i[show edit update]
 
