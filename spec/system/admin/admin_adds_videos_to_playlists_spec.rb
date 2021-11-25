@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Admin adds videos to playlist' do
   it 'successfully' do
     admin = create(:user, :admin)
-    video = create(:video, title: 'Video', video_url: 'https://vimeo.com/123456789')
-    video = create(:video, title: 'Video errado', video_url: 'https://vimeo.com/987654321')
+    create(:video, title: 'Video', video_url: 'https://vimeo.com/123456789')
+    create(:video, title: 'Video errado', video_url: 'https://vimeo.com/987654321')
     playlist = create(:playlist, title: 'Playlist de jogos')
 
     login_as admin, scope: :user
