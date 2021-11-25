@@ -73,16 +73,18 @@ RSpec.describe Video, type: :model do
 
     it 'successfully' do
       api_response = File.read(Rails.root.join('spec/support/apis/video_response.json'))
-      stub_request(:post, 'http://localhost:4000/api/v1/videos/')
-        .with(body: video.to_json).to_return(body: api_response, status: 201)
+      fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
+                                            video.to_json).and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq 'w3HlRYCy2r'
     end
 
     it 'and fails due to server error' do
-      stub_request(:post, 'http://localhost:4000/api/v1/videos/')
-        .with(body: video.to_json).to_return(status: 500)
+      fake_response = instance_double(Faraday::Response, status: 500, body: '')
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
+                                            video.to_json).and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq nil

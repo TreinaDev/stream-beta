@@ -7,13 +7,15 @@
     <%= f.text_field :description, placeholder: :description, class: "form-control" %>
     <%= f.label :description %>
   </div>
-
+  <div>
+    <%= f.collection_check_boxes :streamer_ids, Streamer.all, :id, :name %>
+    <%= f.label :streamer_ids, Streamer.model_name.human%>
+  </div>
   <div class="mb-3 row">
     <%= f.label :playlist_cover, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <%= f.file_field :playlist_cover, class: "form-control" %>
     </div>
   </div>
-
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
 <% end %>
