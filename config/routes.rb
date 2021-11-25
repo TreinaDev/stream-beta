@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
-  resources :playlists, only: %i[index show new create]
+  resources :playlists, only: %i[index show new create edit update]
 
   resources :streamers, only: %i[index show new create edit update] do
     get 'inactive_streamers', on: :collection

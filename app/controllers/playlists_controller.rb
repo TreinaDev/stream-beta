@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create edit update]
   before_action :user_must_fill_profile
 
   def index
@@ -8,6 +8,16 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id])
+  end
+
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def update
+    @playlist = Playlist.find(params[:id])
+
+    redirect_to @playlist if @playlist.update(playlist_params)
   end
 
   def new
@@ -27,6 +37,6 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover)
+    params.require(:playlist).permit(:title, :description, :playlist_cover, video_ids: [])
   end
 end

@@ -1,4 +1,10 @@
 <p><%= "#{Playlist.human_attribute_name(:title)}: #{@playlist.title}" %></p>
 <p><%= "#{Playlist.human_attribute_name(:description)}: #{@playlist.description}" %></p>
 
+<% @playlist.videos.each do |v| %>
+ <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
+ Video url:<%= link_to v.video_url %>
+<% end %>
+
+<div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
 <div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

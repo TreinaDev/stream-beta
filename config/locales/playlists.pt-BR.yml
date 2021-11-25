@@ -18,3 +18,5 @@ pt-BR:
       title: Cadastro de Playlist
     create:
       success: Playlist criada com sucesso!
+    show:
+      edit: Editar playlist
