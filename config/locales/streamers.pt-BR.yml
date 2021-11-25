@@ -27,3 +27,5 @@ pt-BR:
       success: Cadastro realizado com sucesso!
     update:
       success: Cadastro atualizado com sucesso!
+    inactive_stremers:
+      title: Streamers Inativos
