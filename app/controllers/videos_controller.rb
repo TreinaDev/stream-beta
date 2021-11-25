@@ -28,6 +28,8 @@ class VideosController < ApplicationController
   def update
     if @video.update video_params
       redirect_to @video, success: t('.success')
+    else
+      render :edit
     end
   end
 

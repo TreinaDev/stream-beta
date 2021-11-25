@@ -31,4 +31,34 @@ describe 'Administrator edit playlist' do
       expect(page).to have_content('14')
     end
   end
+  context 'fails' do
+    it 'due to admin not be logged in' do
+      create(:user, :admin)
+      create(:video, title: 'Vídeo bom')
+
+      visit root_path
+      click_link 'Vídeos'
+      click_link 'Vídeo bom'
+
+      expect(page).not_to have_link 'Editar Vídeo'
+    end
+
+    it 'due to empty fields' do
+      admin = create(:user, :admin)
+      create(:video, title: 'Vídeo bom')
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Vídeos'
+      click_link 'Vídeo bom'
+      click_link 'Editar Vídeo'
+      within 'form' do
+        fill_in 'Título', with: ''
+        click_button 'Atualizar Vídeo'
+      end
+
+      expect(current_path).to eq video_path(Video.last)
+      expect(page).to have_content('Título não pode ficar em branco')
+    end
+  end
 end
