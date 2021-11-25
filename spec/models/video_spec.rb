@@ -16,12 +16,36 @@ RSpec.describe Video, type: :model do
     it { should validate_presence_of(:duration) }
     it { should validate_presence_of(:video_url) }
     it { should validate_presence_of(:maturity_rating) }
+
+    context 'when allow_purchase is true' do
+      subject { build(:video, allow_purchase: true) }
+
+      it { should validate_presence_of(:token) }
+    end
+
+    context 'when allow_purchase is false' do
+      subject { build(:video, allow_purchase: false) }
+
+      it { should_not validate_presence_of(:token) }
+    end
   end
 
   describe 'uniqueness' do
     subject { build(:video) }
 
     it { should validate_uniqueness_of(:title).scoped_to(:streamer_id) }
+
+    context 'when allow_purchase is true' do
+      subject { build(:video, allow_purchase: true) }
+
+      it { should validate_uniqueness_of(:token) }
+    end
+
+    context 'when allow_purchase is false' do
+      subject { build(:video, allow_purchase: false) }
+
+      it { should_not validate_uniqueness_of(:token) }
+    end
   end
 
   describe 'format' do
@@ -44,6 +68,23 @@ RSpec.describe Video, type: :model do
     end
 
     it { should_not allow_values('https://youtube.com').for(:video_url) }
+
+    context 'when allow_purchase is true' do
+      subject { build(:video, allow_purchase: true) }
+
+      it { should allow_values('abcABC1234').for(:token) }
+      it { should_not allow_values('abcABC123').for(:token) }
+      it { should_not allow_values('abcABC12345').for(:token) }
+    end
+
+    context 'when allow_purchase is false' do
+      subject { build(:video, allow_purchase: false) }
+
+      it { should allow_values('').for(:token) }
+      it { should_not allow_values('abcABC1234').for(:token) }
+      it { should_not allow_values('abcABC123').for(:token) }
+      it { should_not allow_values('abcABC12345').for(:token) }
+    end
   end
 
   describe 'inclusion' do

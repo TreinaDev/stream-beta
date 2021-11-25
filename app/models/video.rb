@@ -15,7 +15,14 @@ class Video < ApplicationRecord
     message: 'não está formatada corretamente'
   }
   validates :allow_purchase, inclusion: [true, false]
-  validates :value, numericality: { greater_than: 0 }, if: :allow_purchase?
+
+  with_options if: :allow_purchase? do
+    validates :token, presence: true
+    validates :token, uniqueness: true
+    validates :token, format: { with: /\A[a-zA-Z0-9]{10}\z/ }
+    validates :value, numericality: { greater_than: 0 }
+  end
+  validates :token, absence: true, unless: :allow_purchase?
 
   def request_token
     self.token = generate_new_token(title, value) if token.nil?

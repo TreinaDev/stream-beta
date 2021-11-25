@@ -11,5 +11,9 @@ FactoryBot.define do
       allow_purchase { true }
       value { rand(1..10) }
     end
+
+    trait :random_token do
+      token { SecureRandom.alphanumeric(10) }
+    end
   end
 end
