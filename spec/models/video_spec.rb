@@ -48,6 +48,10 @@ RSpec.describe Video, type: :model do
     end
   end
 
+  describe 'enum' do
+    it { should define_enum_for(:status).with_values(active: 0, inactive: 10) }
+  end
+
   describe 'format' do
     it do
       should allow_values('vimeo.com/123456789').for(:video_url)

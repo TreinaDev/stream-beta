@@ -217,9 +217,13 @@ ActiveRecord::Schema.define(version: 2021_11_25_182911) do
     t.string "video_url"
     t.string "maturity_rating"
     t.integer "streamer_id", null: false
+
     t.boolean "allow_purchase", default: false
     t.decimal "value"
     t.string "token"
+
+    t.integer "status", default: 0
+    
     t.index ["streamer_id", "title"], name: "index_videos_on_streamer_id_and_title", unique: true
     t.index ["streamer_id"], name: "index_videos_on_streamer_id"
     t.index ["token"], name: "index_videos_on_token", unique: true

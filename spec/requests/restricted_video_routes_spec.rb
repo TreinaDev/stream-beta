@@ -13,6 +13,14 @@ describe 'Restricted Video routes' do
       expect(response).to redirect_to(root_path)
     end
 
+    it "can't access the 'update' action" do
+      video = create(:video)
+      login_as @user, scope: :user
+      patch video_path(video)
+
+      expect(response).to redirect_to(root_path)
+    end
+
     it "can't access the 'new' action" do
       login_as @user, scope: :user
       get new_video_path
@@ -30,6 +38,13 @@ describe 'Restricted Video routes' do
 
     it "can't access the 'new' action" do
       get new_video_path
+
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it "can't access the 'update' action" do
+      video = create(:video)
+      patch video_path(video)
 
       expect(response).to redirect_to(new_user_session_path)
     end

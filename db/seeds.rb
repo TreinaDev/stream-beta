@@ -22,4 +22,9 @@ video_category1 = FactoryBot.create(:video_category)
 video_category2 = FactoryBot.create(:video_category)
 video_category3 = FactoryBot.create(:video_category, parent: video_category2)
 
+FactoryBot.create(:video_category)
+FactoryBot.create(:streamer)
+FactoryBot.create(:user_profile, user: user)
+
+
 p 'Banco de dados atualizado com sucesso :)'

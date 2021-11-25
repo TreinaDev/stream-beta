@@ -6,6 +6,9 @@ pt-BR:
         one: Vídeo
         other: Vídeos
     attributes:
+      video/status:
+        active: Ativo
+        inactive: Inativo
       video:
         allow_purchase: Permitir compra avulsa
         duration: Duração
@@ -20,3 +23,9 @@ pt-BR:
       title: Cadastro de Vídeo
     create:
       success: Vídeo criado com sucesso!
+    edit:
+      title: Editar Vídeo
+    update:
+      success: Vídeo atualizado com sucesso!
+    inactives_videos:
+      title: Vídeos Inativos
