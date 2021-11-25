@@ -1,29 +1,67 @@
 require 'rails_helper'
 
 describe 'Administrator creates video' do
-  it 'successfully' do
-    admin = create(:user, :admin)
-    create(:streamer, name: 'DarkStar')
+  context 'successfully' do
+    it 'when allow_purchase is false' do
+      admin = create(:user, :admin)
+      create(:streamer, name: 'DarkStar')
 
-    login_as admin, scope: :user
-    visit root_path
-    click_link 'Vídeos'
-    click_link 'Novo vídeo'
-    within 'form' do
-      fill_in 'Título', with: 'Vídeo novo'
-      fill_in 'Duração', with: '00:59:12'
-      fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
-      fill_in 'Faixa etária', with: '18'
-      select 'DarkStar', from: 'Streamer'
-      click_button 'Criar Vídeo'
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Vídeos'
+      click_link 'Novo vídeo'
+      within 'form' do
+        fill_in 'Título', with: 'Vídeo novo'
+        fill_in 'Duração', with: '00:59:12'
+        fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+        fill_in 'Faixa etária', with: '18'
+        select 'DarkStar', from: 'Streamer'
+        click_button 'Criar Vídeo'
+      end
+
+      expect(current_path).to eq(video_path(Video.last))
+      expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
+      expect(page).to have_content('Vídeo novo')
+      expect(page).to have_content('00:59:12')
+      expect(page).to have_content('https://vimeo.com/123456789')
+      expect(page).to have_content('18')
+      expect(page).to have_no_link('Adquirir Vídeo')
     end
 
-    expect(current_path).to eq(video_path(Video.last))
-    expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
-    expect(page).to have_content('Vídeo novo')
-    expect(page).to have_content('00:59:12')
-    expect(page).to have_content('https://vimeo.com/123456789')
-    expect(page).to have_content('18')
+    it 'when allow_purchase is true' do
+      admin = create(:user, :admin)
+      create(:streamer, name: 'DarkStar')
+      request = { title: 'Vídeo novo', value: '5.4' }.to_json
+      response = { video_token: '1Ko4tdmJzq' }.to_json
+      stub_request(:post, 'http://localhost:4000/api/v1/videos/')
+        .with(body: request).to_return(body: response, status: 201)
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Vídeos'
+      click_link 'Novo vídeo'
+      within 'form' do
+        fill_in 'Título', with: 'Vídeo novo'
+        fill_in 'Duração', with: '00:59:12'
+        fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+        fill_in 'Faixa etária', with: '18'
+        select 'DarkStar', from: 'Streamer'
+        check 'Permitir compra avulsa'
+        fill_in 'Valor', with: 5.40
+        click_button 'Criar Vídeo'
+      end
+
+      video = Video.last
+      expect(current_path).to eq(video_path(video))
+      expect(video.token).to eq('1Ko4tdmJzq')
+      expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
+      expect(page).to have_content('Vídeo novo')
+      expect(page).to have_content('00:59:12')
+      expect(page).to have_content('https://vimeo.com/123456789')
+      expect(page).to have_content('18')
+      expect(page).to have_content('Valor: R$ 5,40')
+      expect(page).to have_link('Adquirir Vídeo')
+    end
   end
 
   it 'but fails due to missing fields' do

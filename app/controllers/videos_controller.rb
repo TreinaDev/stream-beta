@@ -13,6 +13,8 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
 
+    @video.request_token if @video.allow_purchase?
+
     if @video.save
       redirect_to @video, success: t('.success')
     else
@@ -22,11 +24,13 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
+    @user_video = current_user&.user_videos&.find_by(video: @video)
   end
 
   private
 
   def video_params
-    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id)
+    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id, :allow_purchase,
+                                  :value)
   end
 end

@@ -2,19 +2,20 @@
 pt-BR:
   activerecord:
     models:
-      user_subscription_plan:
-        one: Assinatura de Plano
-        other: Assinaturas de Plano
+      user_video:
+        one: Compra de Vídeo Avulso
+        other: Compra de Vídeos Avulsos
     attributes:
-      user_subscription_plan:
+      user_video:
         status:
           pending: Pendente
           approved: Aprovada
           rejected: Rejeitada
-  user_subscription_plans:
+  user_videos:
     new:
-      title: Assinatura de Plano
+      title: Compra de Vídeo Avulso
+      confirm: Confirmar compra
     create:
       pending: Pagamento em análise
-      approved: Assinatura realizada com sucesso!
+      approved: Compra realizada com sucesso!
       rejected: Pagamento reprovado
