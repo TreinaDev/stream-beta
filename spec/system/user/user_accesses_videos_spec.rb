@@ -37,7 +37,7 @@ describe 'User accesses videos' do
 
       expect(page).not_to have_content('video ruim')
     end
-    it 'inatives videos in show' do
+    it 'inatives videos' do
       user = create(:user)
       create(:user_profile, user: user)
       video = create(:video, title: 'video ruim', status: :inactive)

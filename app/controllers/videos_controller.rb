@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[edit update show]
 
   def index
-    @videos = Video.all.reject(&:inactive?)
+    @videos = Video.active
   end
 
   def new
