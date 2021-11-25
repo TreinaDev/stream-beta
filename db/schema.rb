@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_132405) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 5
   end
 
   create_table "related_playlists", force: :cascade do |t|

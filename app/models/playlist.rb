@@ -19,4 +19,6 @@ class Playlist < ApplicationRecord
   has_one_attached :playlist_cover
 
   validates :title, :description, :playlist_cover, presence: true
+
+  enum status: { active: 5, inactive: 10 }
 end
