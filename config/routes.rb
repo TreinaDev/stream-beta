@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :payment_methods, only: %i[new create show]
 
-  resources :videos, only: %i[index show new create]
+  resources :videos, only: %i[index show new create edit update]
 
   resources :user_profiles, only: %i[show new create]
 

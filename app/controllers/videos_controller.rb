@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   before_action :authenticate_admin!, only: %i[new create]
   before_action :user_must_fill_profile
+  before_action :set_video, only: %i[show edit update]
 
   def index
     @videos = Video.all
@@ -20,13 +21,23 @@ class VideosController < ApplicationController
     end
   end
 
-  def show
-    @video = Video.find(params[:id])
+  def show; end
+
+  def edit; end
+
+  def update
+    if @video.update video_params
+      redirect_to @video, success: t('.success')
+    end
   end
 
   private
 
   def video_params
     params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id)
+  end
+
+  def set_video
+    @video = Video.find(params[:id])
   end
 end

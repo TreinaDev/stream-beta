@@ -18,3 +18,7 @@ pt-BR:
       title: Cadastro de Vídeo
     create:
       success: Vídeo criado com sucesso!
+    edit:
+      title: Editar Vídeo
+    update:
+      success: Vídeo atualizado com sucesso!

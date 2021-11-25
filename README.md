@@ -22,8 +22,8 @@
     bin/rails seed
 
 ### Usuários para login:
- - Usuario  -- email: user@email.com, password: '123456'
- - Admin    -- email: admin@gamestream.com.br, password: '123456'
+ - Usuario  -- email: user@email.com, password: 123456
+ - Admin    -- email: admin@gamestream.com.br, password: 123456
 
 ## Tests
 
