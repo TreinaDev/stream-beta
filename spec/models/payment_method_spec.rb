@@ -39,7 +39,7 @@ RSpec.describe PaymentMethod, type: :model do
     it 'and fails due to server error' do
       user_payment_method = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_method.json')))
       stub_request(:post, 'http://localhost:4000/api/v1/payment_methods/')
-        .with(body: user_payment_method.to_json).to_return(body: '', status: 500)
+        .with(body: user_payment_method.to_json).to_return(status: 500)
 
       subject.request_token(user_payment_method)
       expect(subject.token).to eq nil
