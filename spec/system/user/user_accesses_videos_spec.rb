@@ -27,5 +27,27 @@ describe 'User accesses videos' do
       expect(current_path).to eq(root_path)
       expect(page).to have_content('Acesso não autorizado!')
     end
+    it 'inatives videos in index' do
+      user = create(:user)
+      create(:user_profile, user: user)
+      create(:video, title: 'video ruim', status: :inactive)
+
+      login_as user, scope: :user
+      visit videos_path
+
+      expect(page).not_to have_content('video ruim')
+    end
+    it 'inatives videos in show' do
+      user = create(:user)
+      create(:user_profile, user: user)
+      video = create(:video, title: 'video ruim', status: :inactive)
+
+      login_as user, scope: :user
+      visit video_path(video)
+
+      expect(page).not_to have_content('video ruim')
+      expect(current_path).not_to eq(video_path(video))
+      expect(page).to have_content('Vídeo Inativo!')
+    end
   end
 end

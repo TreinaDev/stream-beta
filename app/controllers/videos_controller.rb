@@ -1,10 +1,10 @@
 class VideosController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create edit update]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive_videos]
   before_action :user_must_fill_profile
-  before_action :set_video, only: %i[show edit update]
+  before_action :set_video, only: %i[edit update show]
 
   def index
-    @videos = Video.all
+    @videos = Video.all.reject(&:inactive?)
   end
 
   def new
@@ -21,7 +21,9 @@ class VideosController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive? && !current_user.admin?
+  end
 
   def edit; end
 
