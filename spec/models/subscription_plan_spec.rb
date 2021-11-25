@@ -79,18 +79,16 @@ RSpec.describe SubscriptionPlan, type: :model do
 
     it 'successfully' do
       api_response = File.read(Rails.root.join('spec/support/apis/subscription_plan_response.json'))
-      fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/',
-                                            subscription_plan.to_json).and_return(fake_response)
+      stub_request(:post, 'http://localhost:4000/api/v1/subscription_plans/')
+        .with(body: subscription_plan.to_json).to_return(body: api_response, status: 201)
 
       subject.request_token
       expect(subject.token).to eq 'BYZBrjim0W'
     end
 
     it 'and fails due to server error' do
-      fake_response = instance_double(Faraday::Response, status: 500, body: '')
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/',
-                                            subscription_plan.to_json).and_return(fake_response)
+      stub_request(:post, 'http://localhost:4000/api/v1/subscription_plans/')
+        .with(body: subscription_plan.to_json).to_return(status: 500)
 
       subject.request_token
       expect(subject.token).to eq nil
