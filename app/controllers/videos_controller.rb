@@ -24,12 +24,14 @@ class VideosController < ApplicationController
   end
 
   def show
-
     @video = Video.find(params[:id])
     @user_video = current_user&.user_videos&.find_by(video: @video)
-    redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive? && !current_user.admin?
 
-    redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive? && !current_user.admin?
+    return if current_user&.admin?
+
+    redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive?
+
+    redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive?
   end
 
   def edit; end
