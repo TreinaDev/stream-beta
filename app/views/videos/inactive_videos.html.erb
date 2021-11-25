@@ -1,0 +1,26 @@
+<h1><%= t('.title') %></h1>
+
+<% if @videos.present? %>
+  <table class="table">
+    <tr>
+      <th><%= Video.human_attribute_name(:title) %></th>
+      <th><%= Video.human_attribute_name(:duration) %></th>
+      <th><%= Video.human_attribute_name(:maturity_rating) %></th>
+    </tr>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= link_to video.title, video_path(video) %></td>
+        <td><%= video.duration %></td>
+        <td><%= video.maturity_rating%></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há vídeos inativos</p>
+<% end %>
+
+<% if current_user&.admin? %>
+  <div><%= link_to 'Novo vídeo', new_video_path %></div>
+<% end %>
+
+<div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

@@ -33,6 +33,10 @@ class VideosController < ApplicationController
     end
   end
 
+  def inactive_videos
+    @videos = Video.all.select(&:inactive?)
+  end
+
   private
 
   def video_params

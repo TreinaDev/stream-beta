@@ -48,6 +48,25 @@ describe 'Administrator edit playlist' do
       expect(current_path).to eq video_path(Video.last)
       expect(page).to have_content('Inativo')
     end
+
+    it 'active a video' do
+      admin = create(:user, :admin)
+      create(:video, title: 'Vídeo ruim', status: :inactive)
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Vídeos Inativos'
+      click_link 'Vídeo ruim'
+      click_link 'Editar Vídeo'
+      within 'form' do
+        choose 'Ativo'
+        click_button 'Atualizar Vídeo'
+      end
+
+      expect(current_path).to eq video_path(Video.last)
+      expect(page).to have_content('Status: Ativo')
+      expect(page).not_to have_content('Status: Inativo')
+    end
   end
   context 'fails' do
     it 'due to admin not be logged in' do
