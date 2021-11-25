@@ -24,7 +24,6 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find(params[:id])
     @user_video = current_user&.user_videos&.find_by(video: @video)
 
     return if current_user&.admin?
