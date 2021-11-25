@@ -12,6 +12,7 @@ class PlaylistsController < ApplicationController
 
   def new
     @playlist = Playlist.new
+    @category = VideoCategory.all
   end
 
   def create
@@ -27,6 +28,6 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover)
+    params.require(:playlist).permit(:title, :description, :playlist_cover, :video_category_id)
   end
 end

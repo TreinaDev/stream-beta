@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_193600) do
+ActiveRecord::Schema.define(version: 2021_11_25_013651) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "video_category_id", null: false
+    t.index ["video_category_id"], name: "index_playlists_on_video_category_id"
   end
 
   create_table "related_playlists", force: :cascade do |t|
@@ -213,6 +215,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
   add_foreign_key "playlist_streamers", "streamers"
   add_foreign_key "playlist_videos", "playlists"
   add_foreign_key "playlist_videos", "videos"
+  add_foreign_key "playlists", "video_categories"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"

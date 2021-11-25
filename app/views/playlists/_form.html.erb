@@ -14,6 +14,10 @@
       <%= f.file_field :playlist_cover, class: "form-control" %>
     </div>
   </div>
+  <div class="form-floating mb-3"> %>
+    <%= f.collection_select :video_category_id, @video_categories, :id, :title, {}, class: "form-select" %>
+    <%= f.label :video_category_id, VideoCategory.model_name.human %>
+  </div>
 
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
 <% end %>
