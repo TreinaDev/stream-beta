@@ -14,4 +14,6 @@ class Video < ApplicationRecord
             }
 
   enum status: { active: 0, inactive: 10 }
+
+  scope :streamer_active, -> { joins(:streamer).where('streamer.status' => Streamer.statuses[:active]) }
 end

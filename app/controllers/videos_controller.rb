@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[edit update show]
 
   def index
-    @videos = Video.active
+    @videos = Video.active.streamer_active
   end
 
   def new
@@ -23,6 +23,8 @@ class VideosController < ApplicationController
 
   def show
     redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive? && !current_user.admin?
+
+    redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive? && !current_user.admin?
   end
 
   def edit; end
