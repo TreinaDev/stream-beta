@@ -19,6 +19,14 @@
     <%= f.collection_select :streamer_id, Streamer.order(:name), :id, :name, {}, class: "form-select" %>
     <%= f.label :streamer_id, Streamer.model_name.human %>
   </div>
+  <div class="form-check mb-3">
+    <%= f.check_box :allow_purchase, class: "form-check-input" %>
+    <%= f.label :allow_purchase, class: "form-check-label" %>
+  </div>
+  <div class="form-floating mb-3">
+    <%= f.text_field :value, placeholder: :value, class: "form-control" %>
+    <%= f.label :value %>
+  </div>
 
   <div class="mb-3 row">
 		<div class="form-check">

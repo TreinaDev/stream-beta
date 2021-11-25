@@ -3,6 +3,7 @@ class UserProfile < ApplicationRecord
 
   validates :full_name, :social_name, :birth_date, :cpf, :zipcode, :address_line_one,
             :address_line_two, :city, :state, :country, presence: true
+  validates :user_id, uniqueness: true
   validates :cpf, uniqueness: { case_sensitive: false }
 
   validate :check_cpf_format

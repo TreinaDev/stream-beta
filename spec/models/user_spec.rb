@@ -7,6 +7,9 @@ RSpec.describe User, type: :model do
     it { should have_many(:user_subscription_plans).dependent(:restrict_with_error) }
     it { should have_many(:subscription_plans).through(:user_subscription_plans) }
 
+    it { should have_many(:user_videos).dependent(:restrict_with_error) }
+    it { should have_many(:videos).through(:user_videos) }
+
     it { should have_one(:user_profile).dependent(:destroy) }
   end
 

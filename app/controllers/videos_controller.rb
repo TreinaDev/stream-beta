@@ -14,6 +14,8 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
 
+    @video.request_token if @video.allow_purchase?
+
     if @video.save
       redirect_to @video, success: t('.success')
     else
@@ -22,9 +24,13 @@ class VideosController < ApplicationController
   end
 
   def show
-    redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive? && !current_user.admin?
+    @user_video = current_user&.user_videos&.find_by(video: @video)
 
-    redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive? && !current_user.admin?
+    return if current_user&.admin?
+
+    redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive?
+
+    redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive?
   end
 
   def edit; end
@@ -44,7 +50,8 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id, :status)
+    params.require(:video).permit(:title, :duration, :video_url, :maturity_rating, :streamer_id, :allow_purchase,
+                                  :status, :value)
   end
 
   def set_video
