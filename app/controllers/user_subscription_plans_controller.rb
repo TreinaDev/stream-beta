@@ -1,6 +1,7 @@
 class UserSubscriptionPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :user_must_fill_profile
+  before_action :deny_admin_access
   before_action :set_subscription_plan
 
   def new

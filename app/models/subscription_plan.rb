@@ -13,8 +13,8 @@ class SubscriptionPlan < ApplicationRecord
   enum plan_type: { playlist: 10, streamer: 20 }
 
   validates :title, :description, :token, :value, presence: true
-  validates :title, uniqueness: { case_sensitive: false }
   validates :token, uniqueness: true
+  validates :title, uniqueness: { case_sensitive: false }
   validates :value, numericality: { greater_than: 0 }
   validates :token, format: { with: /\A[a-zA-Z0-9]{10}\z/ }
 
