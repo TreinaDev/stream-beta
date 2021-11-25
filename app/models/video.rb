@@ -12,4 +12,6 @@ class Video < ApplicationRecord
               with: %r{(?:http|https)?(?:://)?(?:player\.)?vimeo\.com/(?:.*/)?\d{9}},
               message: 'não está formatada corretamente'
             }
+
+  enum status: { active: 0, inactive: 10 }
 end

@@ -30,6 +30,24 @@ describe 'Administrator edit playlist' do
       expect(page).to have_content('https://vimeo.com/987654321')
       expect(page).to have_content('14')
     end
+
+    it 'inactive a video' do
+      admin = create(:user, :admin)
+      create(:video, title: 'Vídeo ruim')
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Vídeos'
+      click_link 'Vídeo ruim'
+      click_link 'Editar Vídeo'
+      within 'form' do
+        choose 'Inativo'
+        click_button 'Atualizar Vídeo'
+      end
+
+      expect(current_path).to eq video_path(Video.last)
+      expect(page).to have_content('Inativo')
+    end
   end
   context 'fails' do
     it 'due to admin not be logged in' do
