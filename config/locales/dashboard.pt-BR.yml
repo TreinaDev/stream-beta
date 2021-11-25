@@ -1,0 +1,12 @@
+---
+pt-BR:
+  user:
+    dashboard:
+      dashboard:
+        title: Área do Assinante
+      purchase_history:
+        title: Histórico de Compras
+      my_subscription_plans:
+        title: Minhas Assinaturas
+      my_videos:
+        title: Meus Vídeos

@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
+  namespace :user do
+    get 'dashboard', to: 'dashboard#dashboard'
+    get 'my_subscription_plans', to: 'dashboard#my_subscription_plans'
+    get 'my_videos', to: 'dashboard#my_videos'
+    get 'purchase_history', to: 'dashboard#purchase_history'
+  end
+
   resources :playlists, only: %i[index show new create edit update] do
     post 'inactive', on: :member
   end

@@ -1,0 +1,18 @@
+<h1 class="text-center display-3 mb-5"><%= t('.title') %></h1>
+
+<% if @subscription_plans.present? %>
+  <table class="table">
+    <tr>
+      <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
+    </tr>
+    <% @subscription_plans.each do |plan| %>
+      <tr>
+        <td><%= link_to plan.title, subscription_plan_path(plan) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="text-center display-6">Você ainda não possui assinaturas ativas</p>
+<% end %>
+
+<div><%= link_to t('links.go_back'), user_dashboard_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
