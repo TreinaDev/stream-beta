@@ -6,5 +6,14 @@ FactoryBot.define do
     maturity_rating { %w[L 10 12 14 16 18].sample }
 
     streamer
+
+    trait :allow_purchase do
+      allow_purchase { true }
+      value { rand(1..10) }
+    end
+
+    trait :random_token do
+      token { SecureRandom.alphanumeric(10) }
+    end
   end
 end

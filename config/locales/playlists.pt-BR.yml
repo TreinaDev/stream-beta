@@ -1,5 +1,8 @@
 ---
 pt-BR:
+  playlist_status:
+    inactive: Desativada
+    active: Ativada
   activerecord:
     models:
       playlist:
@@ -11,6 +14,8 @@ pt-BR:
         description: Descrição
         playlist_cover: Capa da playlist
         video_url: URL do vídeo
+        inactivate_playlist: Desativar Playlist
+        inactive: Desativada
   playlists:
     index:
       title: Playlists
@@ -20,3 +25,5 @@ pt-BR:
       success: Playlist criada com sucesso!
     show:
       edit: Editar playlist
+    inactive:
+      success: Playlist desativada com successo!

@@ -1,0 +1,17 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      playlist_streamer:
+        one: Streamer da Playlist
+        other: Streamers da Playlist
+  playlist_streamers:
+    new:
+      title: Associar Streamer
+    create:
+      success: Streamer associado com sucesso!
+    edit:
+      title: Associar streamer
+      no_streamers_available: Não há streamers disponíveis para associar a essa playlist
+    update:
+      success: Streamer associado com sucesso!

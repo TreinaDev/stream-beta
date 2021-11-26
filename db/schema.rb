@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_193600) do
+ActiveRecord::Schema.define(version: 2021_11_25_182911) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cpf"], name: "index_user_profiles_on_cpf", unique: true
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id", unique: true
   end
 
   create_table "user_subscription_plans", force: :cascade do |t|
@@ -172,6 +172,20 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
     t.datetime "status_date"
     t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
     t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
+  end
+
+  create_table "user_videos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "video_id", null: false
+    t.string "product_token"
+    t.string "payment_method_token"
+    t.integer "status", default: 10, null: false
+    t.datetime "status_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "video_id"], name: "index_user_videos_on_user_id_and_video_id", unique: true
+    t.index ["user_id"], name: "index_user_videos_on_user_id"
+    t.index ["video_id"], name: "index_user_videos_on_video_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -203,8 +217,13 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
     t.string "video_url"
     t.string "maturity_rating"
     t.integer "streamer_id", null: false
+    t.boolean "allow_purchase", default: false
+    t.decimal "value"
+    t.string "token"
+    t.integer "status", default: 0
     t.index ["streamer_id", "title"], name: "index_videos_on_streamer_id_and_title", unique: true
     t.index ["streamer_id"], name: "index_videos_on_streamer_id"
+    t.index ["token"], name: "index_videos_on_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -224,6 +243,8 @@ ActiveRecord::Schema.define(version: 2021_11_24_193600) do
   add_foreign_key "user_profiles", "users"
   add_foreign_key "user_subscription_plans", "subscription_plans"
   add_foreign_key "user_subscription_plans", "users"
+  add_foreign_key "user_videos", "users"
+  add_foreign_key "user_videos", "videos"
   add_foreign_key "video_categories", "video_categories", column: "parent_id"
   add_foreign_key "videos", "streamers"
 end

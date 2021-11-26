@@ -2,5 +2,25 @@
 <p><%= "#{Video.human_attribute_name(:duration)}: #{@video.duration}" %></p>
 <p><%= "#{Video.human_attribute_name(:video_url)}: #{@video.video_url}" %></p>
 <p><%= "#{Video.human_attribute_name(:maturity_rating)}: #{@video.maturity_rating}" %></p>
+<% if @video.allow_purchase? %>
+  <% if @user_video.present? %>
+    <% if @user_video.approved? %>
+      <p>Você tem acesso vitalício a esse vídeo!</p>
+    <% else %>
+      <p>Situação da compra: <%= t(@user_video.status) %></p>
+    <% end %>
+  <% end %>
+
+  <% if @user_video.nil? || @user_video.rejected? %>
+    <p><%= "#{Video.human_attribute_name(:value)}: #{number_to_currency(@video.value)}" %></p>
+    <div><%= link_to 'Adquirir Vídeo', new_user_video_path(video_id: @video.id), class: "btn btn-primary mt-3 mb-3" %></div>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? && current_user.admin? %>
+		<p>Status: <%= Video.human_attribute_name("status.#{@video.status}") %></p>
+
+		<%= link_to 'Editar Vídeo', edit_video_path(@video) %>
+<% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

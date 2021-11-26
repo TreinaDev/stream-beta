@@ -26,7 +26,7 @@ RSpec.describe SubscriptionPlan, type: :model do
   end
 
   describe 'uniqueness' do
-    subject { create(:subscription_plan) }
+    subject { build(:subscription_plan) }
 
     it { should validate_uniqueness_of(:title).case_insensitive }
     it { should validate_uniqueness_of(:token) }

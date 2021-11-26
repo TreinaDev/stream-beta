@@ -1,0 +1,13 @@
+<h2><%= t('.title') %></h2>
+
+<%= render "shared/errors", resource: @user_video %>
+
+<p><%= "#{Video.human_attribute_name(:title)}: #{@video.title}" %></p>
+<p><%= "#{Video.human_attribute_name(:value)}: #{number_to_currency(@video.value)}" %></p>
+
+<%= form_with model: @user_video do |f| %>
+  <%= f.hidden_field :payment_method_token, value: 'bkDsZHl9XV' %>
+  <%= f.hidden_field :video_id, value: @video.id %>
+
+  <%= f.submit t('.confirm'), data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+<% end %>
