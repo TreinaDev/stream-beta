@@ -7,15 +7,15 @@
     <%= f.text_field :description, placeholder: :description, class: "form-control" %>
     <%= f.label :description %>
   </div>
-  <div>
-    <%= f.collection_check_boxes :streamer_ids, Streamer.all, :id, :name %>
-    <%= f.label :streamer_ids, Streamer.model_name.human%>
-  </div>
   <div class="mb-3 row">
     <%= f.label :playlist_cover, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <%= f.file_field :playlist_cover, class: "form-control" %>
     </div>
+  </div>
+  <div>
+    <%= f.label :streamer_ids, Streamer.model_name.human%>
+    <%= f.collection_check_boxes :streamer_ids, Streamer.all, :id, :name %>
   </div>
    <div>
     <%= f.label :video_ids, Video.model_name.human%>
