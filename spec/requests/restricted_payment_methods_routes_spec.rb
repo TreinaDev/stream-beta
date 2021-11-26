@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Restricted payment method routes' do
+describe 'Restricted payment methods routes' do
   context 'no user connection' do
     it "cannot access the 'new' action" do
       get '/payment_methods/new'

@@ -6,10 +6,15 @@ pt-BR:
         one: Vídeo
         other: Vídeos
     attributes:
+      video/status:
+        active: Ativo
+        inactive: Inativo
       video:
-        title: Título
+        allow_purchase: Permitir compra avulsa
         duration: Duração
         maturity_rating: Faixa etária
+        title: Título
+        value: Valor
         video_url: URL do vídeo
   videos:
     index:
@@ -18,3 +23,9 @@ pt-BR:
       title: Cadastro de Vídeo
     create:
       success: Vídeo criado com sucesso!
+    edit:
+      title: Editar Vídeo
+    update:
+      success: Vídeo atualizado com sucesso!
+    inactives_videos:
+      title: Vídeos Inativos
