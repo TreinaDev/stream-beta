@@ -36,7 +36,7 @@ class SubscriptionPlan < ApplicationRecord
     data = ApiClient.post('subscription_plans', token_params.to_json)
 
     unless data&.key?(:subscription_plan_token)
-      errors.add(:api_connection, I18n.t('messages.api_connection_error'))
+      errors.add(:api_connection, data[:message])
       return nil
     end
 

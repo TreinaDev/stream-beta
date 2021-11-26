@@ -21,7 +21,7 @@ class PaymentMethod < ApplicationRecord
     data = ApiClient.post('payment_methods', user_payment_method)
 
     unless data&.key?(:payment_method_token)
-      errors.add(:api_connection, I18n.t('messages.api_connection_error'))
+      errors.add(:api_connection, data[:message])
       return nil
     end
 

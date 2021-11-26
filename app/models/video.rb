@@ -45,7 +45,7 @@ class Video < ApplicationRecord
     data = ApiClient.post('videos', token_params.to_json)
 
     unless data&.key?(:video_token)
-      errors.add(:api_connection, I18n.t('messages.api_connection_error'))
+      errors.add(:api_connection, data[:message])
       return nil
     end
 
