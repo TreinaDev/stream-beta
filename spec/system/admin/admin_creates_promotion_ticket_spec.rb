@@ -37,7 +37,7 @@ describe 'Admin creates promotion ticket' do
     within 'form' do
       click_on 'Criar ticket de promoção'
     end
-    
+
     expect(page).to have_content('Título não pode ficar em branco')
     expect(page).to have_content('Data inicial não pode ficar em branco')
     expect(page).to have_content('Data final não pode ficar em branco')

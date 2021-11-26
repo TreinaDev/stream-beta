@@ -1,5 +1,7 @@
 <h2><%= t('.title') %></h2>
 
+<%= render "shared/errors", resource: @promotion_ticket %>
+
 <%= form_with model: @promotion_ticket do |f| %>
   <div class="form-floating mb-3">
     <%= f.text_field :title, placeholder: :title, class: "form-control" %>
