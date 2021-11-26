@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   resources :streamers, only: %i[index show new create edit update] do
     get 'inactive_streamers', on: :collection
   end
-  
-    resources :videos, only: %i[index show new create edit update] do
-      get 'inactive_videos', on: :collection
-    end
+
+  resources :videos, only: %i[index show new create edit update] do
+    get 'inactive_videos', on: :collection
+  end
 
   resources :video_categories, only: %i[new create show]
 

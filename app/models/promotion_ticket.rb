@@ -3,8 +3,8 @@ class PromotionTicket < ApplicationRecord
             :maximum_uses, :start_date, :end_date, presence: true
 
   validates :title, uniqueness: true
-  validates  :discount, :maximum_uses, :maximum_value_reduction,
-              numericality: { greater_than: 0 }
+  validates :discount, :maximum_uses, :maximum_value_reduction,
+            numericality: { greater_than: 0 }
 
   validate :end_date_cannot_come_before_start_date
   validate :cannot_start_before_current_date

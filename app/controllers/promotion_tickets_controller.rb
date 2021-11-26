@@ -20,6 +20,6 @@ class PromotionTicketsController < ApplicationController
 
   def promotion_ticket_params
     params.require(:promotion_ticket).permit(:title, :discount, :start_date,
-                   :end_date, :maximum_value_reduction, :maximum_uses)
+                                             :end_date, :maximum_value_reduction, :maximum_uses)
   end
 end
