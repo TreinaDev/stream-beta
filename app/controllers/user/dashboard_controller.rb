@@ -8,9 +8,7 @@ class User
 
     def purchase_history
       @subscription_plans = current_user.subscription_plans
-      # TODO: Alterar quando o PR #67 for liberado
-      # @videos = current_user.videos
-      @videos = nil
+      @videos = current_user.videos
     end
 
     def my_subscription_plans
@@ -18,8 +16,7 @@ class User
     end
 
     def my_videos
-      # TODO: Alterar quando o PR #67 for liberado
-      # @videos = current_user.videos
+      @videos = current_user.videos
     end
   end
 end

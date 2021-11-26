@@ -23,7 +23,7 @@ describe "User accesses 'my_subscription_plans'" do
       create(:user_profile, user: user)
       plan1 = create(:subscription_plan, title: 'Plano que foi vinculado')
       create(:subscription_plan, title: 'Plano que não foi vinculado')
-      user.subscription_plans += [plan1]
+      user.subscription_plans << plan1
 
       login_as user, scope: :user
       visit root_path

@@ -21,11 +21,11 @@ pt-BR:
       title: Editar Cadastro de Usuário
     index:
       title: Streamers
+    inactive_streamers:
+      title: Streamers Inativos
     new:
       title: Cadastro de Streamer
     create:
       success: Cadastro realizado com sucesso!
     update:
       success: Cadastro atualizado com sucesso!
-    inactive_stremers:
-      title: Streamers Inativos
