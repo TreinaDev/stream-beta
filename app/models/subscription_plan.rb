@@ -18,6 +18,8 @@ class SubscriptionPlan < ApplicationRecord
   validates :value, numericality: { greater_than: 0 }
   validates :token, format: { with: /\A[a-zA-Z0-9]{10}\z/ }
 
+  before_validation :request_token
+
   def current_value
     subscription_plan_values.filter_by_date(Date.current).pick(:value) || value
   end
@@ -30,15 +32,14 @@ class SubscriptionPlan < ApplicationRecord
 
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
-    result = nil
 
-    response = Faraday.post('http://localhost:4000/api/v1/subscription_plans/', token_params.to_json)
+    data = ApiClient.post('subscription_plans', token_params.to_json)
 
-    if response.status == 201
-      data = JSON.parse(response.body, symbolize_names: true)
-      result = data[:subscription_plan_token]
+    unless data&.key?(:subscription_plan_token)
+      errors.add(:api_connection, I18n.t('messages.api_connection_error'))
+      return nil
     end
 
-    result
+    data[:subscription_plan_token]
   end
 end

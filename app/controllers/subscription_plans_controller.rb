@@ -12,7 +12,6 @@ class SubscriptionPlansController < ApplicationController
 
   def create
     @subscription_plan = SubscriptionPlan.new(subscription_plan_params)
-    @subscription_plan.request_token
 
     if @subscription_plan.save
       redirect_to @subscription_plan, success: t('.success')

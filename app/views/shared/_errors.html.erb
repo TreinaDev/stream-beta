@@ -1,7 +1,11 @@
 <% if resource.respond_to?(:errors) && resource.errors.any? %>
-  <ul>
-    <% resource.errors.full_messages.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
+  <% if resource.errors.has_key?(:api_connection) %>
+    <% flash[:alert] = resource.errors.messages[:api_connection].first %>
+  <% else %>
+    <ul>
+      <% resource.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>

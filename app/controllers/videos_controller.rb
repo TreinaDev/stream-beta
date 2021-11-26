@@ -13,8 +13,7 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
-
-    @video.request_token if @video.allow_purchase?
+    # @video.save
 
     if @video.save
       redirect_to @video, success: t('.success')
