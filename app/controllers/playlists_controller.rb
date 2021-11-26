@@ -11,6 +11,16 @@ class PlaylistsController < ApplicationController
     @playlist_streamers = PlaylistStreamer.find_by(playlist: @playlist)
   end
 
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def update
+    @playlist = Playlist.find(params[:id])
+
+    redirect_to @playlist if @playlist.update(playlist_params)
+  end
+
   def new
     @playlist = Playlist.new
   end
@@ -24,16 +34,6 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  def edit
-    @playlist = Playlist.find(params[:id])
-  end
-
-  def update
-    @playlist = Playlist.find(params[:id])
-
-    redirect_to @playlist if @playlist.update(playlist_params)
-  end
-
   def inactive
     @playlist = Playlist.find(params[:id])
     @playlist.inactive!
@@ -44,6 +44,6 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [])
+    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [], video_ids: [])
   end
 end
