@@ -14,8 +14,8 @@
     </div>
   </div>
    <div>
-    <%= f.collection_check_boxes :video_ids, Video.all, :id, :title %>
     <%= f.label :video_ids, Video.model_name.human%>
+    <%= f.collection_check_boxes :video_ids, Video.all, :id, :title %>
   </div>
 
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
