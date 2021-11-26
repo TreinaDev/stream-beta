@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :streamers, only: %i[index show new create edit update] do
     get 'inactive_streamers', on: :collection
   end
+  
+    resources :videos, only: %i[index show new create edit update] do
+      get 'inactive_videos', on: :collection
+    end
 
   resources :video_categories, only: %i[new create show]
 
@@ -23,10 +27,7 @@ Rails.application.routes.draw do
   end
   resources :payment_methods, only: %i[new create show]
 
-  resources :videos, only: %i[index show new create edit update] do
-    get 'inactive_videos', on: :collection
-  end
-
+  resources :promotion_tickets, only: %i[index new create]
   resources :user_profiles, only: %i[show new create]
 
   resources :user_subscription_plans, only: %i[new create]
