@@ -5,6 +5,7 @@
 <% @playlist.videos.each do |v| %>
  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
  Video url:<%= link_to v.video_url %>
+<% end %>
 
 <% @playlist.streamers.each do |s| %>
  <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
