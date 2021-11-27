@@ -1,4 +1,5 @@
 class PromotionTicketsController < ApplicationController
+  before_action :authenticate_admin!, only: %i[new create]
   def index
     @promotion_tickets = PromotionTicket.all
   end
