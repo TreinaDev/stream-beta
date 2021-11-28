@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_27_175302) do
+ActiveRecord::Schema.define(version: 2021_11_28_125811) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -86,8 +86,6 @@ ActiveRecord::Schema.define(version: 2021_11_27_175302) do
     t.integer "maximum_uses"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "subscription_plan_id"
-    t.index ["subscription_plan_id"], name: "index_promotion_tickets_on_subscription_plan_id"
     t.index ["title"], name: "index_promotion_tickets_on_title", unique: true
   end
 
@@ -123,6 +121,15 @@ ActiveRecord::Schema.define(version: 2021_11_27_175302) do
     t.index ["subscription_plan_id"], name: "index_subscription_plan_playlists_on_subscription_plan_id"
   end
 
+  create_table "subscription_plan_promotion_tickets", force: :cascade do |t|
+    t.integer "subscription_plan_id", null: false
+    t.integer "promotion_ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promotion_ticket_id"], name: "index_subs_plan_promo_ticket_on_promo_ticket_id"
+    t.index ["subscription_plan_id"], name: "index_subs_plan_promo_ticket_on_subs_plan_id"
+  end
+
   create_table "subscription_plan_streamers", force: :cascade do |t|
     t.integer "subscription_plan_id", null: false
     t.integer "streamer_id", null: false
@@ -153,6 +160,8 @@ ActiveRecord::Schema.define(version: 2021_11_27_175302) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_type", default: 10, null: false
     t.string "token", null: false
+    t.integer "promotion_ticket_id"
+    t.index ["promotion_ticket_id"], name: "index_subscription_plans_on_promotion_ticket_id"
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
     t.index ["token"], name: "index_subscription_plans_on_token", unique: true
   end
@@ -247,14 +256,16 @@ ActiveRecord::Schema.define(version: 2021_11_27_175302) do
   add_foreign_key "playlist_streamers", "streamers"
   add_foreign_key "playlist_videos", "playlists"
   add_foreign_key "playlist_videos", "videos"
-  add_foreign_key "promotion_tickets", "subscription_plans"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"
   add_foreign_key "subscription_plan_playlists", "subscription_plans"
+  add_foreign_key "subscription_plan_promotion_tickets", "promotion_tickets"
+  add_foreign_key "subscription_plan_promotion_tickets", "subscription_plans"
   add_foreign_key "subscription_plan_streamers", "streamers"
   add_foreign_key "subscription_plan_streamers", "subscription_plans"
   add_foreign_key "subscription_plan_values", "subscription_plans"
+  add_foreign_key "subscription_plans", "promotion_tickets"
   add_foreign_key "user_profiles", "users"
   add_foreign_key "user_subscription_plans", "subscription_plans"
   add_foreign_key "user_subscription_plans", "users"

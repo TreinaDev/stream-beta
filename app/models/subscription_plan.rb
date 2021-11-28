@@ -7,9 +7,11 @@ class SubscriptionPlan < ApplicationRecord
   has_many :subscription_plan_playlists, dependent: :destroy
   has_many :playlists, through: :subscription_plan_playlists
   
-  has_one :promotion_ticket
   has_one :subscription_plan_streamer, dependent: :destroy
   has_one :streamer, through: :subscription_plan_streamer
+
+  has_one :subscription_plan_promotion_tickets, dependent: :destroy
+  has_one :promotion_ticket, through: :subscription_plan_promotion_tickets
 
   enum plan_type: { playlist: 10, streamer: 20 }
 

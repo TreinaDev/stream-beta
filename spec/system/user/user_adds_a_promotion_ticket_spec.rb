@@ -18,8 +18,8 @@ describe 'User adds a promotion ticket' do
       end
 
       expect(page).to have_content('Ticket de promoção adicionado com sucesso!')
-      expect(page).to have_content('Valor padrão: R$50,00')
-      expect(page).to have_content('Valor atual: R$45,00')
+      expect(page).to have_content('Valor padrão: R$ 50,00')
+      expect(page).to have_content('Valor atual: R$ 45,00')
       expect(page).to have_content('Assinar plano')
     end
   end
