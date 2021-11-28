@@ -23,6 +23,9 @@ class SubscriptionPlan < ApplicationRecord
 
   def current_value
     subscription_plan_values.filter_by_date(Date.current).pick(:value) || value
+    if promotion_ticket.present?
+      SubscriptionPlan.last.value = value - (value * promotion_ticket.discount / 100)
+    end
   end
 
   def request_token

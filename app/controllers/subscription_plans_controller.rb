@@ -33,7 +33,6 @@ class SubscriptionPlansController < ApplicationController
     @promotion_ticket = PromotionTicket.find(params[:id])
     
     if @subscription_plan.promotion_ticket = @promotion_ticket
-      byebug
       redirect_to @subscription_plan, success: t('.success')
     else
       render :new

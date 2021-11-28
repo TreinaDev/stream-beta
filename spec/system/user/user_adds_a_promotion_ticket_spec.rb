@@ -6,7 +6,7 @@ describe 'User adds a promotion ticket' do
       user = create(:user)
       create(:user_profile, user: user)
       create(:subscription_plan, title: 'Plano legal', value: 50)
-      create(:promotion_ticket, title: 'GAME10STREAMER')
+      create(:promotion_ticket, title: 'GAME10STREAMER', discount: 10)
 
       login_as user, scope: :user
       visit root_path
