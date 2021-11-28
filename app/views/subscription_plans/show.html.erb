@@ -2,6 +2,14 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
+
+<%= form_with(model: [@subscription_plan, @promotion_ticket], url: add_promotion_ticket_subscription_plan_path) do |f|%>
+  <div class="form-floating mb-3">
+    <%= f.search_field :title, placeholder: 'Ticket de promoção', class: "form-control" %>
+  </div>
+  <%= f.submit 'Adicionar Ticket de promoção' %>
+<% end %>
+
 <% if @subscription_plan.streamer? %>
   <% if @subscription_plan.streamer.present? %>
     <%= @subscription_plan.streamer&.name %>
