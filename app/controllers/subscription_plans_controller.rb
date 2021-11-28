@@ -31,8 +31,8 @@ class SubscriptionPlansController < ApplicationController
   def add_promotion_ticket
     @subscription_plan = SubscriptionPlan.find(params[:id])
     @promotion_ticket = PromotionTicket.find(params[:id])
-    
-    if @subscription_plan.promotion_ticket = @promotion_ticket
+    @subscription_plan.promotion_ticket = @promotion_ticket
+    if @subscription_plan.valid?
       redirect_to @subscription_plan, success: t('.success')
     else
       render :new
@@ -43,9 +43,5 @@ class SubscriptionPlansController < ApplicationController
 
   def subscription_plan_params
     params.require(:subscription_plan).permit(:title, :description, :value, :plan_type, :promotion_ticket_id)
-  end
-
-  def promotion_ticket_params
-    params.require(:promotion_ticket).permit(:promotion_ticket_id)
   end
 end
