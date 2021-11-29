@@ -19,6 +19,7 @@ pt-BR:
   playlists:
     index:
       title: Playlists
+      message_nothing: Nenhuma playlist encontrada
     new:
       title: Cadastro de Playlist
     create:
@@ -26,4 +27,4 @@ pt-BR:
     show:
       edit: Editar playlist
     inactive:
-      success: Playlist desativada com successo!
+      success: Playlist desativada com sucesso!

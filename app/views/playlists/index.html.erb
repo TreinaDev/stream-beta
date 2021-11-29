@@ -1,5 +1,7 @@
 <h1><%= t('.title') %></h1>
 
+<%= render 'shared/search', path: search_playlists_path %>
+
 <% if @playlists.present? %>
   <table class="table">
     <tr>
@@ -14,11 +16,11 @@
     <% end %>
   </table>
 <% else %>
-  <p>Ainda não há playlists cadastradas</p>
+  <p><%= t('.message_nothing') %></p>
 <% end %>
 
 <% if current_user&.admin? %>
-  <div><%= link_to 'Nova Playlist', new_playlist_path %></div>
+  <div><%= link_to t('links.new_playlist'), new_playlist_path %></div>
 <% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

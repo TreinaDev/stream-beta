@@ -21,6 +21,7 @@ pt-BR:
       title: Editar Cadastro de Usuário
     index:
       title: Streamers
+      message_nothing: Nenhum streamer encontrado
     inactive_streamers:
       title: Streamers Inativos
     new:

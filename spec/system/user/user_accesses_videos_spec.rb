@@ -61,7 +61,7 @@ describe 'User accesses videos' do
 
       expect(current_path).to eq(videos_path)
       expect(page).not_to have_content('video ruim')
-      expect(page).to have_content('Ainda não há vídeos cadastrados')
+      expect(page).to have_content('Nenhum vídeo encontrado')
     end
     it 'videos with inactive stream' do
       user = create(:user)

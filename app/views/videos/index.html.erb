@@ -1,5 +1,7 @@
 <h1><%= t('.title') %></h1>
 
+<%= render 'shared/search', path: search_videos_path %>
+
 <% if @videos.present? %>
   <table class="table">
     <tr>
@@ -16,11 +18,11 @@
     <% end %>
   </table>
 <% else %>
-  <p>Ainda não há vídeos cadastrados</p>
+  <p><%= t('.message_nothing') %></p>
 <% end %>
 
 <% if current_user&.admin? %>
-  <div><%= link_to 'Novo vídeo', new_video_path %></div>
+  <div><%= link_to t('links.new_video'), new_video_path %></div>
 <% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

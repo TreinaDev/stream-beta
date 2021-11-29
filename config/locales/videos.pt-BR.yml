@@ -19,6 +19,7 @@ pt-BR:
   videos:
     index:
       title: Vídeos
+      message_nothing: Nenhum vídeo encontrado
     new:
       title: Cadastro de Vídeo
     create:
