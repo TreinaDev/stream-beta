@@ -27,5 +27,5 @@ pt-BR:
       title: Editar Vídeo
     update:
       success: Vídeo atualizado com sucesso!
-    inactives_videos:
+    inactive_videos:
       title: Vídeos Inativos

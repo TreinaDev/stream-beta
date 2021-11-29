@@ -12,7 +12,7 @@ AllCops:
     - 'node_modules/**/*'
 
 Metrics/BlockLength:
- IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it', 'configure']
+ IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it', 'configure', 'draw']
 
 Style/AsciiComments:
   Enabled: false
