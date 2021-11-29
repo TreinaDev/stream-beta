@@ -1,0 +1,11 @@
+production:
+  company_token: <%= ENV['API_PAGAPAGA_TOKEN'] %>
+  endpoint: <%= ENV['API_PAGAPAGA_ENDPOINT'] %>
+
+development:
+  company_token: ABCDEFGHIJ1234567890
+  endpoint: http://localhost:4000
+
+test:
+  company_token: ABCDEFGHIJ1234567890
+  endpoint: http://localhost:4000

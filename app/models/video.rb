@@ -42,7 +42,7 @@ class Video < ApplicationRecord
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
 
-    data = ApiClient.post('videos', token_params.to_json)
+    data = ApiPagapaga.post('videos', token_params.to_json)
 
     unless data&.key?(:video_token)
       errors.add(:api_connection, data[:message])
