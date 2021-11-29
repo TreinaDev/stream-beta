@@ -92,4 +92,41 @@ describe 'User search' do
       end
     end
   end
+  describe 'videos' do
+    context 'successfully' do
+      context 'by title' do
+        it 'with to 2 videos' do
+          user = create(:user)
+          create(:user_profile, user: user)
+          create(:video, title: 'Streamer fazendo coisas engraçadas')
+          create(:video, title: 'Vídeo careta')
+
+          login_as user, scope: :user
+          visit root_path
+          click_on 'Vídeos'
+          fill_in 'Busca:', with: 'engraçadas'
+          click_button 'Pesquisar'
+
+          expect(current_path).to eq(search_videos_path)
+          expect(page).to have_content('Streamer fazendo coisas engraçadas')
+          expect(page).to have_content('Pesquisa de vídeos')
+          expect(page).not_to have_content('Vídeo careta')
+        end
+      end
+      it 'with nothing' do
+        user = create(:user)
+        create(:user_profile, user: user)
+
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Vídeos'
+        fill_in 'Busca:', with: ' '
+        click_button 'Pesquisar'
+
+        expect(current_path).to eq(search_videos_path)
+        expect(page).to have_content('Pesquisa de vídeos')
+        expect(page).to have_content('Nenhum vídeo encontrado')
+      end
+    end
+  end
 end

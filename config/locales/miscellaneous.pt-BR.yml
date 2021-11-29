@@ -16,6 +16,7 @@ pt-BR:
     unlock_instructions: Não recebeu as instruções de desbloqueio?
     new_streamer: Novo Streamer
     new_playlist: Nova Playlist
+    new_video: Novo vídeo
   messages:
     are_you_sure?: Tem certeza?
     confirm_subscription?: Confirma a assinatura?

@@ -19,6 +19,7 @@ pt-BR:
   videos:
     index:
       title: Vídeos
+      message_nothing: Ainda não há vídeos cadastrados
     new:
       title: Cadastro de Vídeo
     create:
@@ -29,3 +30,6 @@ pt-BR:
       success: Vídeo atualizado com sucesso!
     inactive_videos:
       title: Vídeos Inativos
+    search:
+      title: Pesquisa de vídeos
+      message_nothing: Nenhum vídeo encontrado

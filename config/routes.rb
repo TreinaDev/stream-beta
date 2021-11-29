@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   resources :videos, only: %i[index show new create edit update] do
     get 'inactive_videos', on: :collection
+    get 'search', on: :collection
   end
 
   resources :user_profiles, only: %i[show new create]

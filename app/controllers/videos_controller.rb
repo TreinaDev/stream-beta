@@ -45,6 +45,10 @@ class VideosController < ApplicationController
     @videos = Video.all.select(&:inactive?)
   end
 
+  def search
+    @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+  end
+
   private
 
   def video_params
