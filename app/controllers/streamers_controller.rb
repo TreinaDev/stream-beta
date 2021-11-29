@@ -37,6 +37,10 @@ class StreamersController < ApplicationController
     @streamers = Streamer.select(&:inactive?)
   end
 
+  def search
+    @streamers = Streamer.where('name like ?', "%#{params[:query]}%").reject(&:inactive?)
+  end
+
   private
 
   def streamer_params

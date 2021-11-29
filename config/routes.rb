@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :streamers, only: %i[index show new create edit update] do
     get 'inactive_streamers', on: :collection
+    get 'search', on: :collection
   end
 
   resources :video_categories, only: %i[new create show]

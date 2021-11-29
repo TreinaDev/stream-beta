@@ -21,6 +21,8 @@ pt-BR:
       title: Editar Cadastro de Usuário
     index:
       title: Streamers
+    search:
+      title: Pesquisa de Streamers
     inactive_streamers:
       title: Streamers Inativos
     new:
