@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :playlists, only: %i[index show new create edit update] do
     post 'inactive', on: :member
+    get 'search', on: :collection
   end
 
   resources :streamers, only: %i[index show new create edit update] do

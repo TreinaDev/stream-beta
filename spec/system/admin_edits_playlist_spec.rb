@@ -34,7 +34,7 @@ describe 'Administrator edits playlist' do
       click_link 'Desativar Playlist'
 
       expect(current_path).to eq(playlist_path(playlist.id))
-      expect(page).to have_content('Playlist desativada com successo!')
+      expect(page).to have_content('Playlist desativada com sucesso!')
       expect(page).to have_content('Status: Desativada')
       expect(page).to have_content('Título: Playlistizinha')
     end
