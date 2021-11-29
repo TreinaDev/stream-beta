@@ -42,7 +42,8 @@ class PlaylistsController < ApplicationController
   end
 
   def search
-    @playlists = Playlist.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+    @playlists = Playlist.where('title like ? OR description like ?',
+                                "%#{params[:query]}%", "%#{params[:query]}%").reject(&:inactive?)
   end
 
   private
