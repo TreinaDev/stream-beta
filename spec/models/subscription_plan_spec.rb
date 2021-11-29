@@ -72,6 +72,9 @@ RSpec.describe SubscriptionPlan, type: :model do
 
   describe '#generate_new_token' do
     let(:subscription_plan) { JSON.parse(File.read(Rails.root.join('spec/support/apis/subscription_plan.json'))) }
+    let(:header) do
+      { 'Content-Type' => 'application/json', 'company_token' => Rails.configuration.api_pagapaga[:company_token] }
+    end
 
     subject do
       SubscriptionPlan.new(subscription_plan)
@@ -81,8 +84,7 @@ RSpec.describe SubscriptionPlan, type: :model do
       api_response = File.read(Rails.root.join('spec/support/apis/subscription_plan_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/',
-                                            subscription_plan.to_json, { 'Content-Type' => 'application/json' })
-                                      .and_return(fake_response)
+                                            subscription_plan.to_json, header).and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq 'BYZBrjim0W'
@@ -91,8 +93,7 @@ RSpec.describe SubscriptionPlan, type: :model do
     it 'and fails due to server error' do
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/',
-                                            subscription_plan.to_json, { 'Content-Type' => 'application/json' })
-                                      .and_return(fake_response)
+                                            subscription_plan.to_json, header).and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq nil

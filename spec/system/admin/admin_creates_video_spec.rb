@@ -34,8 +34,10 @@ describe 'Administrator creates video' do
       request = { title: 'Vídeo novo', value: '5.4' }.to_json
       response = { video_token: '1Ko4tdmJzq' }.to_json
       fake_response = instance_double(Faraday::Response, status: 201, body: response)
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
-                                            request, { 'Content-Type' => 'application/json' }).and_return(fake_response)
+      header = { 'Content-Type' => 'application/json',
+                 'company_token' => Rails.configuration.api_pagapaga[:company_token] }
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/', request, header)
+                                      .and_return(fake_response)
 
       login_as admin, scope: :user
       visit root_path
@@ -62,7 +64,7 @@ describe 'Administrator creates video' do
       expect(page).to have_content('https://vimeo.com/123456789')
       expect(page).to have_content('18')
       expect(page).to have_content('Valor: R$ 5,40')
-      expect(page).to have_link('Adquirir Vídeo')
+      expect(page).to have_no_link('Adquirir Vídeo')
     end
   end
 
