@@ -7,6 +7,10 @@ class Video < ApplicationRecord
 
   belongs_to :streamer
 
+  enum status: { active: 0, inactive: 10 }
+
+  scope :streamer_active, -> { joins(:streamer).where('streamer.status' => Streamer.statuses[:active]) }
+
   validates :title, :duration, :video_url, :maturity_rating, presence: true
   validates :title, uniqueness: { scope: :streamer_id }
   validates :duration, format: { with: /\d{2}:[0-5]\d:[0-5]\d/, message: 'não está formatada corretamente' }
@@ -25,7 +29,11 @@ class Video < ApplicationRecord
   end
   validates :token, absence: true, unless: :allow_purchase?
 
+  before_validation :request_token
+
   def request_token
+    return unless allow_purchase?
+
     self.token = generate_new_token(title, value) if token.nil?
   end
 
@@ -33,25 +41,14 @@ class Video < ApplicationRecord
 
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
-    result = nil
 
-    response = Faraday.post('http://localhost:4000/api/v1/videos/', token_params.to_json)
+    data = ApiClient.post('videos', token_params.to_json)
 
-    if response.status == 201
-      data = JSON.parse(response.body, symbolize_names: true)
-      result = data[:video_token]
+    unless data&.key?(:video_token)
+      errors.add(:api_connection, data[:message])
+      return nil
     end
 
-    result
+    data[:video_token]
   end
-
-  validates :video_url,
-            format: {
-              with: %r{(?:http|https)?(?:://)?(?:player\.)?vimeo\.com/(?:.*/)?\d{9}},
-              message: 'não está formatada corretamente'
-            }
-
-  enum status: { active: 0, inactive: 10 }
-
-  scope :streamer_active, -> { joins(:streamer).where('streamer.status' => Streamer.statuses[:active]) }
 end

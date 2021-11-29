@@ -26,24 +26,28 @@ RSpec.describe PaymentMethod, type: :model do
   end
 
   describe '#generate_new_token' do
+    let(:user_payment_method) { JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_method.json'))) }
+
+    subject { PaymentMethod.new(user_payment_method: user_payment_method) }
+
     it 'successfully' do
       api_response = File.read(Rails.root.join('spec/support/apis/user_payment_method_response.json'))
-      user_payment_method = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_method.json')))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/payment_methods/',
-                                            user_payment_method.to_json).and_return(fake_response)
+                                            user_payment_method.to_json, { 'Content-Type' => 'application/json' })
+                                      .and_return(fake_response)
 
-      subject.request_token(user_payment_method)
+      subject.request_token
       expect(subject.token).to eq 'BYZBrjim0W'
     end
 
     it 'and fails due to server error' do
-      user_payment_method = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_method.json')))
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/payment_methods/',
-                                            user_payment_method.to_json).and_return(fake_response)
+                                            user_payment_method.to_json, { 'Content-Type' => 'application/json' })
+                                      .and_return(fake_response)
 
-      subject.request_token(user_payment_method)
+      subject.request_token
       expect(subject.token).to eq nil
     end
   end

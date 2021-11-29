@@ -20,3 +20,6 @@ pt-BR:
     unauthorized_access: Acesso não autorizado!
     proceed?: Deseja continuar?
     sending: Enviando
+    api_connection_error: Não foi possível estabelecer conexão com a plataforma de pagamentos
+    api_server_error: Ocorreu um erro no servidor externo
+    api_standard_error: Ocorreu um erro

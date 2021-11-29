@@ -113,14 +113,15 @@ RSpec.describe Video, type: :model do
     let(:video) { JSON.parse(File.read(Rails.root.join('spec/support/apis/video.json'))) }
 
     subject do
-      Video.new(video)
+      Video.new(video.merge(allow_purchase: true))
     end
 
     it 'successfully' do
       api_response = File.read(Rails.root.join('spec/support/apis/video_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
-                                            video.to_json).and_return(fake_response)
+                                            video.to_json, { 'Content-Type' => 'application/json' })
+                                      .and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq 'w3HlRYCy2r'
@@ -129,7 +130,8 @@ RSpec.describe Video, type: :model do
     it 'and fails due to server error' do
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
-                                            video.to_json).and_return(fake_response)
+                                            video.to_json, { 'Content-Type' => 'application/json' })
+                                      .and_return(fake_response)
 
       subject.request_token
       expect(subject.token).to eq nil

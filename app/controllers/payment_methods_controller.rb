@@ -10,7 +10,7 @@ class PaymentMethodsController < ApplicationController
   def create
     @payment_method = current_user.payment_methods.new(payment_method_params)
     @user_payment_method = UserPaymentMethod.new(user_payment_method_params)
-    @payment_method.request_token(@user_payment_method)
+    @payment_method.user_payment_method = @user_payment_method
 
     if @payment_method.save
       redirect_to @payment_method, success: t('.success')
