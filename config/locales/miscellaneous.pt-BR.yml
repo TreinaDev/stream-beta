@@ -14,6 +14,7 @@ pt-BR:
     sign_out: Sair
     sign_up: Registrar
     unlock_instructions: Não recebeu as instruções de desbloqueio?
+    new_streamer: Novo Streamer
   messages:
     are_you_sure?: Tem certeza?
     confirm_subscription?: Confirma a assinatura?
