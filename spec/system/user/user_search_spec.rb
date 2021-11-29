@@ -17,7 +17,7 @@ describe 'User search' do
 
         expect(current_path).to eq(search_streamers_path)
         expect(page).to have_content('maria')
-        expect(page).to have_content('Pesquisa de Streamers')
+        expect(page).to have_content('Streamers')
         expect(page).not_to have_content('joaozinho')
       end
       it 'with nothing' do
@@ -31,7 +31,7 @@ describe 'User search' do
         click_button 'Pesquisar'
 
         expect(current_path).to eq(search_streamers_path)
-        expect(page).to have_content('Pesquisa de Streamers')
+        expect(page).to have_content('Streamers')
         expect(page).to have_content('Nenhum streamer encontrado')
       end
     end
@@ -53,7 +53,7 @@ describe 'User search' do
 
           expect(current_path).to eq(search_playlists_path)
           expect(page).to have_content('Streamers mais engraçados')
-          expect(page).to have_content('Pesquisa de Playlists')
+          expect(page).to have_content('Playlists')
           expect(page).not_to have_content('Vídeos caretas')
         end
       end
@@ -68,7 +68,7 @@ describe 'User search' do
         click_button 'Pesquisar'
 
         expect(current_path).to eq(search_playlists_path)
-        expect(page).to have_content('Pesquisa de Playlists')
+        expect(page).to have_content('Playlists')
         expect(page).to have_content('Nenhuma playlist encontrada')
       end
       context 'by description' do
@@ -86,7 +86,7 @@ describe 'User search' do
 
           expect(current_path).to eq(search_playlists_path)
           expect(page).to have_content('Playlist com os vídeos mais engraçados de todo o vimeo')
-          expect(page).to have_content('Pesquisa de Playlists')
+          expect(page).to have_content('Playlists')
           expect(page).not_to have_content('Playlist chata com videos chatos')
         end
       end
@@ -109,7 +109,7 @@ describe 'User search' do
 
           expect(current_path).to eq(search_videos_path)
           expect(page).to have_content('Streamer fazendo coisas engraçadas')
-          expect(page).to have_content('Pesquisa de vídeos')
+          expect(page).to have_content('Vídeos')
           expect(page).not_to have_content('Vídeo careta')
         end
       end
@@ -124,7 +124,7 @@ describe 'User search' do
         click_button 'Pesquisar'
 
         expect(current_path).to eq(search_videos_path)
-        expect(page).to have_content('Pesquisa de vídeos')
+        expect(page).to have_content('Vídeos')
         expect(page).to have_content('Nenhum vídeo encontrado')
       end
     end

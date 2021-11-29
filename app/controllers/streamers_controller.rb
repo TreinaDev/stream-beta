@@ -39,6 +39,7 @@ class StreamersController < ApplicationController
 
   def search
     @streamers = Streamer.where('name like ?', "%#{params[:query]}%").reject(&:inactive?)
+    render :index
   end
 
   private

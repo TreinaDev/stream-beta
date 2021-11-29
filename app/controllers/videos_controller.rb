@@ -47,6 +47,7 @@ class VideosController < ApplicationController
 
   def search
     @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+    render :index
   end
 
   private
