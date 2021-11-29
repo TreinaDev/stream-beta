@@ -22,6 +22,7 @@ pt-BR:
       success: Plano criado com sucesso!
     add_promotion_ticket:
       success: Ticket de promoção adicionado com sucesso!
+      fails: 'Ticket de promoção não existe'
   plan_playlists: Playlists do Plano
   playlist: Playlist
   streamer: Streamer

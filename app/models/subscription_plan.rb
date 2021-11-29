@@ -24,19 +24,13 @@ class SubscriptionPlan < ApplicationRecord
   before_commit :test_for_subscription_plan_values, only: %i[current_value promotional_value]
 
   def current_value
-    promotional_value(value) || test_for_subscription_plan_values
-  end
-
-  def promotional_value(value)
-    return unless promotion_ticket.present?
-
-    current_discount = (value * promotion_ticket.discount / 100)
-    if current_discount > promotion_ticket.maximum_value_reduction
-      return SubscriptionPlan.last.value - promotion_ticket
-             .maximum_value_reduction
+    if promotion_ticket.present? && subscription_plan_values.present?
+      dynamic_value = subscription_plan_values.filter_by_date(Date.current).pick(:value)
+      return promotional_value(dynamic_value)
+    elsif promotion_ticket.present?
+      return promotional_value(value)
     end
-
-    SubscriptionPlan.last.value = value - current_discount
+    test_for_subscription_plan_values
   end
 
   def request_token
@@ -45,8 +39,21 @@ class SubscriptionPlan < ApplicationRecord
 
   private
 
+  def promotional_value(value)
+    current_discount = (value * promotion_ticket.discount / 100)
+    calculate_promotion_ticket_reduction_value(current_discount)
+  end
+
+  def calculate_promotion_ticket_reduction_value(current_discount)
+    if current_discount > promotion_ticket.maximum_value_reduction
+      test_for_subscription_plan_values - promotion_ticket.maximum_value_reduction
+    else
+      (subscription_plan_values.filter_by_date(Date.current).pick(:value) || value) - current_discount
+    end
+  end
+
   def test_for_subscription_plan_values
-    subscription_plan_values.filter_by_date(Date.current).pick(:value) || value
+    (subscription_plan_values.filter_by_date(Date.current).pick(:value) || value)
   end
 
   def generate_new_token(title, value)

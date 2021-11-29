@@ -1,7 +1,7 @@
 class SubscriptionPlansController < ApplicationController
   before_action :authenticate_admin!, only: %i[create new]
   before_action :user_must_fill_profile
-
+  before_action :set_subscription_plan, only: %i[show add_promotion_ticket]
   def index
     @subscription_plans = SubscriptionPlan.all
   end
@@ -22,26 +22,28 @@ class SubscriptionPlansController < ApplicationController
   end
 
   def show
-    @subscription_plan = SubscriptionPlan.find(params[:id])
     @subscription_plan_value = @subscription_plan.subscription_plan_values
     @user_subscription_plan = current_user&.user_subscription_plans&.find_by(subscription_plan: @subscription_plan)
     @promotion_ticket = PromotionTicket.all
   end
 
   def add_promotion_ticket
-    @subscription_plan = SubscriptionPlan.find(params[:id])
-    @promotion_ticket = PromotionTicket.find(params[:id])
-    @subscription_plan.promotion_ticket = @promotion_ticket
-    if @subscription_plan.valid?
-      redirect_to @subscription_plan, success: t('.success')
+    if PromotionTicket.find_by(title: params[:promotion_ticket][:title]).nil?
+      @promotion_ticket = PromotionTicket.all
+      redirect_to @subscription_plan, notice: t('.fails')
     else
-      render :new
+      @subscription_plan.promotion_ticket = PromotionTicket.find_by!(title: params[:promotion_ticket][:title])
+      redirect_to @subscription_plan, success: t('.success')
     end
   end
 
   private
 
   def subscription_plan_params
-    params.require(:subscription_plan).permit(:title, :description, :value, :plan_type, :promotion_ticket_id)
+    params.require(:subscription_plan).permit(:title, :description, :value, :plan_type)
+  end
+
+  def set_subscription_plan
+    @subscription_plan = SubscriptionPlan.find(params[:id])
   end
 end
