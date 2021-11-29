@@ -18,7 +18,7 @@ class PaymentMethod < ApplicationRecord
   private
 
   def generate_new_token(user_payment_method)
-    data = ApiClient.post('payment_methods', user_payment_method)
+    data = ApiPagapaga.post('payment_methods', user_payment_method)
 
     unless data&.key?(:payment_method_token)
       errors.add(:api_connection, data[:message])

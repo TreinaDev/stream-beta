@@ -1,6 +1,10 @@
-class ApiClient
+class ApiPagapaga
+  API_ENDPOINT = Rails.configuration.api_pagapaga[:endpoint]
+  API_COMPANY_TOKEN = Rails.configuration.api_pagapaga[:company_token]
+
   def self.post(path, body)
-    response = Faraday.post("http://localhost:4000/api/v1/#{path}/", body, 'Content-Type' => 'application/json')
+    header = { 'Content-Type' => 'application/json', 'company_token' => API_COMPANY_TOKEN }
+    response = Faraday.post("#{API_ENDPOINT}/api/v1/#{path}/", body, header)
 
     return { message: I18n.t('messages.api_server_error') } if response.status == 500
 
