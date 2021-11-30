@@ -8,6 +8,7 @@
 
 <%= form_with model: @user_subscription_plan do |f| %>
   <%= f.hidden_field :payment_method_token, value: 'bkDsZHl9XV' %>
+  <%= f.hidden_field :product_token, value: @subscription_plan.token %>
   <%= f.hidden_field :subscription_plan_id, value: @subscription_plan.id %>
 
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>

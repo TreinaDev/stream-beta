@@ -33,7 +33,7 @@ describe 'User purchases video' do
       video = create(:video, :allow_purchase, title: 'Melhores jogadas da semana')
       payment_method = create(:payment_method, user: user)
       user_video = { payment_method_token: 'bkDsZHl9XV', product_token: video.token }
-      fake_response = { payment_status: 'rejected', receipt_token: 'h7d6yy79YO' }
+      fake_response = { payment_status: 'rejected', receipt_token: '' }
       allow(ApiPagapaga).to receive(:post).with('product_purchase', user_video.to_json).and_return(fake_response)
 
       login_as user, scope: :user
@@ -57,7 +57,10 @@ describe 'User purchases video' do
       user = create(:user)
       create(:user_profile, user: user)
       video = create(:video, :allow_purchase, title: 'Melhores jogadas da semana')
-      allow_any_instance_of(UserVideo).to receive(:change_status).and_return(:pending)
+      payment_method = create(:payment_method, user: user)
+      user_video = { payment_method_token: 'bkDsZHl9XV', product_token: video.token }
+      fake_response = { payment_status: 'pending', receipt_token: '' }
+      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_video.to_json).and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path

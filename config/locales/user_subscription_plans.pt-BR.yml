@@ -8,6 +8,8 @@ pt-BR:
     attributes:
       user_subscription_plan:
         status:
+          one: Situação
+          other: Situações
           pending: Pendente
           approved: Aprovada
           rejected: Rejeitada

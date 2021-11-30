@@ -6,6 +6,11 @@ describe 'User subscribes to plan' do
       user = create(:user)
       create(:user_profile, user: user)
       plan = create(:subscription_plan, title: 'Plano legal')
+      payment_method = create(:payment_method, user: user)
+      user_subscription_plan = { payment_method_token: 'bkDsZHl9XV', product_token: plan.token }
+      fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
+      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+                                          .and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
@@ -28,6 +33,11 @@ describe 'User subscribes to plan' do
       plan = create(:subscription_plan, title: 'Plano legal')
       create(:subscription_plan_value, start_date: Date.current, end_date: 3.days.from_now, value: 20,
                                        subscription_plan: plan)
+      payment_method = create(:payment_method, user: user)
+      user_subscription_plan = { payment_method_token: 'bkDsZHl9XV', product_token: plan.token }
+      fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
+      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+                                          .and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
@@ -48,7 +58,11 @@ describe 'User subscribes to plan' do
       user = create(:user)
       create(:user_profile, user: user)
       plan = create(:subscription_plan, title: 'Plano legal')
-      allow_any_instance_of(UserSubscriptionPlan).to receive(:set_status).and_return(:rejected)
+      payment_method = create(:payment_method, user: user)
+      user_subscription_plan = { payment_method_token: 'bkDsZHl9XV', product_token: plan.token }
+      fake_response = { payment_status: 'rejected', receipt_token: '' }
+      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+                                          .and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
@@ -69,7 +83,11 @@ describe 'User subscribes to plan' do
       user = create(:user)
       create(:user_profile, user: user)
       plan = create(:subscription_plan, title: 'Plano legal')
-      allow_any_instance_of(UserSubscriptionPlan).to receive(:set_status).and_return(:pending)
+      payment_method = create(:payment_method, user: user)
+      user_subscription_plan = { payment_method_token: 'bkDsZHl9XV', product_token: plan.token }
+      fake_response = { payment_status: 'pending', receipt_token: '' }
+      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+                                          .and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path

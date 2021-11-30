@@ -30,9 +30,9 @@ class UserVideo < ApplicationRecord
   private
 
   def save_receipt(receipt_token)
-    receipt = ProductReceipt.new(product: self, user: user, receipt_token: receipt_token,
-                                 payment_method: user.payment_methods.find_by(token: payment_method_token),
-                                 value: video.value, receipt_date: Time.current)
+    receipt = build_product_receipt(user: user, receipt_token: receipt_token,
+                                    payment_method: user.payment_methods.find_by(token: payment_method_token),
+                                    value: video.value, receipt_date: Time.current)
 
     receipt.save
   end
