@@ -1,6 +1,6 @@
 <p><%= "#{Playlist.human_attribute_name(:title)}: #{@playlist.title}" %></p>
 <p><%= "#{Playlist.human_attribute_name(:description)}: #{@playlist.description}" %></p>
-<p><%= "#{Playlist.human_attribute_name(:status)}: #{Playlist.human_attribute_name(@playlist.status)}" %></p>
+<p><%= "#{Playlist.human_attribute_name(:status)}: #{Playlist.human_enum_name(:status, @playlist.status)}" %></p>
 
 <% @playlist.videos.each do |v| %>
  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
