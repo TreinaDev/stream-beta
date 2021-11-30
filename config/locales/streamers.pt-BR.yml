@@ -6,15 +6,15 @@ pt-BR:
         one: Streamer
         other: Streamers
     attributes:
-      streamer/status:
-        active: Ativo
-        inactive: Inativo
       streamer:
         name: Nome
         youtube_url: Canal no Youtube
         facebook_url: Facebook
         instagram_handle: Instagram
         twitter_handle: Twitter
+        statuses:
+          active: Ativo
+          inactive: Inativo
         status: Estado
   streamers:
     edit:

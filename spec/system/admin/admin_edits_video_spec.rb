@@ -46,7 +46,7 @@ describe 'Administrator edit playlist' do
       end
 
       expect(current_path).to eq video_path(Video.last)
-      expect(page).to have_content('Inativo')
+      expect(page).to have_content('Estado: Inativo')
     end
 
     it 'active a video' do
@@ -64,8 +64,8 @@ describe 'Administrator edit playlist' do
       end
 
       expect(current_path).to eq video_path(Video.last)
-      expect(page).to have_content('Status: Ativo')
-      expect(page).not_to have_content('Status: Inativo')
+      expect(page).to have_content('Estado: Ativo')
+      expect(page).not_to have_content('Estado: Inativo')
     end
   end
   context 'fails' do

@@ -11,7 +11,9 @@
 <p>Youtube: <%= @streamer.youtube_url %></p>
 <p>Instagram: <%= @streamer.instagram_handle %></p>
 <p>Twitter: <%= @streamer.twitter_handle %></p>
-<p>Status: <%= Streamer.human_attribute_name("status.#{@streamer.status}") %></p>
+<% if user_signed_in? && current_user.admin? %>
+  <p><%= "#{Streamer.human_attribute_name(:status)}: #{Streamer.human_enum_name(:status, @streamer.status)}" %></p>
+<% end %>
 
 <% if @streamer.videos.any? %>
   <table class="table">
