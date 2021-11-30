@@ -18,13 +18,13 @@
 <h3>Playlists</h3>
 <table class="table">
   <tr>
-    <th><%= Playlist.human_attribute_name(:name) %></th>
+    <th><%= Playlist.human_attribute_name(:title) %></th>
     <th>Assinantes</th>
   </tr>
-  <% @streamers.each do |s| %>
+  <% @playlists.each do |p| %>
     <tr>
-      <td><%= link_to s.first.name, streamer_path(s.first) %></td>
-      <td><%= s.last %></td>
+      <td><%= link_to p.first.title, playlist_path(p.first) %></td>
+      <td><%= p.last %></td>
     </tr>
   <% end %>
 </table>
