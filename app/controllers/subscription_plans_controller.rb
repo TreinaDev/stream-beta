@@ -1,5 +1,5 @@
 class SubscriptionPlansController < ApplicationController
-  before_action :authenticate_admin!, only: %i[index create new edit update destroy]
+  before_action :authenticate_admin!, only: %i[create new edit update inactive]
   before_action :user_must_fill_profile
 
   def index
