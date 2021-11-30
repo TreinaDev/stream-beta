@@ -8,6 +8,8 @@ pt-BR:
     attributes:
       user_video:
         status:
+          one: Situação
+          other: Situações
           pending: Pendente
           approved: Aprovada
           rejected: Rejeitada

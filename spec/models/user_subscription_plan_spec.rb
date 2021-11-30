@@ -4,6 +4,7 @@ RSpec.describe UserSubscriptionPlan, type: :model do
   context 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:subscription_plan) }
+    it { should have_many(:product_receipts).dependent(:restrict_with_error) }
   end
 
   context 'enum' do
