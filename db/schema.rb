@@ -86,8 +86,6 @@ ActiveRecord::Schema.define(version: 2021_11_28_125811) do
     t.integer "maximum_uses"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "subscription_plan_id"
-    t.index ["subscription_plan_id"], name: "index_promotion_tickets_on_subscription_plan_id"
     t.index ["title"], name: "index_promotion_tickets_on_title", unique: true
   end
 
@@ -256,7 +254,6 @@ ActiveRecord::Schema.define(version: 2021_11_28_125811) do
   add_foreign_key "playlist_streamers", "streamers"
   add_foreign_key "playlist_videos", "playlists"
   add_foreign_key "playlist_videos", "videos"
-  add_foreign_key "promotion_tickets", "subscription_plans"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"

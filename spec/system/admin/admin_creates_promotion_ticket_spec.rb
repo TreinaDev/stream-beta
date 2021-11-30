@@ -15,7 +15,7 @@ describe 'Admin creates promotion ticket' do
       fill_in 'Limite máximo de uso', with: '2'
       fill_in 'Data inicial', with: Date.current
       fill_in 'Data final', with: 15.days.from_now
-      click_on 'Criar ticket de promoção'
+      click_on 'Criar Ticket de promoção'
     end
 
     expect(page).to have_content('Ticket de promoção criado com sucesso!')
@@ -35,7 +35,7 @@ describe 'Admin creates promotion ticket' do
     click_link 'Promoções'
     click_link 'Novo Ticket de Promoção'
     within 'form' do
-      click_on 'Criar ticket de promoção'
+      click_on 'Criar Ticket de promoção'
     end
 
     expect(page).to have_content('Título não pode ficar em branco')
