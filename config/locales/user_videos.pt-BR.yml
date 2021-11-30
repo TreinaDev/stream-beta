@@ -17,6 +17,7 @@ pt-BR:
     new:
       title: Compra de Vídeo Avulso
       confirm: Confirmar compra
+      no_payment_methods_available: Não há formas de pagamento habilitadas
     create:
       pending: Pagamento em análise
       approved: Compra realizada com sucesso!
