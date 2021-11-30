@@ -4,7 +4,7 @@ describe 'Administrator cancels subscription plan' do
   it 'successfully' do
     admin = create(:user, :admin)
     subscription_plan = create(:subscription_plan, title: 'Plano de teste')
-    subscription_plan_value = create(:subscription_plan_value, subscription_plan: subscription_plan)
+    create(:subscription_plan_value, subscription_plan: subscription_plan)
 
     login_as admin, scope: :user
     visit root_path
@@ -16,4 +16,3 @@ describe 'Administrator cancels subscription plan' do
     expect(page).to have_content('Plano inativado com sucesso!')
   end
 end
-
