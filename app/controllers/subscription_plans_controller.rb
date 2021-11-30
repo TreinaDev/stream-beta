@@ -1,5 +1,5 @@
 class SubscriptionPlansController < ApplicationController
-  before_action :authenticate_admin!, only: %i[create new]
+  before_action :authenticate_admin!, only: %i[index create new edit update destroy]
   before_action :user_must_fill_profile
 
   def index
@@ -20,9 +20,26 @@ class SubscriptionPlansController < ApplicationController
     end
   end
 
+  def edit
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+  end
+
+  def update
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+
+    redirect_to @subscription_plan, success: t('.success') if @subscription_plan.update(subscription_plan_params)
+  end
+
   def show
     @subscription_plan = SubscriptionPlan.find(params[:id])
     @user_subscription_plan = current_user&.user_subscription_plans&.find_by(subscription_plan: @subscription_plan)
+  end
+
+  def inactive
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+
+    @subscription_plan.inactive!
+    redirect_to subscription_plan_path, success: t('.success')
   end
 
   private

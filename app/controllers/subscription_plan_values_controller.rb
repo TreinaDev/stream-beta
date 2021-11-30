@@ -21,6 +21,23 @@ class SubscriptionPlanValuesController < ApplicationController
     end
   end
 
+  def edit
+    @plan_value = SubscriptionPlanValue.find(params[:id])
+  end
+
+  def update
+    @plan_value = SubscriptionPlanValue.find(params[:id])
+
+    redirect_to @plan_value if @plan_value.update(subscription_plan_values_params)
+  end
+
+  def inactive_dinamic_plan_values
+    @plan_value = SubscriptionPlanValue.find(params[:id])
+    @plan_value.inactive!
+
+    redirect_to @plan_value, success: t('.success')
+  end
+
   private
 
   def subscription_plan_values_params

@@ -2,6 +2,9 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
+<div><%= link_to 'Editar plano', edit_subscription_plan_path(@subscription_plan) %> </div>
+<div><%= link_to 'Inativar plano', inactive_subscription_plan_path(@subscription_plan), method: :post%> </div>
+
 <% if @subscription_plan.streamer? %>
   <% if @subscription_plan.streamer.present? %>
     <%= @subscription_plan.streamer&.name %>
@@ -22,5 +25,4 @@
 <% if @user_subscription_plan.nil? || @user_subscription_plan.rejected? %>
   <div><%= link_to 'Assinar plano', new_user_subscription_plan_path(subscription_plan_id: @subscription_plan.id) %></div>
 <% end %>
-
 <div><%= link_to t('links.go_back'), subscription_plans_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
