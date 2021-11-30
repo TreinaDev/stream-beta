@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :video_categories, only: %i[new create show]
+  resources :video_categories, only: %i[new create show index edit]
 
   resources :subscription_plans, only: %i[index show new create], shallow: true do
     resources :subscription_plan_playlists, only: %i[index new create destroy]

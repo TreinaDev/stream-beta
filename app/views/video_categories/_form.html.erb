@@ -7,6 +7,8 @@
     <%= f.collection_select :parent_id, VideoCategory.order(:title), :id, :title, { include_blank: true }, class: "form-control" %>
     <%= f.label :parent_id, 'Sub-categoria de' %>
   </div>
-
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+<% end %>
+<% if @video_category.present? %>
+  <div><%= link_to 'Ver video categoria', video_category_path %></div>
 <% end %>
