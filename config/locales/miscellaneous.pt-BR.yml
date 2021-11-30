@@ -14,9 +14,15 @@ pt-BR:
     sign_out: Sair
     sign_up: Registrar
     unlock_instructions: Não recebeu as instruções de desbloqueio?
+    new_streamer: Novo Streamer
+    new_playlist: Nova Playlist
+    new_video: Novo vídeo
   messages:
     are_you_sure?: Tem certeza?
     confirm_subscription?: Confirma a assinatura?
     unauthorized_access: Acesso não autorizado!
     proceed?: Deseja continuar?
     sending: Enviando
+    api_connection_error: Não foi possível estabelecer conexão com a plataforma de pagamentos
+    api_server_error: Ocorreu um erro no servidor externo
+    api_standard_error: Ocorreu um erro

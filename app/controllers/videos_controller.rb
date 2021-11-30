@@ -14,8 +14,6 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
 
-    @video.request_token if @video.allow_purchase?
-
     if @video.save
       redirect_to @video, success: t('.success')
     else
@@ -45,6 +43,11 @@ class VideosController < ApplicationController
 
   def inactive_videos
     @videos = Video.all.select(&:inactive?)
+  end
+
+  def search
+    @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+    render :index
   end
 
   private

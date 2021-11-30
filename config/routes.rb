@@ -6,16 +6,21 @@ Rails.application.routes.draw do
     resources :home, only: %i[index]
   end
 
+  namespace :user do
+    get 'dashboard', to: 'dashboard#dashboard'
+    get 'my_subscription_plans', to: 'dashboard#my_subscription_plans'
+    get 'my_videos', to: 'dashboard#my_videos'
+    get 'purchase_history', to: 'dashboard#purchase_history'
+  end
+
   resources :playlists, only: %i[index show new create edit update] do
     post 'inactive', on: :member
+    get 'search', on: :collection
   end
 
   resources :streamers, only: %i[index show new create edit update] do
     get 'inactive_streamers', on: :collection
-  end
-
-  resources :videos, only: %i[index show new create edit update] do
-    get 'inactive_videos', on: :collection
+    get 'search', on: :collection
   end
 
   resources :video_categories, only: %i[new create show]
@@ -29,6 +34,11 @@ Rails.application.routes.draw do
   resources :payment_methods, only: %i[new create show]
 
   resources :promotion_tickets, only: %i[index new create]
+  resources :videos, only: %i[index show new create edit update] do
+    get 'inactive_videos', on: :collection
+    get 'search', on: :collection
+  end
+
   resources :user_profiles, only: %i[show new create]
 
   resources :user_subscription_plans, only: %i[new create]

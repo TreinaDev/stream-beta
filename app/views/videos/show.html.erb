@@ -13,14 +13,17 @@
 
   <% if @user_video.nil? || @user_video.rejected? %>
     <p><%= "#{Video.human_attribute_name(:value)}: #{number_to_currency(@video.value)}" %></p>
-    <div><%= link_to 'Adquirir Vídeo', new_user_video_path(video_id: @video.id), class: "btn btn-primary mt-3 mb-3" %></div>
+
+    <% unless current_user&.admin? %>
+      <div><%= link_to 'Adquirir Vídeo', new_user_video_path(video_id: @video.id), class: "btn btn-primary mt-3 mb-3" %></div>
+    <% end %>
   <% end %>
 <% end %>
 
 <% if user_signed_in? && current_user.admin? %>
-		<p>Status: <%= Video.human_attribute_name("status.#{@video.status}") %></p>
+  <p><%= "#{Video.human_attribute_name(:status)}: #{Video.human_enum_name(:status, @video.status)}" %></p>
 
-		<%= link_to 'Editar Vídeo', edit_video_path(@video) %>
+  <%= link_to 'Editar Vídeo', edit_video_path(@video) %>
 <% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

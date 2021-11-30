@@ -6,26 +6,27 @@ pt-BR:
         one: Streamer
         other: Streamers
     attributes:
-      streamer/status:
-        active: Ativo
-        inactive: Inativo
       streamer:
         name: Nome
         youtube_url: Canal no Youtube
         facebook_url: Facebook
         instagram_handle: Instagram
         twitter_handle: Twitter
+        statuses:
+          active: Ativo
+          inactive: Inativo
         status: Estado
   streamers:
     edit:
       title: Editar Cadastro de Usuário
     index:
       title: Streamers
+      message_nothing: Nenhum streamer encontrado
+    inactive_streamers:
+      title: Streamers Inativos
     new:
       title: Cadastro de Streamer
     create:
       success: Cadastro realizado com sucesso!
     update:
       success: Cadastro atualizado com sucesso!
-    inactive_stremers:
-      title: Streamers Inativos

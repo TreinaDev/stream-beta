@@ -16,9 +16,13 @@ pt-BR:
         video_url: URL do vídeo
         inactivate_playlist: Desativar Playlist
         inactive: Desativada
+        statuses:
+          inactive: Desativada
+          active: Ativada
   playlists:
     index:
       title: Playlists
+      message_nothing: Nenhuma playlist encontrada
     new:
       title: Cadastro de Playlist
     create:
@@ -26,4 +30,4 @@ pt-BR:
     show:
       edit: Editar playlist
     inactive:
-      success: Playlist desativada com successo!
+      success: Playlist desativada com sucesso!

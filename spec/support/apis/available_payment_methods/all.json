@@ -1,0 +1,11 @@
+[
+  {
+    "payment_type": "pix"
+  },
+  {
+    "payment_type": "boleto"
+  },
+  {
+    "payment_type": "credit_card"
+  }
+]

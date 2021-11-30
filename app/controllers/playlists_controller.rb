@@ -41,6 +41,12 @@ class PlaylistsController < ApplicationController
     redirect_to @playlist, success: t('.success')
   end
 
+  def search
+    @playlists = Playlist.where('title like ? OR description like ?',
+                                "%#{params[:query]}%", "%#{params[:query]}%").reject(&:inactive?)
+    render :index
+  end
+
   private
 
   def playlist_params

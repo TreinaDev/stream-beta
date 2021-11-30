@@ -34,5 +34,8 @@ module Stream
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Configuration file for the default Payment API
+    config.api_pagapaga = config_for(:api_pagapaga)
   end
 end

@@ -23,6 +23,8 @@ class SubscriptionPlan < ApplicationRecord
 
   before_commit :test_for_subscription_plan_values, only: %i[current_value promotional_value]
 
+  before_validation :request_token
+
   def current_value
     if promotion_ticket.present? && subscription_plan_values.present?
       dynamic_value = subscription_plan_values.filter_by_date(Date.current).pick(:value)
@@ -58,15 +60,14 @@ class SubscriptionPlan < ApplicationRecord
 
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
-    result = nil
 
-    response = Faraday.post('http://localhost:4000/api/v1/subscription_plans/', token_params.to_json)
+    data = ApiPagapaga.post('subscription_plans', token_params.to_json)
 
-    if response.status == 201
-      data = JSON.parse(response.body, symbolize_names: true)
-      result = data[:subscription_plan_token]
+    unless data&.key?(:subscription_plan_token)
+      errors.add(:api_connection, data[:message])
+      return nil
     end
 
-    result
+    data[:subscription_plan_token]
   end
 end
