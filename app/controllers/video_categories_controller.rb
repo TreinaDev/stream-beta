@@ -1,6 +1,6 @@
 class VideoCategoriesController < ApplicationController
   before_action :authenticate_user!, only: :show
-  before_action :authenticate_admin!, only: %i[create new index]
+  before_action :authenticate_admin!, only: %i[create new index show]
   before_action :user_must_fill_profile
 
   def index
@@ -25,6 +25,15 @@ class VideoCategoriesController < ApplicationController
     @video_category = VideoCategory.find(params[:id])
   end
 
+  def edit
+    @video_category = VideoCategory.find(params[:id])
+  end
+
+  def update
+    @video_category = VideoCategory.find(params[:id])
+
+    redirect_to @video_category, success: t('.success') if @video_category.update(video_category_params)
+  end
   private
 
   def video_category_params

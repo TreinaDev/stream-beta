@@ -5,18 +5,14 @@
     <tr>
       <th><%= VideoCategory.human_attribute_name(:title) %></th>
     </tr>
-    <% @video_categories.each do |video_category| %>
+    <% @video_category.each do |video_category| %>
       <tr>
-        <td><%= video_category.title %></td>
+        <td><%= link_to video_category.title, video_category_path(video_category) %></td>
       </tr>
     <% end %>
   </table>
 <% else %>
   <p>Ainda não há categorias cadastradas</p>
 <% end %>
-
-<%# <% if current_user&.admin? %>
-  <%# <div><%= link_to 'Novo Plano', new_subscription_plan_path %></div> %>
-<%# <% end %> 
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>
