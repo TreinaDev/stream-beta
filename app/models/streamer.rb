@@ -4,6 +4,7 @@ class Streamer < ApplicationRecord
 
   has_many :subscription_plan_streamers, dependent: :destroy
   has_many :subscription_plans, through: :subscription_plan_streamers
+  has_many :users, through: :subscription_plans
 
   has_many :videos, dependent: :restrict_with_error
 

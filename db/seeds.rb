@@ -1,6 +1,7 @@
 # Users
 user = FactoryBot.create(:user, email: 'user@email.com', password: '123456')
 FactoryBot.create(:user_profile, user: user)
+FactoryBot.create(:payment_method, user: user)
 
 FactoryBot.create(:user, email: 'admin@gamestream.com.br', password: '123456')
 
@@ -27,4 +28,5 @@ FactoryBot.create(:playlist)
 FactoryBot.create(:playlist)
 FactoryBot.create(:playlist)
 
+FactoryBot.create(:subscription_plan, :streamer)
 p 'Banco de dados atualizado com sucesso :)'

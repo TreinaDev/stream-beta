@@ -1,0 +1,30 @@
+
+<h1>Relátorio da plataforma: </h1>
+
+<h3>Streamers</h3>
+<table class="table">
+  <tr>
+    <th><%= Streamer.human_attribute_name(:name) %></th>
+    <th>Assinantes</th>
+  </tr>
+  <% @streamers.each do |s| %>
+    <tr>
+      <td><%= link_to s.first.name, streamer_path(s.first) %></td>
+      <td><%= s.last %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Playlists</h3>
+<table class="table">
+  <tr>
+    <th><%= Playlist.human_attribute_name(:name) %></th>
+    <th>Assinantes</th>
+  </tr>
+  <% @streamers.each do |s| %>
+    <tr>
+      <td><%= link_to s.first.name, streamer_path(s.first) %></td>
+      <td><%= s.last %></td>
+    </tr>
+  <% end %>
+</table>
