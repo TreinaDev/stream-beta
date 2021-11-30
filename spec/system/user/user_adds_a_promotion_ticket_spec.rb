@@ -136,8 +136,8 @@ describe 'User adds a promotion ticket' do
     it 'cannot add promotion_ticket maximum_uses equal 0' do
       user = create(:user)
       create(:user_profile, user: user)
-      ticket = create(:promotion_ticket, title: 'BETA10STREAMER', maximum_uses: 1)
-      ticket.maximum_uses = 0
+      ticket = create(:promotion_ticket, title: 'BETA10STREAMER', maximum_uses: 1,
+                                         maximum_value_reduction: 5, discount: 20)
       ticket.update!(maximum_uses: 0)
       create(:subscription_plan, title: 'Melhor plano', value: 60)
 
@@ -152,7 +152,7 @@ describe 'User adds a promotion ticket' do
       expect(page).to have_content('Ticket de promoção esgotado!')
       expect(page).to have_content('Valor padrão: R$ 60,00')
       expect(page).to have_content('Valor atual: R$ 60,00')
-      expect(page).to have_content('Assinar plano') # LINHA 37 DO SUBSCRIPTION_PLAN_CONTROLLER ARRUMAR
+      expect(page).to have_content('Assinar plano')
     end
   end
 end

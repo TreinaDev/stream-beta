@@ -2,6 +2,7 @@ class SubscriptionPlansController < ApplicationController
   before_action :authenticate_admin!, only: %i[create new]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[show add_promotion_ticket]
+  before_action :test_maximum_uses_zero_or_nil, only: %i[add_promotion_ticket]
 
   def index
     @subscription_plans = SubscriptionPlan.all
@@ -29,15 +30,8 @@ class SubscriptionPlansController < ApplicationController
   end
 
   def add_promotion_ticket
-    if PromotionTicket.find_by(title: params[:promotion_ticket][:title]).nil?
-      @promotion_ticket = PromotionTicket.all
-      redirect_to @subscription_plan, notice: t('.fails')
-    else
-      @subscription_plan.promotion_ticket = PromotionTicket.find_by!(title: params[:promotion_ticket][:title])
-      #test_maximum_uses_zero              em progresso
-      redirect_to @subscription_plan, success: t('.success') if @subscription_plan.promotion_ticket.valid?
-      redirect_to @subscription_plan, notice: t('.fails') unless @subscription_plan.promotion_ticket.valid?
-    end
+    @subscription_plan.promotion_ticket = PromotionTicket.find_by!(title: params[:promotion_ticket][:title])
+    redirect_to @subscription_plan, success: t('.success')
   end
 
   private
@@ -50,7 +44,12 @@ class SubscriptionPlansController < ApplicationController
     @subscription_plan = SubscriptionPlan.find(params[:id])
   end
 
-  def confirm_maximum_uses_greater_than_zero(promotion_ticket)
-    promotion_ticket.test_if_maximum_uses_is_greater_than_zero(promotion_ticket)
+  def test_maximum_uses_zero_or_nil
+    promotion_ticket = PromotionTicket.find_by(title: params[:promotion_ticket][:title])
+    if promotion_ticket.nil?
+      redirect_to @subscription_plan, notice: t('.fails')
+    elsif promotion_ticket.maximum_uses.zero?
+      redirect_to @subscription_plan, notice: t('.maximum_uses_zero')
+    end
   end
 end

@@ -16,7 +16,7 @@ class UserSubscriptionPlansController < ApplicationController
     @user_subscription_plan.confirm_payment
     if @user_subscription_plan.subscription_plan.promotion_ticket.present?
       @promotion_ticket = @user_subscription_plan.subscription_plan.promotion_ticket
-      @promotion_ticket.using_promotion_ticket(@promotion_ticket)
+      @promotion_ticket.using_promotion_ticket
     end
     set_status_flash
     redirect_to @subscription_plan

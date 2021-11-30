@@ -23,6 +23,7 @@ pt-BR:
     add_promotion_ticket:
       success: Ticket de promoção adicionado com sucesso!
       fails: 'Ticket de promoção não existe'
+      maximum_uses_zero: Ticket de promoção esgotado!
   plan_playlists: Playlists do Plano
   playlist: Playlist
   streamer: Streamer
