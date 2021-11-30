@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_182911) do
+ActiveRecord::Schema.define(version: 2021_11_30_051439) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,22 @@ ActiveRecord::Schema.define(version: 2021_11_25_182911) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status", default: 5
+  end
+
+  create_table "product_receipts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "product_type", null: false
+    t.integer "product_id", null: false
+    t.integer "payment_method_id", null: false
+    t.decimal "value"
+    t.string "receipt_token"
+    t.datetime "receipt_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_method_id"], name: "index_product_receipts_on_payment_method_id"
+    t.index ["product_type", "product_id"], name: "index_product_receipts_on_product"
+    t.index ["receipt_token"], name: "index_product_receipts_on_receipt_token", unique: true
+    t.index ["user_id"], name: "index_product_receipts_on_user_id"
   end
 
   create_table "related_playlists", force: :cascade do |t|
@@ -233,6 +249,8 @@ ActiveRecord::Schema.define(version: 2021_11_25_182911) do
   add_foreign_key "playlist_streamers", "streamers"
   add_foreign_key "playlist_videos", "playlists"
   add_foreign_key "playlist_videos", "videos"
+  add_foreign_key "product_receipts", "payment_methods"
+  add_foreign_key "product_receipts", "users"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"
