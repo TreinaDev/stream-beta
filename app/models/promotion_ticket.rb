@@ -1,5 +1,6 @@
 class PromotionTicket < ApplicationRecord
-  has_many :subscription_plans, through: :subscription_plan_promotion_ticket
+  has_many :subscription_plan_promotion_tickets, dependent: :destroy
+  has_many :subscription_plans, through: :subscription_plan_promotion_tickets
 
   validates :title, :discount, :maximum_value_reduction,
             :maximum_uses, :start_date, :end_date, presence: true

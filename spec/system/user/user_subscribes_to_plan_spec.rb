@@ -152,6 +152,17 @@ describe 'User subscribes to plan' do
     ticket = create(:promotion_ticket, title: 'BETA10STREAMER', discount: 20,
                                        maximum_value_reduction: 10, maximum_uses: 1)
     plan = create(:subscription_plan, title: 'Plano legal', value: 50, promotion_ticket: ticket)
+    payment_method = create(:payment_method, user: user)
+
+    payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
+    fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
+    allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+                                   .and_return(fake_response_apm)
+
+    user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+    fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
+    allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+                                        .and_return(fake_response)
 
     login_as user, scope: :user
     visit root_path

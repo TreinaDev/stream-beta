@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PromotionTicket, type: :model do
+  describe 'associations' do
+    it { should have_many(:subscription_plan_promotion_tickets).dependent(:destroy) }
+    it { should have_many(:subscription_plans).through(:subscription_plan_promotion_tickets) }
+  end
+
   describe 'presence' do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:maximum_value_reduction) }

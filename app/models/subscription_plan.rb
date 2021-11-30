@@ -10,8 +10,8 @@ class SubscriptionPlan < ApplicationRecord
   has_one :subscription_plan_streamer, dependent: :destroy
   has_one :streamer, through: :subscription_plan_streamer
 
-  has_one :subscription_plan_promotion_tickets, dependent: :destroy
-  has_one :promotion_ticket, through: :subscription_plan_promotion_tickets
+  has_one :subscription_plan_promotion_ticket, dependent: :destroy
+  has_one :promotion_ticket, through: :subscription_plan_promotion_ticket
 
   enum plan_type: { playlist: 10, streamer: 20 }
 
@@ -26,13 +26,9 @@ class SubscriptionPlan < ApplicationRecord
   before_validation :request_token
 
   def current_value
-    if promotion_ticket.present? && subscription_plan_values.present?
-      dynamic_value = subscription_plan_values.filter_by_date(Date.current).pick(:value)
-      return promotional_value(dynamic_value)
-    elsif promotion_ticket.present?
-      return promotional_value(value)
-    end
-    test_for_subscription_plan_values
+    return test_for_subscription_plan_values if promotion_ticket.blank?
+
+    promotional_value(test_for_subscription_plan_values)
   end
 
   def request_token
@@ -50,7 +46,7 @@ class SubscriptionPlan < ApplicationRecord
     if current_discount > promotion_ticket.maximum_value_reduction
       test_for_subscription_plan_values - promotion_ticket.maximum_value_reduction
     else
-      (subscription_plan_values.filter_by_date(Date.current).pick(:value) || value) - current_discount
+      test_for_subscription_plan_values - current_discount
     end
   end
 
