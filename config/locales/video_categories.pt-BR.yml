@@ -16,3 +16,5 @@ pt-BR:
       success: Categoria de Vídeo criada com sucesso!
     update:
       success: Categoria de Vídeo atualizada com sucesso!
+    cancel:
+    success: Categoria de Vídeo cancelada com sucesso!

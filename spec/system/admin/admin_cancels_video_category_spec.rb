@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe 'Admin edits video category' do
   it 'successfully' do
     admin = create(:user, :admin)
@@ -12,11 +11,10 @@ describe 'Admin edits video category' do
     click_link 'Categorias'
     click_link 'Games'
     click_link 'Editar categoria'
-    fill_in 'Título', with: 'Games editado'
-    click_button 'Atualizar Categoria de Vídeo'
+    click_button 'Cancelar categoria'
 
-    expect(current_path).to eq(video_category_path(VideoCategory.last))
-    expect(page).to have_css('div', text: 'Categoria de Vídeo atualizada com sucesso!')
-    expect(page).to have_content('Título: Games editado')
+    expect(current_path).to eq(video_categories_path)
+    expect(page).to have_css('div', text: 'Categoria de Vídeo cancelada com sucesso!')
+    expect(page).to_not have_content('Título: Games')
   end
 end

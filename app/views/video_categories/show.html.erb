@@ -4,9 +4,6 @@
   <% end %>
   <li>Título: <%= @video_category.title %></li>
 </ul>
-<% if current_user&.admin? %>
-  <%# <%= link_to 'Editar Categoria', edit_video_category_path(params: @video_category.id)%> %>
-<% end %>
 
 <div><%= link_to 'Editar categoria', edit_video_category_path(@video_category.id) %></div>
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

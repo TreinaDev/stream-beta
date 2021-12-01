@@ -4,4 +4,5 @@
 
 <%= render 'form' %>
 
+<div><%= button_to 'Cancelar categoria', cancel_video_category_path(@video_category), method: :post, class: "btn btn-outline-primary mt-3 mb-3" %></div>
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

@@ -6,9 +6,11 @@
       <th><%= VideoCategory.human_attribute_name(:title) %></th>
     </tr>
     <% @video_category.each do |video_category| %>
-      <tr>
-        <td><%= link_to video_category.title, video_category_path(video_category) %></td>
-      </tr>
+      <% if video_category.active?%>
+        <tr>
+          <td><%= link_to video_category.title, video_category_path(video_category) %></td>
+        </tr>
+      <% end%>
     <% end %>
   </table>
 <% else %>
