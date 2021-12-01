@@ -22,8 +22,12 @@ pt-BR:
     index:
       title: Streamers
       message_nothing: Nenhum streamer encontrado
+    show:
+      none: Nenhum vídeo cadastrado
+      edit: Editar Streamer
     inactive_streamers:
       title: Streamers Inativos
+      new_streamer: Novo Streamer
     new:
       title: Cadastro de Streamer
     create:

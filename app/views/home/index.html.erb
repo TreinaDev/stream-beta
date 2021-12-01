@@ -1,6 +1,6 @@
 <% unless user_signed_in? %>
-  <%= link_to 'Streamers', streamers_path %>
-  <%= link_to 'Planos', subscription_plans_path %>
-  <%= link_to 'Playlists', playlists_path %>
-  <%= link_to 'Vídeos', videos_path %>
+  <%= link_to t('.streamers'), streamers_path %>
+  <%= link_to t('.plan'), subscription_plans_path %>
+  <%= link_to t('.playlists'), playlists_path %>
+  <%= link_to t('.videos'), videos_path %>
 <% end %>
