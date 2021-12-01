@@ -17,9 +17,9 @@ class ApiPagapaga
     { message: I18n.t('messages.api_standard_error') }
   end
 
-  def self.get(path, header = {})
+  def self.get(path, params = {}, header = {})
     header = header.merge({ 'Content-Type' => 'application/json', 'company_token' => API_COMPANY_TOKEN })
-    response = Faraday.get("#{API_ENDPOINT}/api/v1/#{path}/", header)
+    response = Faraday.get("#{API_ENDPOINT}/api/v1/#{path}/", params, header)
 
     return { message: I18n.t('messages.api_server_error') } if response.status == 500
 

@@ -37,8 +37,7 @@ describe 'ApiPagapaga' do
 
     context 'when it raises exception' do
       it 'Faraday::ConnectionFailed' do
-        faraday = class_double(Faraday)
-        allow(faraday).to receive(:post).and_raise(Faraday::ConnectionFailed)
+        allow(Faraday).to receive(:post).with(any_args).and_raise(Faraday::ConnectionFailed, nil)
 
         data = ApiPagapaga.post('', '')
 
@@ -93,8 +92,7 @@ describe 'ApiPagapaga' do
 
     context 'when it raises exception' do
       it 'Faraday::ConnectionFailed' do
-        faraday = class_double(Faraday)
-        allow(faraday).to receive(:get).and_raise(Faraday::ConnectionFailed)
+        allow(Faraday).to receive(:get).and_raise(Faraday::ConnectionFailed, nil)
 
         data = ApiPagapaga.get('')
 

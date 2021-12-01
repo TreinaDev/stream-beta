@@ -14,7 +14,7 @@ describe 'User subscribes to plan' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
@@ -47,7 +47,7 @@ describe 'User subscribes to plan' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
@@ -78,7 +78,7 @@ describe 'User subscribes to plan' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
@@ -109,7 +109,7 @@ describe 'User subscribes to plan' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
@@ -156,7 +156,7 @@ describe 'User subscribes to plan' do
 
     payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
     fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-    allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+    allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                    .and_return(fake_response_apm)
 
     user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
