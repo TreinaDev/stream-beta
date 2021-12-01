@@ -1,9 +1,9 @@
 
 <%= form_with url: path, method: :get do %>
   <div class="me-3">
-		<%= label_tag :query, 'Busca:' %>
+		<%= label_tag :query, "#{t('.search')}:" %>
 		<%= text_field_tag :query %>
-		<%= submit_tag 'Pesquisar', class: "btn btn-primary mt-3 mb-3" %>
+		<%= submit_tag t('.seek'), class: "btn btn-primary mt-3 mb-3" %>
 	</div>
 <% end %>
 

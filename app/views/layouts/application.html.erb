@@ -26,14 +26,14 @@
                 <li class="nav-item"><%= link_to Playlist.model_name.human(count: 2), playlists_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to Video.model_name.human(count: 2), videos_path, class: "nav-link" %></li>
                 <% if current_user.admin? %>
-                  <li class="nav-item"><%= link_to 'Promoções', promotion_tickets_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to 'Categorias de Vídeos', new_video_category_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to 'Streamers Inativos', inactive_streamers_streamers_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to 'Vídeos Inativos', inactive_videos_videos_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.promotions'), promotion_tickets_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.video_categories'), new_video_category_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.inative_streamers'), inactive_streamers_streamers_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.inative_videos'), inactive_videos_videos_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to 'Relatório', admin_report_path, class: "nav-link" %></li>
                 <% else %>
-                  <li class="nav-item"><%= link_to 'Cadastrar método de pagamento', new_payment_method_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to 'Área do Assinante', user_dashboard_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.payment_method'), new_payment_method_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to t('.dashboard'), user_dashboard_path, class: "nav-link" %></li>
                 <% end %>
                 <li class="nav-item"><span class="nav-link"><%= current_user.email %></span></li>
                 <li class="nav-item"><%= link_to t('links.sign_out'), destroy_user_session_path, method: :delete, class: "nav-link" %></li>
