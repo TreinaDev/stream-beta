@@ -17,6 +17,7 @@ pt-BR:
         title: Título
         value: Valor
         video_url: URL do vídeo
+        video_category: Categorias
   videos:
     index:
       title: Vídeos
@@ -31,3 +32,5 @@ pt-BR:
       success: Vídeo atualizado com sucesso!
     inactive_videos:
       title: Vídeos Inativos
+      none: Ainda não há vídeos inativos
+      new_video: Novo vídeo

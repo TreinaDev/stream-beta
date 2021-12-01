@@ -1,5 +1,5 @@
 class SubscriptionPlansController < ApplicationController
-  before_action :authenticate_admin!, only: %i[create new]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[show add_promotion_ticket]
   before_action :test_maximum_uses_zero_or_nil, only: %i[add_promotion_ticket]
@@ -22,6 +22,16 @@ class SubscriptionPlansController < ApplicationController
     end
   end
 
+  def edit
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+  end
+
+  def update
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+
+    redirect_to @subscription_plan, success: t('.success') if @subscription_plan.update(subscription_plan_params)
+  end
+
   def show
     @subscription_plan_value = @subscription_plan.subscription_plan_values
     @user_subscription_plan = current_user&.user_subscription_plans&.find_by(subscription_plan: @subscription_plan)
@@ -31,6 +41,13 @@ class SubscriptionPlansController < ApplicationController
   def add_promotion_ticket
     @subscription_plan.promotion_ticket = PromotionTicket.find_by!(title: params[:promotion_ticket][:title])
     redirect_to @subscription_plan, success: t('.success')
+  end
+
+  def inactive
+    @subscription_plan = SubscriptionPlan.find(params[:id])
+
+    @subscription_plan.inactive!
+    redirect_to subscription_plan_path, success: t('.success')
   end
 
   private

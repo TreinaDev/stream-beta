@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_221941) do
+ActiveRecord::Schema.define(version: 2021_12_01_141137) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 2021_11_30_221941) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "category_lists", force: :cascade do |t|
+    t.integer "video_category_id", null: false
+    t.string "categoriable_type", null: false
+    t.integer "categoriable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categoriable_type", "categoriable_id"], name: "index_category_lists_on_categoriable"
+    t.index ["video_category_id"], name: "index_category_lists_on_video_category_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -176,6 +186,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_221941) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_type", default: 10, null: false
     t.string "token", null: false
+    t.integer "status", default: 15
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
     t.index ["token"], name: "index_subscription_plans_on_token", unique: true
   end
@@ -243,6 +254,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_221941) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
+    t.integer "status", default: 10
     t.index ["title"], name: "index_video_categories_on_title", unique: true
   end
 
@@ -265,6 +277,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_221941) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "category_lists", "video_categories"
   add_foreign_key "payment_methods", "users"
   add_foreign_key "playlist_streamers", "playlists"
   add_foreign_key "playlist_streamers", "streamers"

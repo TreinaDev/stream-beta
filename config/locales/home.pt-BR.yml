@@ -1,0 +1,20 @@
+---
+pt-BR:
+  home:
+    index:
+      streamers: Streamers
+      plan: Planos
+      playlists: Playlists
+      videos: Vídeos
+  layouts:
+    application:
+      promotions: Promoções
+      video_categories: Categorias de Vídeos
+      inative_streamers: Streamers Inativos
+      inative_videos: Vídeos Inativos
+      payment_method: Cadastrar método de pagamento
+      dashboard: Área do Assinante
+  shared:
+    search:
+      search: Busca
+      seek: Pesquisar

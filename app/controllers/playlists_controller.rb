@@ -13,16 +13,22 @@ class PlaylistsController < ApplicationController
 
   def edit
     @playlist = Playlist.find(params[:id])
+    @categories = VideoCategory.all.order(:title)
   end
 
   def update
     @playlist = Playlist.find(params[:id])
 
-    redirect_to @playlist if @playlist.update(playlist_params)
+    if @playlist.update(playlist_params)
+      redirect_to @playlist, success: t('.success')
+    else
+      render :edit
+    end
   end
 
   def new
     @playlist = Playlist.new
+    @categories = VideoCategory.all.order(:title)
   end
 
   def create
@@ -52,6 +58,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [], video_ids: [])
+    params.require(:playlist).permit(:title, :description, :playlist_cover,
+                                     streamer_ids: [], video_ids: [], video_category_ids: [])
   end
 end
