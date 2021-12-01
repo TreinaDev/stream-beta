@@ -22,11 +22,11 @@
     <%= f.collection_check_boxes :video_ids, Video.all, :id, :title %>
   </div>
 		<div>
-				<% unless @categories.nil? %>
-						<ul>
-								<li><%= f.collection_check_boxes :video_category_ids, @categories, :id, :title %></li>
-						</ul>
-				<% end %>
-		</div>
+    <% unless @categories.nil? %>
+      <ul>
+        <li><%= f.collection_check_boxes :video_category_ids, @categories, :id, :title %></li>
+      </ul>
+    <% end %>
+  </div>
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
 <% end %>
