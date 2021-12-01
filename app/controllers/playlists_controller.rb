@@ -44,6 +44,8 @@ class PlaylistsController < ApplicationController
   def search
     @playlists = Playlist.where('title like ? OR description like ?',
                                 "%#{params[:query]}%", "%#{params[:query]}%").reject(&:inactive?)
+    with_streamers = Playlist.joins(:streamers).where('name like ?', "%#{params[:query]}%").reject(&:inactive?)
+    @playlists.concat(with_streamers).uniq!
     render :index
   end
 

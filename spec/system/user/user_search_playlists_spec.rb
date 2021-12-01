@@ -22,7 +22,7 @@ describe 'playlists' do
       end
     end
     context 'by description' do
-      it 'with to 2 playlists' do
+      it 'with 2 playlists' do
         user = create(:user)
         create(:user_profile, user: user)
         create(:playlist, description: 'Playlist com os vídeos mais engraçados de todo o vimeo')
@@ -31,13 +31,49 @@ describe 'playlists' do
         login_as user, scope: :user
         visit root_path
         click_on 'Playlists'
-        fill_in 'Busca:', with: 'engraçados '
+        fill_in 'Busca:', with: 'engraçados'
         click_button 'Pesquisar'
 
         expect(current_path).to eq(search_playlists_path)
         expect(page).to have_content('Playlist com os vídeos mais engraçados de todo o vimeo')
         expect(page).to have_content('Playlists')
         expect(page).not_to have_content('Playlist chata com videos chatos')
+      end
+    end
+    context 'by streamer' do
+      it 'with 2 playlist' do
+        user = create(:user)
+        create(:user_profile, user: user)
+        streamer = create(:streamer, name: 'engraçado')
+        playlist = create(:playlist, title: 'Playlist muito interessante')
+        PlaylistStreamer.create!(playlist: playlist, streamer: streamer)
+        create(:playlist, description: 'Playlist chata com videos chatos')
+
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Playlists'
+        fill_in 'Busca:', with: 'engraçado'
+        click_button 'Pesquisar'
+
+        expect(current_path).to eq(search_playlists_path)
+        expect(page).to have_content('Playlist muito interessante')
+        expect(page).not_to have_content('Playlist chata com videos chatos')
+      end
+      it 'no have duplicate' do
+        user = create(:user)
+        create(:user_profile, user: user)
+        streamer = create(:streamer, name: 'engraçado')
+        playlist = create(:playlist, title: 'Playlist do engraçado')
+        PlaylistStreamer.create!(playlist: playlist, streamer: streamer)
+
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Playlists'
+        fill_in 'Busca:', with: 'engraçado'
+        click_button 'Pesquisar'
+
+        expect(current_path).to eq(search_playlists_path)
+        expect(page).to have_content('Playlist do engraçado', count: 1)
       end
     end
     it 'with nothing' do
