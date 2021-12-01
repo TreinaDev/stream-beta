@@ -13,6 +13,7 @@ pt-BR:
   subscription_plan_values:
     index:
       title: Preços dinâmicos
+      cancel: Desativar preço
     new:
       title: Cadastro de Preço Dinâmico
     create:

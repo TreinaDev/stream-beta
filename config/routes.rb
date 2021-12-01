@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     post 'add_promotion_ticket', on: :member
     resources :subscription_plan_playlists, only: %i[index new create destroy]
     resources :subscription_plan_streamers, only: %i[new create edit update]
-    resources :subscription_plan_values, only: %i[index show new create cancel], shallow: true do
+    resources :subscription_plan_values, only: %i[index show new create], shallow: true do
       post 'cancel', on: :member
     end
   end
