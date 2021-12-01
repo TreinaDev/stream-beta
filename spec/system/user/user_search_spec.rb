@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'User search' do
   describe 'streamers' do
     context 'successfully' do
-      it 'with 2 streamers' do
+      it 'with streamers' do
         user = create(:user)
         create(:user_profile, user: user)
         create(:streamer, name: 'joaozinho')
@@ -39,7 +39,7 @@ describe 'User search' do
   describe 'playlists' do
     context 'successfully' do
       context 'by title' do
-        it 'with to 2 playlists' do
+        it 'with 2 playlists' do
           user = create(:user)
           create(:user_profile, user: user)
           create(:playlist, title: 'Streamers mais engraçados')
@@ -95,7 +95,7 @@ describe 'User search' do
   describe 'videos' do
     context 'successfully' do
       context 'by title' do
-        it 'with to 2 videos' do
+        it 'with 2 videos' do
           user = create(:user)
           create(:user_profile, user: user)
           create(:video, title: 'Streamer fazendo coisas engraçadas')
@@ -108,6 +108,28 @@ describe 'User search' do
           click_button 'Pesquisar'
 
           expect(current_path).to eq(search_videos_path)
+          expect(page).to have_content('Streamer fazendo coisas engraçadas')
+          expect(page).to have_content('Vídeos')
+          expect(page).not_to have_content('Vídeo careta')
+        end
+      end
+      context 'by streamer' do
+        it 'with 2 streamers' do
+          user = create(:user)
+          create(:user_profile, user: user)
+          streamer = create(:streamer, name: 'palhaço')
+          create(:streamer, name: 'chato')
+          create(:video, title: 'Streamer fazendo coisas engraçadas', streamer: streamer)
+          create(:video, title: 'Vídeo careta')
+
+          login_as user, scope: :user
+          visit root_path
+          click_on 'Vídeos'
+          fill_in 'Busca:', with: 'palhaço'
+          click_button 'Pesquisar'
+
+          expect(current_path).to eq(search_videos_path)
+          expect(page).not_to have_content('Nenhum vídeo encontrado')
           expect(page).to have_content('Streamer fazendo coisas engraçadas')
           expect(page).to have_content('Vídeos')
           expect(page).not_to have_content('Vídeo careta')

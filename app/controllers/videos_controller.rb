@@ -47,6 +47,8 @@ class VideosController < ApplicationController
 
   def search
     @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+    with_streamers = Video.joins(:streamer).where('name like ?', "%#{params[:query]}%").reject(&:inactive?)
+    @videos.concat(with_streamers)
     render :index
   end
 
