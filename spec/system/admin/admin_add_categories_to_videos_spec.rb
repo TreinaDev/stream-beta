@@ -58,4 +58,29 @@ describe 'Administrator add category to video' do
       end
     end
   end
+  context 'edit video' do
+    context 'successfully' do
+      it '2 categories' do
+        admin = create(:user, :admin)
+        create(:video, title: 'As melhores jogadas')
+        create(:video_category, title: 'Jogos')
+        create(:video_category, title: 'Ação')
+        create(:video_category, title: 'ASMR')
+        login_as admin, scope: :user
+        visit root_path
+        click_link 'Vídeos'
+        click_link 'As melhores jogadas'
+        click_link 'Editar'
+        check 'Jogos'
+        check 'Ação'
+        click_button 'Atualizar Vídeo'
+
+        expect(current_path).to eq(video_path(Video.last))
+        expect(page).to have_css('div', text: 'Vídeo atualizado com sucesso!')
+        expect(page).to have_content('Título: As melhores jogadas')
+        expect(page).to have_content("Categorias:\nAção Jogos")
+        expect(page).not_to have_content('ASMR')
+      end
+    end
+  end
 end
