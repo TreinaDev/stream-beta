@@ -12,10 +12,18 @@ pt-BR:
         value: Valor padrão
         current_value: Valor atual
         plan_type: Tipo de Plano
-        
+
   subscription_plans:
     index:
       title: Planos
+      no_plans: Ainda não há planos cadastrados
+      new_plan: Novo Plano
+    show:
+      promotion_ticket: Ticket de promoção
+      add_new_ticket: Adicionar Ticket de promoção
+      edit: Editar Streamer
+      associate: Associar Streamer
+      sign_plan: Assinar plano
     new:
       title: Cadastro de Plano
     create:

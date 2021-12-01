@@ -3,7 +3,7 @@
 <% end %>
 
 <% if current_user&.admin? %>
-  <%= link_to 'Editar Streamer', edit_streamer_path %>
+  <%= link_to t('.edit'), edit_streamer_path %>
 <% end %>
 
 <p>Nome: <%= @streamer.name %></p>
@@ -31,5 +31,5 @@
     <% end %>
   </table>
 <% else %>
-  <p>Nenhum vídeo cadastrado</p>
+  <p><%= t('.none') %></p>
 <% end %>

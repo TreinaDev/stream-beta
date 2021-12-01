@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :home, only: %i[index]
+    get 'report', to: 'report#report'
   end
 
   namespace :user do
@@ -23,14 +24,18 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :video_categories, only: %i[new create show]
+  resources :video_categories, only: %i[new create show index edit update canceled], shallow: true do
+    post 'cancel', on: :member
+  end
 
   resources :subscription_plans, only: %i[index show new create edit update], shallow: true do
     post 'inactive', on: :member
     post 'add_promotion_ticket', on: :member
     resources :subscription_plan_playlists, only: %i[index new create destroy]
     resources :subscription_plan_streamers, only: %i[new create edit update]
-    resources :subscription_plan_values, only: %i[index show new create]
+    resources :subscription_plan_values, only: %i[index show new create], shallow: true do
+      post 'cancel', on: :member
+    end
   end
   resources :payment_methods, only: %i[new create show]
 

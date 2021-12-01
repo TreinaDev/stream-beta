@@ -1,5 +1,5 @@
 class SubscriptionPlanValuesController < ApplicationController
-  before_action :authenticate_admin!, only: %i[new create]
+  before_action :authenticate_admin!, only: %i[new create cancel]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[index new create]
 
@@ -18,6 +18,15 @@ class SubscriptionPlanValuesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def cancel
+    @subscription_plan_value = SubscriptionPlanValue.find(params[:id])
+    @subscription_plan = @subscription_plan_value.subscription_plan
+
+    @subscription_plan_value.canceled!
+
+    redirect_to subscription_plan_subscription_plan_values_path(@subscription_plan), success: t('.success')
   end
 
   private

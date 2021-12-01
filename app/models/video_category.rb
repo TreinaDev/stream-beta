@@ -3,6 +3,8 @@ class VideoCategory < ApplicationRecord
                             dependent: :restrict_with_error
   belongs_to :parent, class_name: 'VideoCategory', optional: true, inverse_of: :sub_categories
 
+  enum status: { active: 10, canceled: 15 }
+
   validates :title, presence: true
   validates :title, uniqueness: true
 end
