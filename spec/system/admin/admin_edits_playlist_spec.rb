@@ -39,4 +39,24 @@ describe 'Administrator edits playlist' do
       expect(page).to have_content('Título: Playlistizinha')
     end
   end
+  context 'failure' do
+    it 'blank' do
+      admin = create(:user, :admin)
+      playlist = create(:playlist, title: 'Playlistizinha')
+
+      login_as admin, scope: :user
+      visit root_path
+      click_link 'Playlists'
+      click_link 'Playlistizinha'
+      click_link 'Editar playlist'
+      within 'form' do
+        fill_in 'Título', with: ' '
+        fill_in 'Descrição', with: ' '
+        click_button 'Atualizar Playlist'
+      end
+      expect(current_path).to eq(playlist_path(playlist.id))
+      expect(page).to have_content('Título não pode ficar em branco')
+      expect(page).to have_content('Descrição não pode ficar em branco')
+    end
+  end
 end
