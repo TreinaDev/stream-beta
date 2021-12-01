@@ -49,9 +49,11 @@ class VideosController < ApplicationController
   end
 
   def search
-    @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
-    with_streamers = Video.joins(:streamer).where('name like ?', "%#{params[:query]}%").reject(&:inactive?)
-    @videos.concat(with_streamers).uniq!
+    videos = Video.where('title like ?', "%#{params[:query]}%")
+    with_streamers = Video.joins(:streamer).where('name like ?', "%#{params[:query]}%")
+    with_category = Video.joins(:video_categories)
+                         .where('video_categories.title like ?', "%#{params[:query]}%")
+    @videos = concat_search([videos, with_streamers, with_category])
     render :index
   end
 
@@ -64,5 +66,9 @@ class VideosController < ApplicationController
 
   def set_video
     @video = Video.find(params[:id])
+  end
+
+  def concat_search(records)
+    records.flatten.reject(&:inactive?).uniq
   end
 end

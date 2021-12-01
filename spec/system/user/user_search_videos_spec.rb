@@ -43,6 +43,29 @@ describe 'videos' do
         expect(page).not_to have_content('Vídeo careta')
       end
     end
+    context 'by streamer' do
+      it 'with 2 category' do
+        user = create(:user)
+        create(:user_profile, user: user)
+        create(:video_category, title: 'ASMR')
+        create(:video, title: 'Vídeo careta')
+        category = create(:video_category, title: 'Comédia')
+        video = create(:video, title: 'Streamer fazendo coisas engraçadas')
+        CategoryList.create!(video_category: category, categoriable: video)
+
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Vídeos'
+        fill_in 'Busca:', with: 'Comédia'
+        click_button 'Pesquisar'
+
+        expect(current_path).to eq(search_videos_path)
+        expect(page).to have_content('Vídeos')
+        expect(page).not_to have_content('Nenhum vídeo encontrado')
+        expect(page).to have_content('Streamer fazendo coisas engraçadas')
+        expect(page).not_to have_content('Vídeo careta')
+      end
+    end
     it 'with nothing' do
       user = create(:user)
       create(:user_profile, user: user)
