@@ -14,7 +14,7 @@ describe 'User purchases video' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }
@@ -45,7 +45,7 @@ describe 'User purchases video' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }
@@ -75,7 +75,7 @@ describe 'User purchases video' do
       create(:video, :allow_purchase, title: 'Melhores jogadas da semana')
 
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: [])
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       login_as user, scope: :user
@@ -99,7 +99,7 @@ describe 'User purchases video' do
 
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }

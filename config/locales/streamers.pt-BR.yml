@@ -27,7 +27,7 @@ pt-BR:
       edit: Editar Streamer
     inactive_streamers:
       title: Streamers Inativos
-      new_streamer: Novo Streamer
+      message_nothing: Nenhum streamer inativo
     new:
       title: Cadastro de Streamer
     create:

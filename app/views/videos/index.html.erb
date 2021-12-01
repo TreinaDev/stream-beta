@@ -22,7 +22,11 @@
 <% end %>
 
 <% if current_user&.admin? %>
-  <div><%= link_to t('links.new_video'), new_video_path %></div>
+  <div><%= link_to t('links.new_video'), new_video_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<% end %>
+
+<% if current_user&.admin? %>
+  <%= link_to 'Vídeos Inativos', inactive_videos_videos_path, class: "btn btn-outline-primary mt-3 mb-3" %>
 <% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>
