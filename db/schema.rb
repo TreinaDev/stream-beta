@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_141137) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_type", default: 10, null: false
     t.string "token", null: false
+    t.integer "status", default: 15
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
     t.index ["token"], name: "index_subscription_plans_on_token", unique: true
   end
@@ -253,6 +254,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_141137) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
+    t.integer "status", default: 10
     t.index ["title"], name: "index_video_categories_on_title", unique: true
   end
 

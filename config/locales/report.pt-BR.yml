@@ -1,0 +1,10 @@
+---
+pt-BR:
+  admin:
+    report:
+      report:
+        title: Relatório da plataforma
+        subscriber: Assinantes
+        nothing_streamer: Nenhum streamer com assinante
+        nothing_playlist: Nenhuma playlist com assinante
+        nothing_video: Nenhum vídeo com assinante
