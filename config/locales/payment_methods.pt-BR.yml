@@ -21,6 +21,7 @@ pt-BR:
       cvv_number: Código de Segurança (CVV)
       expiry_date: Validade (MM/AA)
       submit: Enviar
+      no_payment_methods_available: Não há formas de pagamento habilitadas
     create:
       success: Método de pagamento adicionado com sucesso!
       error: Método de Pagamento inválido

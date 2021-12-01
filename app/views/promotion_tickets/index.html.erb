@@ -1,0 +1,21 @@
+
+
+<%= link_to 'Novo Ticket de Promoção', new_promotion_ticket_path %>
+
+<% @promotion_tickets.each do |pt| %>
+  <div>
+    <%= "#{t('.title')}: #{pt.title}" %>
+  </div>
+  <div>
+    <%= "#{t('.init_date')}: #{l(pt.start_date)}" %>
+  </div>
+  <div>
+    <%= "#{t('.final_date')}: #{l(pt.end_date)}" %>
+  </div>
+  <div>
+    <%= "#{t('.discount')}: #{pt.discount}%" %>
+  </div>
+  <div>
+    <%= "#{t('.maximum_value_reduction')}: #{number_to_currency(pt.maximum_value_reduction)}" %>
+  </div>
+<% end %>

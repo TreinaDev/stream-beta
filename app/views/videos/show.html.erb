@@ -21,7 +21,7 @@
 <% end %>
 
 <% if user_signed_in? && current_user.admin? %>
-  <p>Status: <%= Video.human_attribute_name("status.#{@video.status}") %></p>
+  <p><%= "#{Video.human_attribute_name(:status)}: #{Video.human_enum_name(:status, @video.status)}" %></p>
 
   <%= link_to 'Editar Vídeo', edit_video_path(@video) %>
 <% end %>
