@@ -17,10 +17,10 @@
     <%= f.label :streamer_ids, Streamer.model_name.human%>
     <%= f.collection_check_boxes :streamer_ids, Streamer.all, :id, :name %>
   </div>
-   <div>
+  <div>
     <%= f.label :video_ids, Video.model_name.human%>
     <%= f.collection_check_boxes :video_ids, Video.all, :id, :title %>
-  </div>
+		</div>
 		<div>
     <% unless @categories.nil? %>
       <ul>

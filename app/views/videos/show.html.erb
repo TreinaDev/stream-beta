@@ -4,12 +4,12 @@
 <p><%= "#{Video.human_attribute_name(:maturity_rating)}: #{@video.maturity_rating}" %></p>
 
 <% unless @video.video_categories.nil? %>
-	<p><%= "#{Video.human_attribute_name(:video_category)}: "%></p>
-	<ul>
-		<% @video.video_categories.each do |category|  %>
-			<li><%= category.title %></li>
-		<% end %>
-	</ul>
+		<p><%= "#{Video.human_attribute_name(:video_category)}: "%></p>
+		<ul>
+				<% @video.video_categories.each do |category|  %>
+						<li><%= category.title %></li>
+				<% end %>
+		</ul>
 <% end %>
 
 <% if @video.allow_purchase? %>
