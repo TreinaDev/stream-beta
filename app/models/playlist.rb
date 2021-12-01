@@ -16,6 +16,9 @@ class Playlist < ApplicationRecord
   has_many :subscription_plan_playlists, dependent: :destroy
   has_many :playlists, through: :subscription_plan_playlists
 
+  has_many :category_lists, as: :categoriable, dependent: :nullify
+  has_many :video_categories, through: :category_lists
+
   has_one_attached :playlist_cover
 
   validates :title, :description, :playlist_cover, presence: true

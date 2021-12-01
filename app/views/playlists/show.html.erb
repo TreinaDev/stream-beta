@@ -2,6 +2,14 @@
 <p><%= "#{Playlist.human_attribute_name(:description)}: #{@playlist.description}" %></p>
 <p><%= "#{Playlist.human_attribute_name(:status)}: #{Playlist.human_enum_name(:status, @playlist.status)}" %></p>
 
+<% unless @playlist.video_categories.nil? %>
+	<% @playlist.video_categories.each do |category|  %>
+		<ul>
+			<li><%= "#{Playlist.human_attribute_name(:video_category)}: #{category.title}" %></li>
+		</ul>
+	<% end %>
+<% end %>
+
 <% @playlist.videos.each do |v| %>
  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
  Video url:<%= link_to v.video_url %>

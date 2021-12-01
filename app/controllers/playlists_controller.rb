@@ -23,6 +23,7 @@ class PlaylistsController < ApplicationController
 
   def new
     @playlist = Playlist.new
+    @categories = VideoCategory.all.order(:title)
   end
 
   def create
@@ -50,6 +51,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [], video_ids: [])
+    params.require(:playlist).permit(:title, :description, :playlist_cover,
+                                     streamer_ids: [], video_ids: [], video_category_ids: [])
   end
 end
