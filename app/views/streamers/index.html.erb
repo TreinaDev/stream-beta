@@ -20,7 +20,11 @@
 <% end %>
 
 <% if current_user&.admin? %>
-  <%= link_to t('links.new_streamer'), new_streamer_path %>
+  <%= link_to t('links.new_streamer'), new_streamer_path, class: "btn btn-outline-primary mt-3 mb-3" %>
+<% end %>
+
+<% if current_user&.admin? %>
+  <div><%= link_to 'Streamers Inativos', inactive_streamers_streamers_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
 <% end %>
 
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

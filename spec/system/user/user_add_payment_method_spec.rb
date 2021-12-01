@@ -9,7 +9,7 @@ describe 'User add payment method' do
     it 'successfully' do
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       request = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_methods/pix.json')))
@@ -40,7 +40,7 @@ describe 'User add payment method' do
     it 'successfully' do
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       request = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_methods/credit_card.json')))
@@ -70,7 +70,7 @@ describe 'User add payment method' do
     it 'failure add method' do
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       request = JSON.parse(
@@ -105,7 +105,7 @@ describe 'User add payment method' do
     it 'successfully' do
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       request = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_methods/boleto.json')))
@@ -132,7 +132,7 @@ describe 'User add payment method' do
     it 'failure to add method' do
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
       request = JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_methods/boleto.json')))

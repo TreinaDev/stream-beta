@@ -55,6 +55,7 @@ describe 'Administrator edit streamer profile' do
 
       login_as admin, scope: :user
       visit root_path
+      click_link 'Streamers'
       click_link 'Streamers Inativos'
       click_link 'Fulano'
       click_link 'Editar Streamer'
