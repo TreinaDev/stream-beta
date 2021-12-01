@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_221941) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_type", default: 10, null: false
     t.string "token", null: false
+    t.integer "status", default: 15
     t.index ["title"], name: "index_subscription_plans_on_title", unique: true
     t.index ["token"], name: "index_subscription_plans_on_token", unique: true
   end
