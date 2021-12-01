@@ -1,0 +1,27 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      promotion_ticket:
+        one: Ticket de promoção
+        other: Tickets de promoções
+    attributes:
+      promotion_ticket:
+        title: Título
+        start_date: Data inicial
+        end_date: Data final
+        discount: Desconto percentual
+        maximum_value_reduction: Desconto bruto máximo
+        maximum_uses: Limite máximo de uso
+        promotion_ticket: Ticket de promoção
+  promotion_tickets:
+    new:
+      title: Criar Ticket de Promoção
+    create:
+      success: Ticket de promoção criado com sucesso!
+    index: 
+      title: Título
+      init_date: Data inicial
+      final_date: Data final
+      discount: Desconto percentual
+      maximum_value_reduction: Desconto bruto máximo
