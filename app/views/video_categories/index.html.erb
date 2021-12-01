@@ -1,0 +1,20 @@
+<h1><%= t('.title') %></h1>
+
+<% if @video_category.present? %>
+  <table class="table">
+    <tr>
+      <th><%= VideoCategory.human_attribute_name(:title) %></th>
+    </tr>
+    <% @video_category.each do |video_category| %>
+      <% if video_category.active?%>
+        <tr>
+          <td><%= link_to video_category.title, video_category_path(video_category) %></td>
+        </tr>
+      <% end%>
+    <% end %>
+  </table>
+<% else %>
+  <p>Ainda não há categorias cadastradas</p>
+<% end %>
+
+<div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

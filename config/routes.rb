@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :video_categories, only: %i[new create show]
+  resources :video_categories, only: %i[new create show index edit update canceled], shallow: true do
+    post 'cancel', on: :member
+  end
 
   resources :subscription_plans, only: %i[index show new create edit update], shallow: true do
     post 'inactive', on: :member
