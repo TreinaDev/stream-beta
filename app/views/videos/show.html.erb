@@ -2,6 +2,16 @@
 <p><%= "#{Video.human_attribute_name(:duration)}: #{@video.duration}" %></p>
 <p><%= "#{Video.human_attribute_name(:video_url)}: #{@video.video_url}" %></p>
 <p><%= "#{Video.human_attribute_name(:maturity_rating)}: #{@video.maturity_rating}" %></p>
+
+<% unless @video.video_categories.nil? %>
+	<p><%= "#{Video.human_attribute_name(:video_category)}: "%></p>
+	<ul>
+		<% @video.video_categories.each do |category|  %>
+			<li><%= category.title %></li>
+		<% end %>
+	</ul>
+<% end %>
+
 <% if @video.allow_purchase? %>
   <% if @user_video.present? %>
     <% if @user_video.approved? %>
