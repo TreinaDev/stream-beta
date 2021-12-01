@@ -11,7 +11,7 @@ describe 'User search' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Streamers'
+        click_link 'Streamers'
         fill_in 'Busca:', with: 'maria'
         click_button 'Pesquisar'
 
@@ -26,7 +26,7 @@ describe 'User search' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Streamers'
+        click_link 'Streamers'
         fill_in 'Busca:', with: 'maria'
         click_button 'Pesquisar'
 
@@ -47,7 +47,7 @@ describe 'User search' do
 
           login_as user, scope: :user
           visit root_path
-          click_on 'Playlists'
+          click_link 'Playlists'
           fill_in 'Busca:', with: 'engraçados'
           click_button 'Pesquisar'
 
@@ -63,7 +63,7 @@ describe 'User search' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Playlists'
+        click_link 'Playlists'
         fill_in 'Busca:', with: ' '
         click_button 'Pesquisar'
 
@@ -80,7 +80,7 @@ describe 'User search' do
 
           login_as user, scope: :user
           visit root_path
-          click_on 'Playlists'
+          click_link 'Playlists'
           fill_in 'Busca:', with: 'engraçados '
           click_button 'Pesquisar'
 
@@ -103,7 +103,7 @@ describe 'User search' do
 
           login_as user, scope: :user
           visit root_path
-          click_on 'Vídeos'
+          click_link 'Vídeos'
           fill_in 'Busca:', with: 'engraçadas'
           click_button 'Pesquisar'
 
@@ -119,7 +119,7 @@ describe 'User search' do
 
         login_as user, scope: :user
         visit root_path
-        click_on 'Vídeos'
+        click_link 'Vídeos'
         fill_in 'Busca:', with: ' '
         click_button 'Pesquisar'
 

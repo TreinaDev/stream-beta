@@ -31,5 +31,4 @@ pt-BR:
       success: Vídeo atualizado com sucesso!
     inactive_videos:
       title: Vídeos Inativos
-      none: Ainda não há vídeos inativos
-      new_video: Novo vídeo
+      message_nothing: Nenhum vídeo inativo

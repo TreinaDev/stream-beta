@@ -10,10 +10,11 @@ pt-BR:
     application:
       promotions: Promoções
       video_categories: Categorias de Vídeos
-      inative_streamers: Streamers Inativos
-      inative_videos: Vídeos Inativos
+      inactive_streamers: Streamers Inativos
+      inactive_videos: Vídeos Inativos
       payment_method: Cadastrar método de pagamento
       dashboard: Área do Assinante
+      report: Relatório
   shared:
     search:
       search: Busca

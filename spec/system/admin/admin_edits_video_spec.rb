@@ -11,16 +11,16 @@ describe 'Administrator edit playlist' do
 
       login_as admin, scope: :user
       visit root_path
-      click_on 'Vídeos'
-      click_on 'Video muito bom'
-      click_on 'Editar Vídeo'
+      click_link 'Vídeos'
+      click_link 'Video muito bom'
+      click_link 'Editar Vídeo'
       within 'form' do
         fill_in 'Título', with: 'Vídeo otimo'
         fill_in 'Duração', with: '00:42:00'
         fill_in 'URL do vídeo', with: 'https://vimeo.com/987654321'
         fill_in 'Faixa etária', with: '14'
         select 'Streamer otimo', from: 'Streamer'
-        click_on 'Atualizar Vídeo'
+        click_button 'Atualizar Vídeo'
       end
 
       expect(current_path).to eq(video_path(Video.last))
@@ -55,6 +55,7 @@ describe 'Administrator edit playlist' do
 
       login_as admin, scope: :user
       visit root_path
+      click_link 'Vídeos'
       click_link 'Vídeos Inativos'
       click_link 'Vídeo ruim'
       click_link 'Editar Vídeo'
