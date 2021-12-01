@@ -1,5 +1,5 @@
 class SubscriptionPlansController < ApplicationController
-  before_action :authenticate_admin!, only: %i[create new edit update inactive]
+  before_action :authenticate_admin!, only: %i[new create edit update inactive]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[show add_promotion_ticket]
   before_action :test_maximum_uses_zero_or_nil, only: %i[add_promotion_ticket]
