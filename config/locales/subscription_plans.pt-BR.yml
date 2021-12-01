@@ -12,7 +12,7 @@ pt-BR:
         value: Valor padrão
         current_value: Valor atual
         plan_type: Tipo de Plano
-        
+
   subscription_plans:
     index:
       title: Planos
