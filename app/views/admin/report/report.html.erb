@@ -1,30 +1,56 @@
 
-<h1>Relátorio da plataforma: </h1>
+<h1><%= t('.title') %>: </h1>
 
-<h3>Streamers</h3>
-<table class="table">
-  <tr>
-    <th><%= Streamer.human_attribute_name(:name) %></th>
-    <th>Assinantes</th>
-  </tr>
-  <% @streamers.each do |s| %>
-    <tr>
-      <td><%= link_to s.first.name, streamer_path(s.first) %></td>
-      <td><%= s.last %></td>
-    </tr>
-  <% end %>
-</table>
+<h3><%= Streamer.model_name.human(count: 2) %></h3>
+<% if @streamers.empty? %>
+	<p><%= t('.nothing_streamer') %></p>
+<% else %>
+	<table class="table">
+		<tr>
+			<th><%= Streamer.human_attribute_name(:name) %></th>
+			<th><%= t('.subscriber') %></th>
+		</tr>
+		<% @streamers.each do |s| %>
+			<tr>
+				<td><%= link_to s.first.name, streamer_path(s.first) %></td>
+				<td><%= s.last %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
 
-<h3>Playlists</h3>
-<table class="table">
-  <tr>
-    <th><%= Playlist.human_attribute_name(:title) %></th>
-    <th>Assinantes</th>
-  </tr>
-  <% @playlists.each do |p| %>
-    <tr>
-      <td><%= link_to p.first.title, playlist_path(p.first) %></td>
-      <td><%= p.last %></td>
-    </tr>
-  <% end %>
-</table>
+<h3><%= Playlist.model_name.human(count: 2) %></h3>
+<% if @playlists.empty? %>
+	<p><%= t('.nothing_playlist') %></p>
+<% else %>
+	<table class="table">
+		<tr>
+			<th><%= Playlist.human_attribute_name(:title) %></th>
+			<th><%= t('.subscriber') %></th>
+		</tr>
+		<% @playlists.each do |p| %>
+			<tr>
+				<td><%= link_to p.first.title, playlist_path(p.first) %></td>
+				<td><%= p.last %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<h3><%= Video.model_name.human(count: 2) %></h3>
+<% if @videos.empty? %>
+	<p><%= t('.nothing_video') %></p>
+<% else %>
+	<table class="table">
+		<tr>
+			<th><%= Video.human_attribute_name(:title) %></th>
+			<th><%= t('.subscriber') %></th>
+		</tr>
+		<% @videos.each do |v| %>
+			<tr>
+				<td><%= link_to v.first.title, video_path(v.first) %></td>
+				<td><%= v.last %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
