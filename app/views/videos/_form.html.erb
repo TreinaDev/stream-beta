@@ -31,12 +31,12 @@
   <div class="mb-3 row">
 		<div class="form-check">
 			<%= f.radio_button :status, "active", class:"form-check-input" %>
-			<%= f.label :status_active, "Ativo", class:"form-check-label" %>
+			<%= f.label :status_active, Video.human_enum_name(:status, :active), class:"form-check-label" %>
 			</label>
 		</div>
 		<div class="form-check">
 			<%= f.radio_button :status, "inactive", class:"form-check-input" %>
-			<%= f.label :status_inactive, "Inativo", class:"form-check-label" %>
+			<%= f.label :status_inactive, Video.human_enum_name(:status, :inactive), class:"form-check-label" %>
 			</label>
 		</div>
 	</div>

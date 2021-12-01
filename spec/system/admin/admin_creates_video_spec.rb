@@ -54,7 +54,6 @@ describe 'Administrator creates video' do
         click_button 'Criar Vídeo'
       end
 
-      save_page
       video = Video.last
       expect(current_path).to eq(video_path(video))
       expect(video.token).to eq('1Ko4tdmJzq')
