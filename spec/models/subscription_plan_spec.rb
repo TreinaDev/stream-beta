@@ -12,6 +12,9 @@ RSpec.describe SubscriptionPlan, type: :model do
 
     it { should have_one(:subscription_plan_streamer).dependent(:destroy) }
     it { should have_one(:streamer).through(:subscription_plan_streamer) }
+
+    it { should have_one(:subscription_plan_promotion_ticket).dependent(:destroy) }
+    it { should have_one(:promotion_ticket).through(:subscription_plan_promotion_ticket) }
   end
 
   describe 'enum' do

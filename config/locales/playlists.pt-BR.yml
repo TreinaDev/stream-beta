@@ -16,6 +16,9 @@ pt-BR:
         video_url: URL do vídeo
         inactivate_playlist: Desativar Playlist
         inactive: Desativada
+        statuses:
+          inactive: Desativada
+          active: Ativada
   playlists:
     index:
       title: Playlists

@@ -6,10 +6,11 @@ pt-BR:
         one: Vídeo
         other: Vídeos
     attributes:
-      video/status:
-        active: Ativo
-        inactive: Inativo
       video:
+        statuses:
+          active: Ativo
+          inactive: Inativo
+        status: Estado
         allow_purchase: Permitir compra avulsa
         duration: Duração
         maturity_rating: Faixa etária

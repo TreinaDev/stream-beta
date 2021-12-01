@@ -77,6 +77,34 @@ ActiveRecord::Schema.define(version: 2021_12_01_022241) do
     t.integer "status", default: 5
   end
 
+  create_table "product_receipts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "product_type", null: false
+    t.integer "product_id", null: false
+    t.integer "payment_method_id", null: false
+    t.decimal "value"
+    t.string "receipt_token"
+    t.datetime "receipt_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_method_id"], name: "index_product_receipts_on_payment_method_id"
+    t.index ["product_type", "product_id"], name: "index_product_receipts_on_product"
+    t.index ["receipt_token"], name: "index_product_receipts_on_receipt_token", unique: true
+    t.index ["user_id"], name: "index_product_receipts_on_user_id"
+  end
+
+  create_table "promotion_tickets", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "discount"
+    t.decimal "maximum_value_reduction"
+    t.integer "maximum_uses"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_promotion_tickets_on_title", unique: true
+  end
+
   create_table "related_playlists", force: :cascade do |t|
     t.integer "original_playlist_id", null: false
     t.integer "related_playlist_id", null: false
@@ -107,6 +135,15 @@ ActiveRecord::Schema.define(version: 2021_12_01_022241) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["playlist_id"], name: "index_subscription_plan_playlists_on_playlist_id"
     t.index ["subscription_plan_id"], name: "index_subscription_plan_playlists_on_subscription_plan_id"
+  end
+
+  create_table "subscription_plan_promotion_tickets", force: :cascade do |t|
+    t.integer "subscription_plan_id", null: false
+    t.integer "promotion_ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promotion_ticket_id"], name: "index_subs_plan_promo_ticket_on_promo_ticket_id"
+    t.index ["subscription_plan_id"], name: "index_subs_plan_promo_ticket_on_subs_plan_id"
   end
 
   create_table "subscription_plan_streamers", force: :cascade do |t|
@@ -235,10 +272,14 @@ ActiveRecord::Schema.define(version: 2021_12_01_022241) do
   add_foreign_key "playlist_streamers", "streamers"
   add_foreign_key "playlist_videos", "playlists"
   add_foreign_key "playlist_videos", "videos"
+  add_foreign_key "product_receipts", "payment_methods"
+  add_foreign_key "product_receipts", "users"
   add_foreign_key "related_playlists", "playlists", column: "original_playlist_id"
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"
   add_foreign_key "subscription_plan_playlists", "subscription_plans"
+  add_foreign_key "subscription_plan_promotion_tickets", "promotion_tickets"
+  add_foreign_key "subscription_plan_promotion_tickets", "subscription_plans"
   add_foreign_key "subscription_plan_streamers", "streamers"
   add_foreign_key "subscription_plan_streamers", "subscription_plans"
   add_foreign_key "subscription_plan_values", "subscription_plans"
