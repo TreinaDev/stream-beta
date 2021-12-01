@@ -20,8 +20,8 @@
   <div>
     <%= f.label :video_ids, Video.model_name.human%>
     <%= f.collection_check_boxes :video_ids, Video.all, :id, :title %>
-		</div>
-		<div>
+  </div>
+  <div>
     <% unless @categories.nil? %>
       <ul>
         <li><%= f.collection_check_boxes :video_category_ids, @categories, :id, :title %></li>

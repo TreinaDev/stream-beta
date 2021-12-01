@@ -3,21 +3,21 @@
 <p><%= "#{Playlist.human_attribute_name(:status)}: #{Playlist.human_enum_name(:status, @playlist.status)}" %></p>
 
 <% unless @playlist.video_categories.nil? %>
-		<p><%= "#{Playlist.human_attribute_name(:video_category)}: "%></p>
-		<ul>
-				<% @playlist.video_categories.each do |category|  %>
-						<li><%= category.title %></li>
-				<% end %>
-		</ul>
+  <p><%= "#{Playlist.human_attribute_name(:video_category)}: "%></p>
+  <ul>
+    <% @playlist.video_categories.each do |category|  %>
+      <li><%= category.title %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <% @playlist.videos.each do |v| %>
-		<%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
-		Video url:<%= link_to v.video_url %>
+  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
+  Video url:<%= link_to v.video_url %>
 <% end %>
 
 <% @playlist.streamers.each do |s| %>
-		<%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
+  <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
 <% end %>
 
 <div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
