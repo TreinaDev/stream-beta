@@ -23,11 +23,9 @@
   </div>
 	<div>
 		<% unless @categories.nil? %>
-			<% @categories.each do |category| %>
 				<ul>
 					<li><%= f.collection_check_boxes :video_category_ids, @categories, :id, :title %></li>
 				</ul>
-			<% end %>
 		<% end %>
 	</div>
   <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
