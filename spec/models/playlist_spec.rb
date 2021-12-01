@@ -5,6 +5,9 @@ RSpec.describe Playlist, type: :model do
     it { should have_many(:playlist_streamers).dependent(:destroy) }
     it { should have_many(:streamers).through(:playlist_streamers) }
 
+    it { should have_many(:category_lists).dependent(:destroy) }
+    it { should have_many(:video_categories).through(:category_lists) }
+
     it { should have_many(:playlist_videos).dependent(:destroy) }
     it { should have_many(:videos).through(:playlist_videos) }
 

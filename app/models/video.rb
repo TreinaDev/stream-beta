@@ -5,6 +5,9 @@ class Video < ApplicationRecord
   has_many :user_videos, dependent: :destroy
   has_many :users, through: :user_videos
 
+  has_many :category_lists, as: :categoriable, dependent: :destroy
+  has_many :video_categories, through: :category_lists
+
   belongs_to :streamer
 
   enum status: { active: 0, inactive: 10 }

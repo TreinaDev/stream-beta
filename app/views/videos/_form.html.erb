@@ -29,19 +29,25 @@
   </div>
 
   <div class="mb-3 row">
-		<div class="form-check">
-			<%= f.radio_button :status, "active", class:"form-check-input" %>
-			<%= f.label :status_active, Video.human_enum_name(:status, :active), class:"form-check-label" %>
-			</label>
-		</div>
-		<div class="form-check">
-			<%= f.radio_button :status, "inactive", class:"form-check-input" %>
-			<%= f.label :status_inactive, Video.human_enum_name(:status, :inactive), class:"form-check-label" %>
-			</label>
-		</div>
-	</div>
+    <div class="form-check">
+      <%= f.radio_button :status, "active", class:"form-check-input" %>
+      <%= f.label :status_active, Video.human_enum_name(:status, :active), class:"form-check-label" %>
+      </label>
+    </div>
+    <div class="form-check">
+      <%= f.radio_button :status, "inactive", class:"form-check-input" %>
+      <%= f.label :status_inactive, Video.human_enum_name(:status, :inactive), class:"form-check-label" %>
+      </label>
+    </div>
+  </div>
 
+  <% unless @categories.nil? %>
+    <div class="mb-3 row">
+      <ul>
+        <li><%= f.collection_check_boxes :video_category_ids, @categories, :id, :title %></li>
+      </ul>
+    </div>	
+  <% end %>
 
-
-  <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+ <%= f.submit data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
 <% end %>

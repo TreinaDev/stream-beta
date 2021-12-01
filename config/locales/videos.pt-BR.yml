@@ -17,6 +17,7 @@ pt-BR:
         title: Título
         value: Valor
         video_url: URL do vídeo
+        video_category: Categorias
   videos:
     index:
       title: Vídeos
