@@ -17,3 +17,5 @@ pt-BR:
       title: Cadastro de Preço Dinâmico
     create:
       success: Preço dinâmico criado com sucesso!
+    cancel:
+      success: Preço dinâmico desativado com sucesso!
