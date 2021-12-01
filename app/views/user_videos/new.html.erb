@@ -6,8 +6,13 @@
 <p><%= "#{Video.human_attribute_name(:value)}: #{number_to_currency(@video.value)}" %></p>
 
 <%= form_with model: @user_video do |f| %>
-  <%= f.hidden_field :payment_method_token, value: 'bkDsZHl9XV' %>
+  <%= f.hidden_field :product_token, value: @video.token %>
   <%= f.hidden_field :video_id, value: @video.id %>
+  <% if @available_payment_methods.present? %>
+    <div class="form-floating mb-3">
+      <%= f.collection_select :payment_method_token, @available_payment_methods, :token, :payment_type, class: "form-select" %>
+    </div>
 
-  <%= f.submit t('.confirm'), data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+    <%= f.submit t('.confirm'), data: { disable_with: t('messages.sending') }, class: "btn btn-primary mt-3 mb-3" %>
+  <% end %>
 <% end %>

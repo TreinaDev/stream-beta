@@ -26,6 +26,7 @@
                 <li class="nav-item"><%= link_to Playlist.model_name.human(count: 2), playlists_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to Video.model_name.human(count: 2), videos_path, class: "nav-link" %></li>
                 <% if current_user.admin? %>
+                  <li class="nav-item"><%= link_to 'Promoções', promotion_tickets_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to 'Categorias de Vídeos', new_video_category_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to 'Streamers Inativos', inactive_streamers_streamers_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to 'Vídeos Inativos', inactive_videos_videos_path, class: "nav-link" %></li>
