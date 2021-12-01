@@ -3,6 +3,7 @@ class UserVideosController < ApplicationController
   before_action :user_must_fill_profile
   before_action :deny_admin_access
   before_action :set_video
+  before_action :set_available_payment_methods, only: %i[new]
 
   def new
     @user_video = UserVideo.new
@@ -28,6 +29,18 @@ class UserVideosController < ApplicationController
   def set_video
     video_id = params[:video_id] || params[:user_video][:video_id]
     @video = Video.find(video_id)
+  end
+
+  def set_available_payment_methods
+    @available_payment_methods = PaymentMethod.available_payment_methods
+
+    @available_payment_methods = [] unless @available_payment_methods.is_a? Array
+
+    @available_payment_methods = current_user.payment_methods
+                                             .where(payment_type: @available_payment_methods)
+                                             .select(:payment_type, :token)
+
+    flash[:alert] = t('.no_payment_methods_available') if @available_payment_methods.empty?
   end
 
   def set_status_flash

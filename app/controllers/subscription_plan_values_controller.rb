@@ -1,5 +1,5 @@
 class SubscriptionPlanValuesController < ApplicationController
-  before_action :authenticate_admin!, only: %i[create new]
+  before_action :authenticate_admin!, only: %i[new create]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[index new create]
 
@@ -13,29 +13,11 @@ class SubscriptionPlanValuesController < ApplicationController
 
   def create
     @subscription_plan_value = @subscription_plan.subscription_plan_values.new(subscription_plan_values_params)
-
     if @subscription_plan_value.save
       redirect_to subscription_plan_subscription_plan_values_path, success: t('.success')
     else
       render :new
     end
-  end
-
-  def edit
-    @plan_value = SubscriptionPlanValue.find(params[:id])
-  end
-
-  def update
-    @plan_value = SubscriptionPlanValue.find(params[:id])
-
-    redirect_to @plan_value if @plan_value.update(subscription_plan_values_params)
-  end
-
-  def inactive_dinamic_plan_values
-    @plan_value = SubscriptionPlanValue.find(params[:id])
-    @plan_value.inactive!
-
-    redirect_to @plan_value, success: t('.success')
   end
 
   private

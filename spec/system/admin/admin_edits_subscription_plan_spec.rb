@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrator inactives dinamic prices' do
+describe 'Administrator inactives dynamic prices' do
   it 'successfully' do
     admin = create(:user, :admin)
     subscription_plan = create(:subscription_plan, title: 'Plano de teste')

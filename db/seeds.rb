@@ -6,7 +6,9 @@ FactoryBot.create(:user, email: 'admin@gamestream.com.br', password: '123456')
 
 # Streamers
 streamer1 = FactoryBot.create(:streamer)
+sleep(1)
 streamer2 = FactoryBot.create(:streamer)
+sleep(1)
 streamer3 = FactoryBot.create(:streamer)
 
 # Video Categories

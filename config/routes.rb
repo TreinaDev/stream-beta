@@ -27,12 +27,14 @@ Rails.application.routes.draw do
 
   resources :subscription_plans, only: %i[index show new create edit update], shallow: true do
     post 'inactive', on: :member
+    post 'add_promotion_ticket', on: :member
     resources :subscription_plan_playlists, only: %i[index new create destroy]
     resources :subscription_plan_streamers, only: %i[new create edit update]
     resources :subscription_plan_values, only: %i[index show new create]
   end
   resources :payment_methods, only: %i[new create show]
 
+  resources :promotion_tickets, only: %i[index new create]
   resources :videos, only: %i[index show new create edit update] do
     get 'inactive_videos', on: :collection
     get 'search', on: :collection

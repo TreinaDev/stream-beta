@@ -8,12 +8,15 @@ pt-BR:
     attributes:
       user_subscription_plan:
         status:
+          one: Situação
+          other: Situações
           pending: Pendente
           approved: Aprovada
           rejected: Rejeitada
   user_subscription_plans:
     new:
       title: Assinatura de Plano
+      no_payment_methods_available: Não há formas de pagamento habilitadas
     create:
       pending: Pagamento em análise
       approved: Assinatura realizada com sucesso!

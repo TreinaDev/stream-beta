@@ -11,8 +11,21 @@ class PaymentMethod < ApplicationRecord
 
   before_validation :request_token
 
+  def self.available_payment_methods
+    available_payment_methods = ApiPagapaga.get('available_payment_methods')
+
+    return [] if available_payment_methods.empty?
+
+    return available_payment_methods if contains_error_message?(available_payment_methods)
+
+    available_payment_methods.pluck(:payment_type)
+  end
+
   def request_token
-    self.token = generate_new_token(@user_payment_method.to_json) if token.nil?
+    return unless token.nil? && @user_payment_method.present?
+
+    @user_payment_method.remove_instance_variable(:@attribute_errors)
+    self.token = generate_new_token(@user_payment_method.to_json)
   end
 
   private
@@ -26,5 +39,10 @@ class PaymentMethod < ApplicationRecord
     end
 
     data[:payment_method_token]
+  end
+
+  private_class_method def self.contains_error_message?(available_payment_methods)
+    (available_payment_methods.is_a?(Array) && available_payment_methods&.first&.key?(:message)) ||
+    (available_payment_methods.is_a?(Hash) && available_payment_methods&.key?(:message))
   end
 end
