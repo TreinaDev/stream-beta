@@ -4,8 +4,8 @@ FactoryBot.define do
     trait :playlist do
       categoriable { :playlist }
     end
-    # trait :video do
-    #   categoriable { :video }
-    # end
+    trait :video do
+      categoriable { :video }
+    end
   end
 end

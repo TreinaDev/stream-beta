@@ -8,6 +8,9 @@ RSpec.describe Video, type: :model do
     it { should have_many(:user_videos) }
     it { should have_many(:users).through(:user_videos) }
 
+    it { should have_many(:category_lists).dependent(:destroy) }
+    it { should have_many(:video_categories).through(:category_lists) }
+
     it { should belong_to(:streamer) }
   end
 
