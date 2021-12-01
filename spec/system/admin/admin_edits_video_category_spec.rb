@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe 'Admin edits video category' do
   it 'successfully' do
     admin = create(:user, :admin)

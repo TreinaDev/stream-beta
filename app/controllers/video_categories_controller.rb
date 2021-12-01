@@ -41,6 +41,7 @@ class VideoCategoriesController < ApplicationController
 
     redirect_to video_categories_path, success: t('.success')
   end
+
   private
 
   def video_category_params
