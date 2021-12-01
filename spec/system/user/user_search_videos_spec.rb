@@ -43,7 +43,7 @@ describe 'videos' do
         expect(page).not_to have_content('Vídeo careta')
       end
     end
-    context 'by streamer' do
+    context 'by category' do
       it 'with 2 category' do
         user = create(:user)
         create(:user_profile, user: user)
