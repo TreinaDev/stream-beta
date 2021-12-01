@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :home, only: %i[index]
+    get 'report', to: 'report#report'
   end
 
   namespace :user do

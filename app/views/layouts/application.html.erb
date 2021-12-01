@@ -30,6 +30,7 @@
                   <li class="nav-item"><%= link_to t('.video_categories'), new_video_category_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to t('.inative_streamers'), inactive_streamers_streamers_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to t('.inative_videos'), inactive_videos_videos_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to 'Relatório', admin_report_path, class: "nav-link" %></li>
                 <% else %>
                   <li class="nav-item"><%= link_to t('.payment_method'), new_payment_method_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to t('.dashboard'), user_dashboard_path, class: "nav-link" %></li>
