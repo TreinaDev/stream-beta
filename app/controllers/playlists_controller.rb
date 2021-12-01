@@ -13,12 +13,17 @@ class PlaylistsController < ApplicationController
 
   def edit
     @playlist = Playlist.find(params[:id])
+    @categories = VideoCategory.all.order(:title)
   end
 
   def update
     @playlist = Playlist.find(params[:id])
 
-    redirect_to @playlist if @playlist.update(playlist_params)
+    if @playlist.update(playlist_params)
+      redirect_to @playlist, success: t('.success')
+    else
+      render :edit
+    end
   end
 
   def new

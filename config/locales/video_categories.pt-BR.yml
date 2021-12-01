@@ -13,4 +13,4 @@ pt-BR:
     new:
       title: Cadastrar Categoria de Vídeo
     create:
-      success: Categoria de Vídeo criada com sucesso!
+     success: Categoria de Vídeo criada com sucesso!

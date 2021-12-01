@@ -28,6 +28,8 @@ pt-BR:
       title: Cadastro de Playlist
     create:
       success: Playlist criada com sucesso!
+    update:
+      success: Playlist editada com sucesso!
     show:
       edit: Editar playlist
     inactive:
