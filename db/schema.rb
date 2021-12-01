@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_051439) do
+ActiveRecord::Schema.define(version: 2021_11_30_221941) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,18 @@ ActiveRecord::Schema.define(version: 2021_11_30_051439) do
     t.index ["user_id"], name: "index_product_receipts_on_user_id"
   end
 
+  create_table "promotion_tickets", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "discount"
+    t.decimal "maximum_value_reduction"
+    t.integer "maximum_uses"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_promotion_tickets_on_title", unique: true
+  end
+
   create_table "related_playlists", force: :cascade do |t|
     t.integer "original_playlist_id", null: false
     t.integer "related_playlist_id", null: false
@@ -123,6 +135,15 @@ ActiveRecord::Schema.define(version: 2021_11_30_051439) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["playlist_id"], name: "index_subscription_plan_playlists_on_playlist_id"
     t.index ["subscription_plan_id"], name: "index_subscription_plan_playlists_on_subscription_plan_id"
+  end
+
+  create_table "subscription_plan_promotion_tickets", force: :cascade do |t|
+    t.integer "subscription_plan_id", null: false
+    t.integer "promotion_ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promotion_ticket_id"], name: "index_subs_plan_promo_ticket_on_promo_ticket_id"
+    t.index ["subscription_plan_id"], name: "index_subs_plan_promo_ticket_on_subs_plan_id"
   end
 
   create_table "subscription_plan_streamers", force: :cascade do |t|
@@ -255,6 +276,8 @@ ActiveRecord::Schema.define(version: 2021_11_30_051439) do
   add_foreign_key "related_playlists", "playlists", column: "related_playlist_id"
   add_foreign_key "subscription_plan_playlists", "playlists"
   add_foreign_key "subscription_plan_playlists", "subscription_plans"
+  add_foreign_key "subscription_plan_promotion_tickets", "promotion_tickets"
+  add_foreign_key "subscription_plan_promotion_tickets", "subscription_plans"
   add_foreign_key "subscription_plan_streamers", "streamers"
   add_foreign_key "subscription_plan_streamers", "subscription_plans"
   add_foreign_key "subscription_plan_values", "subscription_plans"
