@@ -13,6 +13,8 @@ pt-BR:
   subscription_plan_values:
     index:
       title: Preços dinâmicos
+      none_dynamics_prices: Ainda não há preços dinâmicos cadastrados para esse plano
+      new_dynamic_price: Incluir novo preço
     new:
       title: Cadastro de Preço Dinâmico
     create:

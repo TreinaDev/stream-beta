@@ -2,7 +2,7 @@
 
 <h3><%= SubscriptionPlan.model_name.human %>: <%= @subscription_plan.title %></h3>
 
-<%= link_to 'Associar Playlist', new_subscription_plan_subscription_plan_playlist_path(@subscription_plan) %>
+<%= link_to t('.associate'), new_subscription_plan_subscription_plan_playlist_path(@subscription_plan) %>
 
 <% if @subscription_plan_playlists.present? %>
   <table class="table">
@@ -13,12 +13,12 @@
     <% @subscription_plan_playlists.each do |spp| %>
       <tr playlist-id="<%= spp.id %>">
         <td><%= spp.playlist.title %></td>
-        <td><%= button_to 'Remover', subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+        <td><%= button_to t('.remove'), subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
       </tr>
     <% end %>
   </table>
 <% else %>
-  <p>Ainda não há playlists associadas a esse plano</p>
+  <p><%= t('.none_playlists') %></p>
 <% end %>
 
 <div><%= link_to t('links.go_back'), @subscription_plan, class: "btn btn-outline-primary mt-3 mb-3" %></div>

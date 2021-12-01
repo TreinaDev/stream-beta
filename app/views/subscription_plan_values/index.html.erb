@@ -2,7 +2,7 @@
 
 <h3><%= SubscriptionPlan.model_name.human %>: <%= @subscription_plan.title %></h3>
 
-<%= link_to 'Incluir novo preço', new_subscription_plan_subscription_plan_value_path(@subscription_plan) %>
+<%= link_to t('.new_dynamic_price'), new_subscription_plan_subscription_plan_value_path(@subscription_plan) %>
 
 <% if @subscription_plan_values.present? %>
   <table class="table">
@@ -20,7 +20,7 @@
     <% end %>
   </table>
 <% else %>
-  <p>Ainda não há preços dinâmicos cadastrados para esse plano</p>
+  <p><%= t('.none_dynamics_prices') %></p>
 <% end %>
 
 <div><%= link_to t('links.go_back'), @subscription_plan, class: "btn btn-outline-primary mt-3 mb-3" %></div>
