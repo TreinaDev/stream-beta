@@ -14,6 +14,7 @@ class SubscriptionPlan < ApplicationRecord
   has_one :promotion_ticket, through: :subscription_plan_promotion_ticket
 
   enum plan_type: { playlist: 10, streamer: 20 }
+  enum status: { active: 15, inactive: 25 }
 
   validates :title, :description, :token, :value, presence: true
   validates :token, uniqueness: true

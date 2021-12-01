@@ -20,6 +20,10 @@ pt-BR:
       title: Cadastro de Plano
     create:
       success: Plano criado com sucesso!
+    update:
+      success: Plano atualizado com sucesso!
+    inactive:
+      success: Plano inativado com sucesso!
     add_promotion_ticket:
       success: Ticket de promoção adicionado com sucesso!
       fails: 'Ticket de promoção não existe'

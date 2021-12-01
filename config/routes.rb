@@ -27,7 +27,8 @@ Rails.application.routes.draw do
     post 'cancel', on: :member
   end
 
-  resources :subscription_plans, only: %i[index show new create], shallow: true do
+  resources :subscription_plans, only: %i[index show new create edit update], shallow: true do
+    post 'inactive', on: :member
     post 'add_promotion_ticket', on: :member
     resources :subscription_plan_playlists, only: %i[index new create destroy]
     resources :subscription_plan_streamers, only: %i[new create edit update]

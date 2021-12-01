@@ -1,5 +1,5 @@
 class SubscriptionPlanValuesController < ApplicationController
-  before_action :authenticate_admin!, only: %i[create new]
+  before_action :authenticate_admin!, only: %i[new create]
   before_action :user_must_fill_profile
   before_action :set_subscription_plan, only: %i[index new create]
 
