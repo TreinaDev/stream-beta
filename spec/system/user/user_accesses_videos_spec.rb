@@ -30,6 +30,23 @@ describe 'User accesses videos' do
       expect(page).not_to have_content('Marcar como assistido')
       expect(current_path).to eq(video_path(video))
     end
+    it 'and can mark a video as watched' do
+      user = create(:user)
+      create(:user_profile, user: user)
+      video = create(:video, title: 'Ótimo vídeo')
+      VideoHistory.create!(user: user, video: video)
+
+      login_as user, scope: :user
+      visit root_path
+      click_link 'Vídeos'
+      click_on 'Ótimo vídeo'
+      click_on 'Marcar como não assistido'
+
+      expect(page).not_to have_content('Vídeo assistido')
+      expect(page).not_to have_content('Marcar como não assistido')
+      expect(page).to have_content('Marcar como assistido')
+      expect(current_path).to eq(video_path(video))
+    end
   end
 
   context "and can't access" do

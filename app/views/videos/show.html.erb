@@ -41,7 +41,7 @@
     <%= link_to t('.link_whatched_video'), video_video_histories_path(video_id: @video.id), method: :post, class: "btn btn-outline-primary mt-3 mb-3" %>
     <% else %>
     <p>Vídeo assistido!</p>
-    <%= link_to t('.link_unwhatched_video'), video_video_histories_path(video_id: @video.id, video_history_id: @video_whatched.id), method: :delete, class: "btn btn-outline-primary mt-3 mb-3" %>
+    <%= link_to t('.link_unwhatched_video'), video_video_history_path(video_id: @video.id, video_history_id: @video_whatched.id), method: :delete, class: "btn btn-outline-primary mt-3 mb-3" %>
   <% end %>
 <% end %>
 
