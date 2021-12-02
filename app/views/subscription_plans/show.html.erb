@@ -36,7 +36,9 @@
 <% if @user_subscription_plan.present? %>
   <p>Situação da assinatura: <%= t(@user_subscription_plan.status) %></p>
 <% end %>
-<% if @user_subscription_plan.nil? || @user_subscription_plan.rejected? %>
-  <div><%= link_to t('.sign_plan'), new_user_subscription_plan_path(subscription_plan_id: @subscription_plan.id) %></div>
+<% if @user_subscription_plan.nil? || @user_subscription_plan.rejected?%>
+  <% if !current_user&.admin? %>
+    <div><%= link_to t('.sign_plan'), new_user_subscription_plan_path(subscription_plan_id: @subscription_plan.id) %></div>
+  <% end %>
 <% end %>
 <div><%= link_to t('links.go_back'), subscription_plans_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

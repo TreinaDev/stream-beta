@@ -24,7 +24,6 @@
     <% end %>
 </table>
 
-
 <% @playlist.streamers.each do |s| %>
   <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
 <% end %>
