@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'my_subscription_plans', to: 'dashboard#my_subscription_plans'
     get 'my_videos', to: 'dashboard#my_videos'
     get 'purchase_history', to: 'dashboard#purchase_history'
+    get 'video_history', to: 'dashboard#video_history'
   end
 
   resources :playlists, only: %i[index show new create edit update] do

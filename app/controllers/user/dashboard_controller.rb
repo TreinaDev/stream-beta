@@ -18,5 +18,9 @@ class User
     def my_videos
       @videos = current_user.videos
     end
+
+    def video_history
+      @videos = current_user.video_histories.map(&:video)
+    end
   end
 end
