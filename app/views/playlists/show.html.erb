@@ -11,10 +11,21 @@
   </ul>
 <% end %>
 
-<% @playlist.videos.each do |v| %>
-  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
-  Video url:<%= link_to v.video_url %>
-<% end %>
+  <%# <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
+  <%# Video url:<%= link_to v.video_url %>
+<table class="table">
+  <tr>
+    <th><%= "#{Video.human_attribute_name(:video)}" %></th>
+    <th><%= t('.video_url')%></th>
+  </tr>
+  <% @playlist.videos.each do |v| %>
+    <tr>
+      <td><%= v.title %></td>
+      <td><%= link_to v.video_url %></td>
+    </tr>
+    <% end %>
+</table>
+
 
 <% @playlist.streamers.each do |s| %>
   <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
