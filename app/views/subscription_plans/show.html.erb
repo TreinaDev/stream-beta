@@ -15,7 +15,7 @@
   </div>
   <%= f.submit 'Adicionar Ticket de promoção' %>
 <% end %>
-]
+
 <% if @subscription_plan.streamer? %>
   <% if @subscription_plan.streamer.present? %>
     <%= @subscription_plan.streamer&.name %>

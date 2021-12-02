@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
     if current_user&.admin?
       stored_location_for(resource) || admin_home_index_path
     else
+      recurrent_payment
       stored_location_for(resource) || root_path
     end
+  end
+
+  def recurrent_payment
+    plans = UserSubscriptionPlan.where(enrollment: :active, user: current_user).select do |plan|
+      plan.status_date <= 1.month.ago.to_date
+    end
+    plans.each(&:confirm_payment)
   end
 
   private
