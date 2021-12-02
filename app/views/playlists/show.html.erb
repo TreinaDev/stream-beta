@@ -19,6 +19,7 @@
 <% @playlist.streamers.each do |s| %>
   <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
 <% end %>
-
-<div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<% if current_user&.admin? %>
+  <div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<% end %>
 <div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

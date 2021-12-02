@@ -2,21 +2,19 @@
 <p><%= "#{SubscriptionPlan.human_attribute_name(:description)}: #{@subscription_plan.description}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:value)}: #{number_to_currency(@subscription_plan.value)}" %></p>
 <p><%= "#{SubscriptionPlan.human_attribute_name(:current_value)}: #{number_to_currency(@subscription_plan.current_value)}" %></p>
-<div><%= link_to 'Editar plano', edit_subscription_plan_path(@subscription_plan) %> </div>
-<div><%= link_to 'Inativar plano', inactive_subscription_plan_path(@subscription_plan), method: :post%> </div>
 
 <% if @subscription_plan.promotion_ticket.present? %>
   <p><%= "#{PromotionTicket.human_attribute_name(:promotion_ticket)}: #{@subscription_plan.promotion_ticket.title}" %></p>
 <% end %>
 
 <%= form_with(model: [@subscription_plan, @promotion_ticket], url: add_promotion_ticket_subscription_plan_path) do |f|%>
-  <div class="form-floating mb-3">
-    <%= f.search_field :title, placeholder: t('.promotion_ticket'), class: "form-control" %>
+  <div class="form-label mb-3">
+    <%= f.search_field :title, placeholder: t('.promotion_ticket'), class: "form-control-lg" %>
   </div>
-  <%= f.submit t('.add_new_ticket') %>
+  <%= f.submit t('.add_new_ticket'), class: "btn btn-outline-primary mt-1 mb-3"  %>
 <% end %>
 
-<% if @subscription_plan.streamer? %>
+<% if @subscription_plan.streamer? && current_user&.admin? %>
   <% if @subscription_plan.streamer.present? %>
     <%= @subscription_plan.streamer&.name %>
     <div><%= link_to t('.edit'), edit_subscription_plan_streamer_path(@subscription_plan.subscription_plan_streamer) %></div>
@@ -28,7 +26,12 @@
 <% if @subscription_plan.playlist? %>
   <div><%= link_to t('plan_playlists'), subscription_plan_subscription_plan_playlists_path(@subscription_plan) %></div>
 <% end %>
-<div><%= link_to SubscriptionPlanValue.model_name.human(count: 2), subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
+<% if current_user&.admin? %>
+  <div><%= link_to 'Editar plano', edit_subscription_plan_path(@subscription_plan) %> </div>
+  <div><%= link_to 'Inativar plano', inactive_subscription_plan_path(@subscription_plan), method: :post%> </div>
+  <div><%= link_to SubscriptionPlanValue.model_name.human(count: 2), subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
+<% end %>
+
 
 <% if @user_subscription_plan.present? %>
   <p>Situação da assinatura: <%= t(@user_subscription_plan.status) %></p>
