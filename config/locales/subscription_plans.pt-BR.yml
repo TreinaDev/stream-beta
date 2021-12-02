@@ -14,6 +14,8 @@ pt-BR:
         plan_type: Tipo de Plano
         
   subscription_plans:
+    cancel:
+      success: Assinatura cancelada com sucesso!
     index:
       title: Planos
     new:
@@ -28,6 +30,8 @@ pt-BR:
       success: Ticket de promoção adicionado com sucesso!
       fails: 'Ticket de promoção não existe'
       maximum_uses_zero: Ticket de promoção esgotado!
+    show: 
+      cancel: Cancelar assinatura
   plan_playlists: Playlists do Plano
   playlist: Playlist
   streamer: Streamer

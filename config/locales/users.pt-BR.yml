@@ -21,3 +21,8 @@ pt-BR:
     sessions:
       new:
         title: Entrar
+  user:
+    dashboard:
+      my_subscription_plans:
+        active_plans: Assinaturas ativas
+        cancels_plans: Assinaturas canceladas

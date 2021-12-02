@@ -50,6 +50,13 @@ class SubscriptionPlansController < ApplicationController
     redirect_to subscription_plan_path, success: t('.success')
   end
 
+  def cancel
+    @user_subscription_plan = UserSubscriptionPlan.find(params[:id])
+
+    @user_subscription_plan.canceled!
+    redirect_to user_my_subscription_plans_path, success: t('.success')
+  end
+
   private
 
   def subscription_plan_params
