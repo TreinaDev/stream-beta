@@ -15,7 +15,7 @@
   </div>
   <%= f.submit 'Adicionar Ticket de promoção' %>
 <% end %>
-
+]
 <% if @subscription_plan.streamer? %>
   <% if @subscription_plan.streamer.present? %>
     <%= @subscription_plan.streamer&.name %>
@@ -33,7 +33,8 @@
 <% if @user_subscription_plan.present? %>
   <p>Situação da assinatura: <%= t(@user_subscription_plan.status) %></p>
     <% if @user_subscription_plan.approved? %>
-      <div><%= link_to t('.cancel'), cancel_subscription_plan_path, method: :post, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+      <div><%= link_to t('.cancel'), cancel_subscription_plan_path, method: :post, class: "btn btn-outline-primary mt-3 mb-3" unless @user_subscription_plan.canceled? %></div>
+      <div><%= link_to t('.reactive'), reactive_subscription_plan_path, method: :post, class: "btn btn-outline-primary mt-3 mb-3" unless @user_subscription_plan.active? %></div>
     <% end %>
 <% end %>
 

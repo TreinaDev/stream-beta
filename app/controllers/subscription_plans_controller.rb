@@ -57,6 +57,13 @@ class SubscriptionPlansController < ApplicationController
     redirect_to user_my_subscription_plans_path, success: t('.success')
   end
 
+  def reactive
+    @user_subscription_plan = UserSubscriptionPlan.find(params[:id])
+
+    @user_subscription_plan.active!
+    redirect_to user_my_subscription_plans_path, success: t('.success')
+  end
+
   private
 
   def subscription_plan_params
