@@ -58,13 +58,13 @@ class SubscriptionPlan < ApplicationRecord
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
 
-    data = ApiPagapaga.post('subscription_plans', token_params.to_json)
+    data = ApiPagapaga.post('subscription_products', token_params.to_json)
 
-    unless data&.key?(:subscription_plan_token)
+    unless data&.key?(:product_token)
       errors.add(:api_connection, data[:message])
       return nil
     end
 
-    data[:subscription_plan_token]
+    data[:product_token]
   end
 end
