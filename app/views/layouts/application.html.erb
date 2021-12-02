@@ -38,6 +38,10 @@
               <% else %>
                 <li class="nav-item"><%= link_to t('links.sign_in'), new_user_session_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to t('links.sign_up'), new_user_registration_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to t('.streamers'), streamers_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to t('.plan'), subscription_plans_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to t('.playlists'), playlists_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to t('.videos'), videos_path, class: "nav-link" %></li>
               <% end %>
             </ul>
           </div>
