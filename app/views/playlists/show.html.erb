@@ -6,13 +6,11 @@
   <p><%= "#{Playlist.human_attribute_name(:video_category)}: "%></p>
   <ul>
     <% @playlist.video_categories.each do |category|  %>
-      <li><%= category.title %></li>
+        <li><%= category.title %></li>
     <% end %>
   </ul>
 <% end %>
 
-  <%# <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
-  <%# Video url:<%= link_to v.video_url %>
 <table class="table">
   <tr>
     <th><%= "#{Video.human_attribute_name(:video)}" %></th>
