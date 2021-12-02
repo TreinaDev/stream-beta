@@ -33,3 +33,6 @@ pt-BR:
     inactive_videos:
       title: Vídeos Inativos
       message_nothing: Nenhum vídeo inativo
+    show:
+      link_whatched_video: Marcar como assistido
+      link_unwhatched_video: Marcar como não assistido

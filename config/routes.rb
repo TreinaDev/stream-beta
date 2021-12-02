@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :promotion_tickets, only: %i[index new create]
   resources :videos, only: %i[index show new create edit update] do
+    resources :video_histories, only: %i[create]
     get 'inactive_videos', on: :collection
     get 'search', on: :collection
   end
