@@ -1,2 +1,15 @@
 <h1><%= t('.title') %></h1>
-<p><%= t('.message_nothing') %></p>
+<% if @videos.present? %>
+  <table class="table">
+    <tr>
+      <th><%= Video.human_attribute_name(:title) %></th>
+    </tr>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= link_to video.title, video_path(video) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p><%= t('.message_nothing') %></p>
+<% end %>
