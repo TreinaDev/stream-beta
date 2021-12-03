@@ -28,6 +28,8 @@ pt-BR:
       edit: Editar Streamer
       associate: Associar Streamer
       sign_plan: Assinar plano
+      cancel: Cancelar assinatura
+      reactive: Reativar assinatura
     new:
       title: Cadastro de Plano
     create:
@@ -40,9 +42,6 @@ pt-BR:
       success: Ticket de promoção adicionado com sucesso!
       fails: 'Ticket de promoção não existe'
       maximum_uses_zero: Ticket de promoção esgotado!
-    show: 
-      cancel: Cancelar assinatura
-      reactive: Reativar assinatura
   plan_playlists: Playlists do Plano
   playlist: Playlist
   streamer: Streamer
