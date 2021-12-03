@@ -30,7 +30,7 @@ RSpec.describe UserSubscriptionPlan, type: :model do
       create(:payment_method, token: user_subscription_plan['payment_method_token'], user: user)
       api_response = File.read(Rails.root.join('spec/support/apis/user_subscription_plan_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/product_purchase/',
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_product_payments/',
                                             user_subscription_plan.to_json, header).and_return(fake_response)
 
       subject.confirm_payment
@@ -39,7 +39,7 @@ RSpec.describe UserSubscriptionPlan, type: :model do
 
     it 'and fails due to server error' do
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/product_purchase/',
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_product_payments/',
                                             user_subscription_plan.to_json, header).and_return(fake_response)
 
       subject.confirm_payment

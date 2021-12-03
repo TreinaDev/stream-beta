@@ -7,7 +7,7 @@ class UserSubscriptionPlan < ApplicationRecord
 
   def confirm_payment
     purchase_params = { payment_method_token: payment_method_token, product_token: product_token }
-    data = ApiPagapaga.post('product_purchase', purchase_params.to_json)
+    data = ApiPagapaga.post('subscription_product_payments', purchase_params.to_json)
 
     unless data&.key?(:payment_status)
       errors.add(:api_connection, data[:message])

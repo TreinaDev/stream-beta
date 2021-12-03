@@ -19,7 +19,7 @@ describe 'User purchases video' do
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }
       fake_response = { payment_status: 'approved', receipt_token: 'h7d6yy79YO' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_video.to_json).and_return(fake_response)
+      allow(ApiPagapaga).to receive(:post).with('single_product_payments', user_video.to_json).and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
@@ -50,7 +50,7 @@ describe 'User purchases video' do
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }
       fake_response = { payment_status: 'rejected', receipt_token: '' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_video.to_json).and_return(fake_response)
+      allow(ApiPagapaga).to receive(:post).with('single_product_payments', user_video.to_json).and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
@@ -104,7 +104,7 @@ describe 'User purchases video' do
 
       user_video = { payment_method_token: payment_method.token, product_token: video.token }
       fake_response = { payment_status: 'pending', receipt_token: '' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_video.to_json).and_return(fake_response)
+      allow(ApiPagapaga).to receive(:post).with('single_product_payments', user_video.to_json).and_return(fake_response)
 
       login_as user, scope: :user
       visit root_path
