@@ -23,6 +23,9 @@ pt-BR:
         title: Entrar
   user:
     dashboard:
+      my_subscription_plans:
+        active_plans: Assinaturas ativas
+        cancels_plans: Assinaturas canceladas
       dashboard:
         purchases_historic: Histórico de Compras
         video_history: Histórico de Vídeos

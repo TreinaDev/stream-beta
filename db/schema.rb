@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2021_12_02_232950) do
     t.string "payment_method_token"
     t.integer "status", default: 10, null: false
     t.datetime "status_date"
+    t.integer "enrollment", default: 100
     t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
     t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
   end
