@@ -14,6 +14,10 @@ pt-BR:
         plan_type: Tipo de Plano
 
   subscription_plans:
+    reactive:
+      success: Assinatura reativada com sucesso!
+    cancel:
+      success: Assinatura cancelada com sucesso!
     index:
       title: Planos
       no_plans: Ainda não há planos cadastrados
@@ -24,6 +28,8 @@ pt-BR:
       edit: Editar Streamer
       associate: Associar Streamer
       sign_plan: Assinar plano
+      cancel: Cancelar assinatura
+      reactive: Reativar assinatura
     new:
       title: Cadastro de Plano
     create:

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'my_subscription_plans', to: 'dashboard#my_subscription_plans'
     get 'my_videos', to: 'dashboard#my_videos'
     get 'purchase_history', to: 'dashboard#purchase_history'
+    get 'video_history', to: 'dashboard#video_history'
   end
 
   resources :playlists, only: %i[index show new create edit update] do
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
   resources :subscription_plans, only: %i[index show new create edit update], shallow: true do
     post 'inactive', on: :member
     post 'add_promotion_ticket', on: :member
+    post 'cancel', on: :member
+    post 'reactive', on: :member
     resources :subscription_plan_playlists, only: %i[index new create destroy]
     resources :subscription_plan_streamers, only: %i[new create edit update]
     resources :subscription_plan_values, only: %i[index show new create], shallow: true do
@@ -43,6 +46,7 @@ Rails.application.routes.draw do
   resources :videos, only: %i[index show new create edit update] do
     get 'inactive_videos', on: :collection
     get 'search', on: :collection
+    resources :video_histories, only: %i[create destroy]
   end
 
   resources :user_profiles, only: %i[show new create]

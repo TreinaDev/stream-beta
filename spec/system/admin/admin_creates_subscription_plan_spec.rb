@@ -4,11 +4,11 @@ describe 'Administrator creates new subscription plan' do
   it 'successfully' do
     admin = create(:user, :admin)
     request = { title: 'Plano Padrão', value: '50.0' }.to_json
-    response = { subscription_plan_token: '0YDlXnLGnS' }.to_json
+    response = { product_token: '0YDlXnLGnS' }.to_json
     fake_response = instance_double(Faraday::Response, status: 201, body: response)
     header = { 'Content-Type' => 'application/json',
                'company_token' => Rails.configuration.api_pagapaga[:company_token] }
-    allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/', request, header)
+    allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_products/', request, header)
                                     .and_return(fake_response)
 
     login_as admin, scope: :user
@@ -34,11 +34,11 @@ describe 'Administrator creates new subscription plan' do
   it 'fails due to empty fields' do
     admin = create(:user, :admin)
     request = { title: '', value: nil }.to_json
-    response = { subscription_plan_token: '' }.to_json
+    response = { product_token: '' }.to_json
     fake_response = instance_double(Faraday::Response, status: 201, body: response)
     header = { 'Content-Type' => 'application/json',
                'company_token' => Rails.configuration.api_pagapaga[:company_token] }
-    allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_plans/', request, header)
+    allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_products/', request, header)
                                     .and_return(fake_response)
 
     login_as admin, scope: :user

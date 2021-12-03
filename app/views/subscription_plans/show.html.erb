@@ -32,13 +32,17 @@
   <div><%= link_to SubscriptionPlanValue.model_name.human(count: 2), subscription_plan_subscription_plan_values_path(@subscription_plan) %></div>
 <% end %>
 
-
 <% if @user_subscription_plan.present? %>
   <p>Situação da assinatura: <%= t(@user_subscription_plan.status) %></p>
+  <% if @user_subscription_plan.approved? %>
+    <div><%= link_to t('.cancel'), cancel_subscription_plan_path, method: :post, class: "btn btn-outline-primary mt-3 mb-3" unless @user_subscription_plan.canceled? %></div>
+    <div><%= link_to t('.reactive'), reactive_subscription_plan_path, method: :post, class: "btn btn-outline-primary mt-3 mb-3" unless @user_subscription_plan.active? %></div>
+  <% end %>
 <% end %>
 <% if @user_subscription_plan.nil? || @user_subscription_plan.rejected?%>
   <% if !current_user&.admin? %>
     <div><%= link_to t('.sign_plan'), new_user_subscription_plan_path(subscription_plan_id: @subscription_plan.id) %></div>
   <% end %>
 <% end %>
+
 <div><%= link_to t('links.go_back'), subscription_plans_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

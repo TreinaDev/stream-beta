@@ -8,6 +8,20 @@ class UserProfile < ApplicationRecord
 
   validate :check_cpf_format
 
+  def create_or_update_account_holder
+    account_holder = {
+      name: full_name,
+      cpf: cpf,
+      birth_date: birth_date
+    }
+
+    data = ApiPagapaga.post('account_holders', account_holder.to_json)
+
+    return data[:ok] if data&.key?(:ok)
+
+    errors.add(:api_connection, data[:message])
+  end
+
   private
 
   def check_cpf_format

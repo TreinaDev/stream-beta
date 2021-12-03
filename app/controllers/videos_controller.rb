@@ -30,6 +30,7 @@ class VideosController < ApplicationController
     redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive?
 
     redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive?
+    @video_whatched = VideoHistory.find_by(video: @video, user: current_user)
   end
 
   def edit
@@ -49,7 +50,11 @@ class VideosController < ApplicationController
   end
 
   def search
-    @videos = Video.where('title like ?', "%#{params[:query]}%").reject(&:inactive?)
+    videos = Video.where('title like ?', "%#{params[:query]}%")
+    with_streamers = Video.joins(:streamer).where('name like ?', "%#{params[:query]}%")
+    with_category = Video.joins(:video_categories)
+                         .where('video_categories.title like ?', "%#{params[:query]}%")
+    @videos = Utils.concat_search([videos, with_streamers, with_category])
     render :index
   end
 

@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_one :user_profile, dependent: :destroy
 
+  has_many :video_histories, dependent: :destroy
+
   before_save :admin_save
 
   private

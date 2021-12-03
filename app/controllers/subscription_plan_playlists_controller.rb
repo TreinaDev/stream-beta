@@ -1,5 +1,5 @@
 class SubscriptionPlanPlaylistsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, only: %i[new create destroy]
   before_action :set_subscription_plan, only: %i[index new create]
   before_action :check_plan_type, only: %i[index new create]
 

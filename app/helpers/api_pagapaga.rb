@@ -8,7 +8,7 @@ class ApiPagapaga
 
     return { message: I18n.t('messages.api_server_error') } if response.status == 500
 
-    return { message: I18n.t('messages.api_standard_error') } unless response.status == 201
+    return { message: I18n.t('messages.api_standard_error') } unless [200, 201, 400].include?(response.status)
 
     JSON.parse(response.body, symbolize_names: true)
   rescue Faraday::ConnectionFailed

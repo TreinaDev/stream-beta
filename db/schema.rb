@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_141137) do
+ActiveRecord::Schema.define(version: 2021_12_02_232950) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_141137) do
     t.string "payment_method_token"
     t.integer "status", default: 10, null: false
     t.datetime "status_date"
+    t.integer "enrollment", default: 100
     t.index ["subscription_plan_id"], name: "index_user_subscription_plans_on_subscription_plan_id"
     t.index ["user_id"], name: "index_user_subscription_plans_on_user_id"
   end
@@ -256,6 +257,16 @@ ActiveRecord::Schema.define(version: 2021_12_01_141137) do
     t.integer "parent_id"
     t.integer "status", default: 10
     t.index ["title"], name: "index_video_categories_on_title", unique: true
+  end
+
+  create_table "video_histories", force: :cascade do |t|
+    t.integer "video_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "video_id"], name: "index_video_histories_on_user_id_and_video_id", unique: true
+    t.index ["user_id"], name: "index_video_histories_on_user_id"
+    t.index ["video_id"], name: "index_video_histories_on_video_id"
   end
 
   create_table "videos", force: :cascade do |t|
@@ -300,5 +311,7 @@ ActiveRecord::Schema.define(version: 2021_12_01_141137) do
   add_foreign_key "user_videos", "users"
   add_foreign_key "user_videos", "videos"
   add_foreign_key "video_categories", "video_categories", column: "parent_id"
+  add_foreign_key "video_histories", "users"
+  add_foreign_key "video_histories", "videos"
   add_foreign_key "videos", "streamers"
 end
