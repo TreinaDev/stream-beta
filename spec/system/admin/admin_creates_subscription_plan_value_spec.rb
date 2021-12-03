@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Administrator creates subscription plan value' do
   it 'successfully' do
-    admin = create(:user, :admin)
+    admin = create(:user, :admin, email: 'jj@gamestream.com.br')
     subscription_plan = create(:subscription_plan, title: 'Plano de teste')
 
     login_as admin, scope: :user
