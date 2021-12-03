@@ -8,6 +8,8 @@ class Video < ApplicationRecord
   has_many :category_lists, as: :categoriable, dependent: :destroy
   has_many :video_categories, through: :category_lists
 
+  has_many :video_histories, dependent: :destroy
+
   belongs_to :streamer
 
   enum status: { active: 0, inactive: 10 }
@@ -19,7 +21,7 @@ class Video < ApplicationRecord
   validates :duration, format: { with: /\d{2}:[0-5]\d:[0-5]\d/, message: 'não está formatada corretamente' }
 
   validates :video_url, format: {
-    with: %r{(?:http|https)?(?:://)?(?:player\.)?vimeo\.com/(?:.*/)?\d{9}},
+    with: /\A\d+\z/,
     message: 'não está formatada corretamente'
   }
   validates :allow_purchase, inclusion: [true, false]

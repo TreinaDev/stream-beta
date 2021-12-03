@@ -6,13 +6,6 @@ describe 'Restricted SubscriptionPlanPlaylist routes' do
       @user = create(:user)
     end
 
-    it "can't access the 'index' action" do
-      login_as @user, scope: :user
-      get subscription_plan_subscription_plan_playlists_path(1)
-
-      expect(response).to redirect_to(root_path)
-    end
-
     it "can't access the 'create' action" do
       login_as @user, scope: :user
       post subscription_plan_subscription_plan_playlists_path(1)
@@ -36,12 +29,6 @@ describe 'Restricted SubscriptionPlanPlaylist routes' do
   end
 
   context 'when unauthenticated' do
-    it "can't access the 'index' action" do
-      get subscription_plan_subscription_plan_playlists_path(1)
-
-      expect(response).to redirect_to(new_user_session_path)
-    end
-
     it "can't access the 'create' action" do
       post subscription_plan_subscription_plan_playlists_path(1)
 

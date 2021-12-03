@@ -16,7 +16,7 @@ pt-BR:
         maturity_rating: Faixa etária
         title: Título
         value: Valor
-        video_url: URL do vídeo
+        video_url: Vídeo
         video_category: Categorias
   videos:
     index:
@@ -33,3 +33,6 @@ pt-BR:
     inactive_videos:
       title: Vídeos Inativos
       message_nothing: Nenhum vídeo inativo
+    show:
+      link_watched_video: Marcar como assistido
+      link_unwatched_video: Marcar como não assistido

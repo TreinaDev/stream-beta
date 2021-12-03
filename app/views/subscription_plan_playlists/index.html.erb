@@ -1,19 +1,25 @@
 <h1><%= t('.title') %></h1>
 
 <h3><%= SubscriptionPlan.model_name.human %>: <%= @subscription_plan.title %></h3>
-
-<%= link_to t('.associate'), new_subscription_plan_subscription_plan_playlist_path(@subscription_plan) %>
+<% if current_user&.admin? %>
+  <%= link_to t('.associate'), new_subscription_plan_subscription_plan_playlist_path(@subscription_plan) %>
+<% end %>
 
 <% if @subscription_plan_playlists.present? %>
   <table class="table">
     <tr>
       <th><%= Playlist.human_attribute_name(:title) %></th>
+      <th><%= Playlist.human_attribute_name(:description) %></th>
       <th></th>
     </tr>
     <% @subscription_plan_playlists.each do |spp| %>
       <tr playlist-id="<%= spp.id %>">
-        <td><%= spp.playlist.title %></td>
-        <td><%= button_to t('.remove'), subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+        <td><%= link_to spp.playlist.title, playlist_path(spp.playlist) %></td>
+        <% if current_user&.admin? %>
+          <td><%= button_to t('.remove'), subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+        <% elsif current_user && !current_user&.admin?%>
+          <td><%= spp.playlist.description %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

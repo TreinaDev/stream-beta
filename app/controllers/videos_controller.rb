@@ -30,6 +30,7 @@ class VideosController < ApplicationController
     redirect_to root_path, alert: 'Vídeo Inativo!' if @video.inactive?
 
     redirect_to root_path, alert: 'Streamer Inativo!' if @video.streamer.inactive?
+    @video_watched = VideoHistory.find_by(video: @video, user: current_user)
   end
 
   def edit

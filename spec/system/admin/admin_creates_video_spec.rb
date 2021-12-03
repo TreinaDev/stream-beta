@@ -13,7 +13,7 @@ describe 'Administrator creates video' do
       within 'form' do
         fill_in 'Título', with: 'Vídeo novo'
         fill_in 'Duração', with: '00:59:12'
-        fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+        fill_in 'Vídeo', with: '123456789'
         fill_in 'Faixa etária', with: '18'
         select 'DarkStar', from: 'Streamer'
         click_button 'Criar Vídeo'
@@ -23,7 +23,6 @@ describe 'Administrator creates video' do
       expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
       expect(page).to have_content('Vídeo novo')
       expect(page).to have_content('00:59:12')
-      expect(page).to have_content('https://vimeo.com/123456789')
       expect(page).to have_content('18')
       expect(page).to have_no_link('Adquirir Vídeo')
     end
@@ -46,7 +45,7 @@ describe 'Administrator creates video' do
       within 'form' do
         fill_in 'Título', with: 'Vídeo novo'
         fill_in 'Duração', with: '00:59:12'
-        fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+        fill_in 'Vídeo', with: '123456789'
         fill_in 'Faixa etária', with: '18'
         select 'DarkStar', from: 'Streamer'
         check 'Permitir compra avulsa'
@@ -60,7 +59,6 @@ describe 'Administrator creates video' do
       expect(page).to have_css('div', text: 'Vídeo criado com sucesso!')
       expect(page).to have_content('Vídeo novo')
       expect(page).to have_content('00:59:12')
-      expect(page).to have_content('https://vimeo.com/123456789')
       expect(page).to have_content('18')
       expect(page).to have_content('Valor: R$ 5,40')
       expect(page).to have_no_link('Adquirir Vídeo')
@@ -82,7 +80,7 @@ describe 'Administrator creates video' do
     expect(current_path).to eq(videos_path)
     expect(page).to have_content('Título não pode ficar em branco')
     expect(page).to have_content('Duração não pode ficar em branco')
-    expect(page).to have_content('URL do vídeo não pode ficar em branco')
+    expect(page).to have_content('Vídeo não pode ficar em branco')
     expect(page).to have_content('Faixa etária não pode ficar em branco')
   end
 

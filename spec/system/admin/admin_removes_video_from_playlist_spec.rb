@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Admin removes video from playlist' do
   it 'successfully' do
     admin = create(:user, :admin)
-    outro_video = create(:video, title: 'Outro video', video_url: 'https://vimeo.com/987654321')
-    video = create(:video, title: 'Videozinho', video_url: 'https://vimeo.com/123456789')
+    outro_video = create(:video, title: 'Outro video', video_url: '987654321')
+    video = create(:video, title: 'Videozinho', video_url: '123456789')
     playlist = create(:playlist, title: 'Playlist de jogos', video_ids: [video.id, outro_video.id])
 
     login_as admin, scope: :user
@@ -22,6 +22,6 @@ describe 'Admin removes video from playlist' do
     expect(page).to have_content('Título: Playlist de jogos')
     expect(page).to have_content('Outro video')
     expect(page).not_to have_content('Videozinho')
-    expect(page).not_to have_link('https://vimeo.com/123456789')
+    expect(page).not_to have_link('123456789')
   end
 end
