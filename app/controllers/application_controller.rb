@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def recurrent_payment
-    plans = UserSubscriptionPlan.where(enrollment: :active, user: current_user).select do |plan|
-      plan.status_date <= 1.month.ago.to_date
-    end
+    plans = UserSubscriptionPlan.where(status_date: ..1.month.ago, enrollment: :active, user: current_user)
     plans.each(&:confirm_payment)
   end
 
