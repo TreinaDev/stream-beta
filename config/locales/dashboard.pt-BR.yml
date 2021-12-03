@@ -10,3 +10,6 @@ pt-BR:
         title: Minhas Assinaturas
       my_videos:
         title: Meus Vídeos
+      video_history:
+        title: Histórico de Vídeos
+        message_nothing: Você ainda não assistiu nenhum vídeo

@@ -13,7 +13,7 @@ describe 'User accesses dashboard' do
       expect(current_path).to eq(user_dashboard_path)
       expect(page).to have_css('h1', text: 'Área do Assinante')
       expect(page).to have_link('Histórico de Compras')
-      expect(page).to have_link('Histórico de Consumo')
+      expect(page).to have_link('Histórico de Vídeos')
       expect(page).to have_link('Minhas Assinaturas')
       expect(page).to have_link('Meus Vídeos')
       expect(page).to have_link('Solicitações de Reembolso')
