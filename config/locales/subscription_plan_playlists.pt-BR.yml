@@ -8,6 +8,9 @@ pt-BR:
   subscription_plan_playlists:
     index:
       title: Playlists associadas
+      associate: Associar Playlist
+      remove: Remover
+      none_playlists: Ainda não há playlists associadas a esse plano
     new:
       title: Associar Playlist
       no_plans_available: Não há playlists disponíveis para associar a esse plano

@@ -33,7 +33,7 @@ RSpec.describe PaymentMethod, type: :model do
     it 'when all payment methods are available' do
       api_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response = instance_double(Faraday::Response, status: 200, body: api_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods
@@ -45,7 +45,7 @@ RSpec.describe PaymentMethod, type: :model do
     it 'when only pix is available' do
       api_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/only_pix.json'))
       fake_response = instance_double(Faraday::Response, status: 200, body: api_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods
@@ -57,7 +57,7 @@ RSpec.describe PaymentMethod, type: :model do
     it 'when only boleto is available' do
       api_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/only_boleto.json'))
       fake_response = instance_double(Faraday::Response, status: 200, body: api_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods
@@ -69,7 +69,7 @@ RSpec.describe PaymentMethod, type: :model do
     it 'when only credit_card is available' do
       api_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/only_credit_card.json'))
       fake_response = instance_double(Faraday::Response, status: 200, body: api_response)
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods
@@ -80,7 +80,7 @@ RSpec.describe PaymentMethod, type: :model do
 
     it 'when no payment methods are available' do
       fake_response = instance_double(Faraday::Response, status: 200, body: [])
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods
@@ -91,7 +91,7 @@ RSpec.describe PaymentMethod, type: :model do
 
     it 'fails due to server error' do
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
-      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', header)
+      allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response)
 
       available_payment_methods = PaymentMethod.available_payment_methods

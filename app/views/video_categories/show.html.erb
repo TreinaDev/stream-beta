@@ -5,4 +5,5 @@
   <li>Título: <%= @video_category.title %></li>
 </ul>
 
+<div><%= link_to t('.edit'), edit_video_category_path(@video_category.id) %></div>
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>

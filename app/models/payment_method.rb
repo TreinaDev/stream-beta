@@ -21,6 +21,10 @@ class PaymentMethod < ApplicationRecord
     available_payment_methods.pluck(:payment_type)
   end
 
+  def translated_payment_type
+    I18n.t(payment_type)
+  end
+
   def request_token
     return unless token.nil? && @user_payment_method.present?
 

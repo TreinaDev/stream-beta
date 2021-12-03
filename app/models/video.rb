@@ -5,6 +5,9 @@ class Video < ApplicationRecord
   has_many :user_videos, dependent: :destroy
   has_many :users, through: :user_videos
 
+  has_many :category_lists, as: :categoriable, dependent: :destroy
+  has_many :video_categories, through: :category_lists
+
   belongs_to :streamer
 
   enum status: { active: 0, inactive: 10 }
@@ -42,13 +45,13 @@ class Video < ApplicationRecord
   def generate_new_token(title, value)
     token_params = { title: title, value: value }
 
-    data = ApiPagapaga.post('videos', token_params.to_json)
+    data = ApiPagapaga.post('single_products', token_params.to_json)
 
-    unless data&.key?(:video_token)
+    unless data&.key?(:product_token)
       errors.add(:api_connection, data[:message])
       return nil
     end
 
-    data[:video_token]
+    data[:product_token]
   end
 end

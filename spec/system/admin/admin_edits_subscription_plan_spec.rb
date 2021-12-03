@@ -14,7 +14,7 @@ describe 'Administrator inactives dynamic prices' do
 
     within 'form' do
       fill_in 'Título', with: 'Título editado'
-      click_on 'Atualizar'
+      click_button 'Atualizar'
     end
 
     expect(current_path).to eq(subscription_plan_path(subscription_plan.id))

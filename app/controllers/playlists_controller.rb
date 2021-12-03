@@ -13,16 +13,22 @@ class PlaylistsController < ApplicationController
 
   def edit
     @playlist = Playlist.find(params[:id])
+    @categories = VideoCategory.all.order(:title)
   end
 
   def update
     @playlist = Playlist.find(params[:id])
 
-    redirect_to @playlist if @playlist.update(playlist_params)
+    if @playlist.update(playlist_params)
+      redirect_to @playlist, success: t('.success')
+    else
+      render :edit
+    end
   end
 
   def new
     @playlist = Playlist.new
+    @categories = VideoCategory.all.order(:title)
   end
 
   def create
@@ -42,14 +48,19 @@ class PlaylistsController < ApplicationController
   end
 
   def search
-    @playlists = Playlist.where('title like ? OR description like ?',
-                                "%#{params[:query]}%", "%#{params[:query]}%").reject(&:inactive?)
+    playlists = Playlist.where('title like ? OR description like ?',
+                               "%#{params[:query]}%", "%#{params[:query]}%")
+    with_streamers = Playlist.joins(:streamers).where('name like ?', "%#{params[:query]}%")
+    with_category = Playlist.joins(:video_categories)
+                            .where('video_categories.title like ?', "%#{params[:query]}%")
+    @playlists = Utils.concat_search([playlists, with_streamers, with_category])
     render :index
   end
 
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :playlist_cover, streamer_ids: [], video_ids: [])
+    params.require(:playlist).permit(:title, :description, :playlist_cover,
+                                     streamer_ids: [], video_ids: [], video_category_ids: [])
   end
 end

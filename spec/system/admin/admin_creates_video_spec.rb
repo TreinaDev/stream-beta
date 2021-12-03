@@ -32,11 +32,11 @@ describe 'Administrator creates video' do
       admin = create(:user, :admin)
       create(:streamer, name: 'DarkStar')
       request = { title: 'Vídeo novo', value: '5.4' }.to_json
-      response = { video_token: '1Ko4tdmJzq' }.to_json
+      response = { product_token: '1Ko4tdmJzq' }.to_json
       fake_response = instance_double(Faraday::Response, status: 201, body: response)
       header = { 'Content-Type' => 'application/json',
                  'company_token' => Rails.configuration.api_pagapaga[:company_token] }
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/', request, header)
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/single_products/', request, header)
                                       .and_return(fake_response)
 
       login_as admin, scope: :user

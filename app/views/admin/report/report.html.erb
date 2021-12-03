@@ -1,0 +1,68 @@
+<h1><%= t('.title') %>: </h1>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-streamer-tab" data-bs-toggle="tab" data-bs-target="#nav-streamer" type="button" role="tab" aria-controls="nav-streamer" aria-selected="true"><%= Streamer.model_name.human(count: 2) %></button>
+    <button class="nav-link" id="nav-playlist-tab" data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button" role="tab" aria-controls="nav-playlist" aria-selected="false"><%= Playlist.model_name.human(count: 2) %></button>
+    <button class="nav-link" id="nav-video-tab" data-bs-toggle="tab" data-bs-target="#nav-video" type="button" role="tab" aria-controls="nav-video" aria-selected="false"><%= Video.model_name.human(count: 2) %></button>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-streamer" role="tabpanel" aria-labelledby="nav-streamer-tab">
+    <% if @streamers.empty? %>
+      <p><%= t('.nothing_streamer') %></p>
+    <% else %>
+      <table class="table">
+        <tr>
+          <th><%= Streamer.human_attribute_name(:name) %></th>
+          <th><%= t('.subscriber') %></th>
+        </tr>
+        <% @streamers.each do |s| %>
+          <tr>
+            <td><%= link_to s.first.name, streamer_path(s.first) %></td>
+            <td><%= s.last %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="tab-pane fade" id="nav-playlist" role="tabpanel" aria-labelledby="nav-playlist-tab">
+    <% if @playlists.empty? %>
+      <p><%= t('.nothing_playlist') %></p>
+    <% else %>
+      <table class="table">
+        <tr>
+          <th><%= Playlist.human_attribute_name(:title) %></th>
+          <th><%= t('.subscriber') %></th>
+        </tr>
+        <% @playlists.each do |p| %>
+          <tr>
+            <td><%= link_to p.first.title, playlist_path(p.first) %></td>
+            <td><%= p.last %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="tab-pane fade" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+    <% if @videos.empty? %>
+      <p><%= t('.nothing_video') %></p>
+    <% else %>
+      <table class="table">
+        <tr>
+          <th><%= Video.human_attribute_name(:title) %></th>
+          <th><%= t('.subscriber') %></th>
+        </tr>
+        <% @videos.each do |v| %>
+          <tr>
+            <td><%= link_to v.first.title, video_path(v.first) %></td>
+            <td><%= v.last %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
