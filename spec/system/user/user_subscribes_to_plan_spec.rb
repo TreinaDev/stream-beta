@@ -17,9 +17,10 @@ describe 'User subscribes to plan' do
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
-      user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+      user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                                 product_token: plan.token } }
       fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+      allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                           .and_return(fake_response)
 
       login_as user, scope: :user
@@ -50,9 +51,10 @@ describe 'User subscribes to plan' do
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
-      user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+      user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                                 product_token: plan.token } }
       fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+      allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                           .and_return(fake_response)
 
       login_as user, scope: :user
@@ -81,9 +83,10 @@ describe 'User subscribes to plan' do
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
-      user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+      user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                                 product_token: plan.token } }
       fake_response = { payment_status: 'rejected', receipt_token: '' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+      allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                           .and_return(fake_response)
 
       login_as user, scope: :user
@@ -112,9 +115,10 @@ describe 'User subscribes to plan' do
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                      .and_return(fake_response_apm)
 
-      user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+      user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                                 product_token: plan.token } }
       fake_response = { payment_status: 'pending', receipt_token: '' }
-      allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+      allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                           .and_return(fake_response)
 
       login_as user, scope: :user
@@ -159,9 +163,10 @@ describe 'User subscribes to plan' do
     allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
                                    .and_return(fake_response_apm)
 
-    user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+    user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                               product_token: plan.token } }
     fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-    allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+    allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                         .and_return(fake_response)
 
     login_as user, scope: :user

@@ -10,9 +10,10 @@ describe 'User pays for recurrent plans' do
     create(:user_subscription_plan, payment_method_token: payment_method.token,
                                     product_token: plan.token, user: user, status: :pending,
                                     enrollment: :active, subscription_plan: plan, status_date: 1.month.ago.to_date)
-    user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+    user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                               product_token: plan.token } }
     fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-    allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+    allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                         .and_return(fake_response)
 
     visit root_path
@@ -38,9 +39,10 @@ describe 'User pays for recurrent plans' do
     create(:user_subscription_plan, payment_method_token: payment_method.token,
                                     product_token: plan.token, user: user, status: :pending,
                                     enrollment: :active, subscription_plan: plan, status_date: 32.days.ago.to_date)
-    user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+    user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                               product_token: plan.token } }
     fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-    allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+    allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                         .and_return(fake_response)
 
     visit root_path
@@ -66,9 +68,10 @@ describe 'User pays for recurrent plans' do
     create(:user_subscription_plan, payment_method_token: payment_method.token,
                                     product_token: plan.token, user: user, status: :pending,
                                     enrollment: :active, subscription_plan: plan, status_date: 27.days.ago.to_date)
-    user_subscription_plan = { payment_method_token: payment_method.token, product_token: plan.token }
+    user_subscription_plan = { subscription_product_payment: { payment_method_token: payment_method.token,
+                                                               product_token: plan.token } }
     fake_response = { payment_status: 'approved', receipt_token: 'S5sqQ4KPRD' }
-    allow(ApiPagapaga).to receive(:post).with('product_purchase', user_subscription_plan.to_json)
+    allow(ApiPagapaga).to receive(:post).with('subscription_product_payments', user_subscription_plan.to_json)
                                         .and_return(fake_response)
 
     visit root_path

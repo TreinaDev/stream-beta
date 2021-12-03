@@ -1,4 +1,6 @@
 {
-  "payment_method_token": "2GLsRjQjtp",
-  "product_token": "IOZqtB1jsg"
+  "subscription_product_payment": {
+    "payment_method_token": "2GLsRjQjtp",
+    "product_token": "IOZqtB1jsg"
+  }
 }

@@ -7,6 +7,7 @@ describe 'User add payment method' do
 
   context 'Pix' do
     it 'successfully' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
@@ -19,7 +20,7 @@ describe 'User add payment method' do
                                       .and_return(fake_response)
 
       user = create(:user)
-      create(:user_profile, user: user, cpf: request['cpf'])
+      create(:user_profile, user: user, cpf: request['payment_method']['cpf'])
 
       login_as user, scope: :user
       visit root_path
@@ -38,6 +39,7 @@ describe 'User add payment method' do
 
   context 'Credit card' do
     it 'successfully' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
@@ -50,7 +52,7 @@ describe 'User add payment method' do
                                       .and_return(fake_response)
 
       user = create(:user)
-      create(:user_profile, user: user, cpf: request['cpf'])
+      create(:user_profile, user: user, cpf: request['payment_method']['cpf'])
 
       login_as user, scope: :user
       visit root_path
@@ -68,6 +70,7 @@ describe 'User add payment method' do
     end
 
     it 'failure add method' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
@@ -82,7 +85,7 @@ describe 'User add payment method' do
                                       .and_return(fake_response)
 
       user = create(:user)
-      create(:user_profile, user: user, cpf: request['cpf'])
+      create(:user_profile, user: user, cpf: request['payment_method']['cpf'])
 
       login_as user, scope: :user
       visit root_path
@@ -103,6 +106,7 @@ describe 'User add payment method' do
 
   context 'Boleto' do
     it 'successfully' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
@@ -115,7 +119,7 @@ describe 'User add payment method' do
                                       .and_return(fake_response)
 
       user = create(:user)
-      create(:user_profile, user: user, cpf: request['cpf'])
+      create(:user_profile, user: user, cpf: request['payment_method']['cpf'])
 
       login_as user, scope: :user
       visit root_path
@@ -130,6 +134,7 @@ describe 'User add payment method' do
     end
 
     it 'failure to add method' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       payment_methods_response = File.read(Rails.root.join('spec/support/apis/available_payment_methods/all.json'))
       fake_response_apm = instance_double(Faraday::Response, status: 200, body: payment_methods_response)
       allow(Faraday).to receive(:get).with('http://localhost:4000/api/v1/available_payment_methods/', {}, header)
@@ -142,7 +147,7 @@ describe 'User add payment method' do
                                       .and_return(fake_response)
 
       user = create(:user)
-      create(:user_profile, user: user, cpf: request['cpf'])
+      create(:user_profile, user: user, cpf: request['payment_method']['cpf'])
 
       login_as user, scope: :user
       visit root_path
