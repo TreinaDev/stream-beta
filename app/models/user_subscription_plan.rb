@@ -4,6 +4,7 @@ class UserSubscriptionPlan < ApplicationRecord
   has_many :product_receipts, as: :product, dependent: :restrict_with_error
 
   enum status: { pending: 10, approved: 50, rejected: 90 }
+  enum enrollment: { active: 100, canceled: 150 }
 
   def confirm_payment
     purchase_params = { payment_method_token: payment_method_token, product_token: product_token }
