@@ -14,7 +14,7 @@
     </tr>
     <% @subscription_plan_playlists.each do |spp| %>
       <tr playlist-id="<%= spp.id %>">
-        <td><%= spp.playlist.title %></td>
+        <td><%= link_to spp.playlist.title, playlist_path(spp.playlist) %></td>
         <% if current_user&.admin? %>
           <td><%= button_to t('.remove'), subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
         <% elsif current_user && !current_user&.admin?%>
