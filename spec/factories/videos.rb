@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :video do
+    transient do
+      generate_token { true }
+    end
+
     title { FFaker::Game.title }
     duration { FFaker::String.from_regexp(/0\d:[0-5]\d:[0-5]\d/) }
     video_url { "https://vimeo.com/#{FFaker::String.from_regexp(/\d{9}/)}" }
@@ -10,7 +14,7 @@ FactoryBot.define do
     trait :allow_purchase do
       allow_purchase { true }
       value { rand(1..10) }
-      token { SecureRandom.alphanumeric(10) }
+      token { SecureRandom.alphanumeric(10).upcase if generate_token }
     end
   end
 end

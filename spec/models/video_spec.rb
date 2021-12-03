@@ -125,7 +125,7 @@ RSpec.describe Video, type: :model do
     it 'successfully' do
       api_response = File.read(Rails.root.join('spec/support/apis/video_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/single_products/',
                                             video.to_json, header).and_return(fake_response)
 
       subject.request_token
@@ -134,7 +134,7 @@ RSpec.describe Video, type: :model do
 
     it 'and fails due to server error' do
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
-      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/videos/',
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/single_products/',
                                             video.to_json, header).and_return(fake_response)
 
       subject.request_token
