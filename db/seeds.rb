@@ -31,4 +31,5 @@ FactoryBot.create(:playlist)
 FactoryBot.create(:playlist)
 
 FactoryBot.create(:subscription_plan, :streamer)
+FactoryBot.create(:user_subscription_plan, user: user, status: 'approved')
 p 'Banco de dados atualizado com sucesso :)'
