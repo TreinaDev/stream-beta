@@ -9,6 +9,7 @@
   <table class="table">
     <tr>
       <th><%= Playlist.human_attribute_name(:title) %></th>
+      <th><%= Playlist.human_attribute_name(:description) %></th>
       <th></th>
     </tr>
     <% @subscription_plan_playlists.each do |spp| %>
@@ -16,6 +17,8 @@
         <td><%= spp.playlist.title %></td>
         <% if current_user&.admin? %>
           <td><%= button_to t('.remove'), subscription_plan_playlist_path(spp), method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+        <% elsif current_user && !current_user&.admin?%>
+          <td><%= spp.playlist.description %></td>
         <% end %>
       </tr>
     <% end %>
