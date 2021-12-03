@@ -11,6 +11,8 @@ um ou vários streamers. Os vídeos serão cadastrados no Vimeo e devem ser exib
 forma ‘embutida’ (embedded) dentro da plataforma. Devem ser produzidas estatísticas de
 acesso e visualização de vídeos de acordo com os acessos dos assinantes.
 
+Os cadastros dos produtos da plataforma possuem ligação direta à plataforma de pagamentos ['Pagamentos Beta'](https://github.com/TreinaDev/pagamentos-beta) via API, para a geração de tokens necessários para cobranças dos produtos consumidos pelos assinantes e armazenamento de dados de pagamentos. Para 100% do funcionamento da Plataforma Beta certifique-se de que tenha os 2 projetos rodando.
+
 ## Pré-requisitos:
 
  * Ruby 3.0.2
@@ -91,3 +93,7 @@ email: admin@gamestream.com.br, senha: 123456
 ```
 email: user@email.com, senha: 123456
 ```
+
+Projeto final da turma 7 do [TreinaDev](https://treinadev.com.br/), realizado pela [Campus Code](https://www.campuscode.com.br/), com apoio das empresas [Rebase](https://www.rebase.com.br), [Konduto](https://www.konduto.com/), [Vindi](https://vindi.com.br/), [Portal Solar](https://www.portalsolar.com.br/) e [SmartFit](https://www.smartfit.com.br/).
+
+Projeto desenvolvido por: [Daiane Souza](https://github.com/daiaventureira), [Hugo Araujo](https://github.com/oohugo), [Mateus Campos](https://github.com/mateusC2000), [Paulo Castellan Medeiros](https://github.com/paulo-castellan) e [Yan Donadi](https://github.com/Donads).
