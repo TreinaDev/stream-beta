@@ -21,7 +21,7 @@ class Video < ApplicationRecord
   validates :duration, format: { with: /\d{2}:[0-5]\d:[0-5]\d/, message: 'não está formatada corretamente' }
 
   validates :video_url, format: {
-    with: %r{(?:http|https)?(?:://)?(?:player\.)?vimeo\.com/(?:.*/)?\d{9}},
+    with: /\A\d+\z/,
     message: 'não está formatada corretamente'
   }
   validates :allow_purchase, inclusion: [true, false]

@@ -15,9 +15,9 @@ describe 'Restricted Video routes' do
     end
     it "can't access the 'destroy' action" do
       video = create(:video)
-      video_whatched = create(:video_history, video: video)
+      video_watched = create(:video_history, video: video)
       login_as @user, scope: :user
-      delete video_video_history_path(video, video_whatched)
+      delete video_video_history_path(video, video_watched)
 
       expect(response).to redirect_to(admin_home_index_path)
     end
@@ -32,8 +32,8 @@ describe 'Restricted Video routes' do
 
     it "can't access the 'destroy' action" do
       video = create(:video)
-      video_whatched = VideoHistory.create!(video: video, user: create(:user))
-      delete video_video_history_path(video, video_whatched)
+      video_watched = VideoHistory.create!(video: video, user: create(:user))
+      delete video_video_history_path(video, video_watched)
 
       expect(response).to redirect_to(new_user_session_path)
     end

@@ -1,8 +1,15 @@
 <p><%= "#{Video.human_attribute_name(:title)}: #{@video.title}" %></p>
 <p><%= "#{Video.human_attribute_name(:duration)}: #{@video.duration}" %></p>
-<p><%= "#{Video.human_attribute_name(:video_url)}: #{@video.video_url}" %></p>
 <p><%= "#{Video.human_attribute_name(:maturity_rating)}: #{@video.maturity_rating}" %></p>
-
+<p><%= "#{Video.human_attribute_name(:video_url)}:" %></p>
+<div style="padding:46.25% 0 0 0;position:relative;">
+  <iframe src="https://player.vimeo.com/video/<%= @video.video_url%>?autoplay=1&background=0&color=6441a5&muted=0&title=0&byline=0&portrait=0"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
 <% unless @video.video_categories.nil? %>
   <p><%= "#{Video.human_attribute_name(:video_category)}: "%></p>
   <ul>
@@ -37,12 +44,13 @@
 <% end %>
 
 <% if user_signed_in? && !current_user.admin? %>
-  <% if @video_whatched.nil? %>
-    <%= link_to t('.link_whatched_video'), video_video_histories_path(video_id: @video.id), method: :post, class: "btn btn-outline-primary mt-3 mb-3" %>
-    <% else %>
+  <% if @video_watched.nil? %>
+    <%= link_to t('.link_watched_video'), video_video_histories_path(video_id: @video.id), method: :post, class: "btn btn-outline-primary mt-3 mb-3" %>
+  <% else %>
     <p>Vídeo assistido!</p>
-    <%= link_to t('.link_unwhatched_video'), video_video_history_path(video_id: @video.id, video_history_id: @video_whatched.id), method: :delete, class: "btn btn-outline-primary mt-3 mb-3" %>
+    <%= link_to t('.link_unwatched_video'), video_video_history_path(video_id: @video.id, video_history_id: @video_watched.id), method: :delete, class: "btn btn-outline-primary mt-3 mb-3" %>
   <% end %>
 <% end %>
 
+<script src="https://player.vimeo.com/api/player.js"></script>
 <div><%= link_to t('links.go_back'), :back, class: "btn btn-outline-primary mt-3 mb-3" %></div>
