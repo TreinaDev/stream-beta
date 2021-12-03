@@ -13,6 +13,7 @@ class User
 
     def my_subscription_plans
       @subscription_plans = current_user.subscription_plans
+      @my_subscription_plans = current_user.user_subscription_plans
     end
 
     def my_videos

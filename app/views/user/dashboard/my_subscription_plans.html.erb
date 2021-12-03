@@ -5,9 +5,16 @@
     <tr>
       <th><%= SubscriptionPlan.human_attribute_name(:title) %></th>
     </tr>
-    <% @subscription_plans.each do |plan| %>
+    <th><%= t('.active_plans') %></th>
+    <% @my_subscription_plans.each do |plan| %>
       <tr>
-        <td><%= link_to plan.title, subscription_plan_path(plan) %></td>
+        <td><%= link_to plan.subscription_plan.title, subscription_plan_path(plan) if plan.active? %></td>
+      </tr>
+    <% end %>
+    <th><%= t('.cancels_plans') %></th>
+       <% @my_subscription_plans.each do |plan| %>
+      <tr>
+        <td><%= link_to plan.subscription_plan.title, subscription_plan_path(plan) if plan.canceled? %></td>
       </tr>
     <% end %>
   </table>
