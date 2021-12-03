@@ -6,7 +6,8 @@ class UserVideo < ApplicationRecord
   enum status: { pending: 10, approved: 50, rejected: 90 }
 
   def confirm_payment
-    purchase_params = { payment_method_token: payment_method_token, product_token: product_token }
+    purchase_params = { single_product_payment: { payment_method_token: payment_method_token,
+                                                  product_token: product_token } }
     data = ApiPagapaga.post('single_product_payments', purchase_params.to_json)
 
     unless data&.key?(:payment_status)

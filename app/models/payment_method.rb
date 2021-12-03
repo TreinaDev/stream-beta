@@ -29,12 +29,25 @@ class PaymentMethod < ApplicationRecord
     return unless token.nil? && @user_payment_method.present?
 
     @user_payment_method.remove_instance_variable(:@attribute_errors)
-    self.token = generate_new_token(@user_payment_method.to_json)
+
+    payment_method_params = { payment_method: { cpf: @user_payment_method.cpf,
+                                                payment_type: @user_payment_method.payment_type } }
+
+    if @user_payment_method.payment_type == 'credit_card'
+      credit_card_params = { card_number: @user_payment_method.card_number, cvv_number: @user_payment_method.cvv_number,
+                             expiry_date: @user_payment_method.expiry_date }
+
+      payment_method_params[:payment_method].merge!(credit_card_params)
+    end
+
+    self.token = generate_new_token(payment_method_params.to_json)
   end
 
   private
 
   def generate_new_token(user_payment_method)
+    user.user_profile.create_or_update_account_holder
+
     data = ApiPagapaga.post('payment_methods', user_payment_method)
 
     unless data&.key?(:payment_method_token)

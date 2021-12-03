@@ -23,11 +23,14 @@ RSpec.describe UserSubscriptionPlan, type: :model do
     end
 
     subject do
-      UserSubscriptionPlan.create!(user_subscription_plan.merge(subscription_plan: subscription_plan, user: user))
+      UserSubscriptionPlan.create!(user_subscription_plan['subscription_product_payment'].merge(
+                                     subscription_plan: subscription_plan, user: user
+                                   ))
     end
 
     it 'successfully' do
-      create(:payment_method, token: user_subscription_plan['payment_method_token'], user: user)
+      create(:payment_method, token: user_subscription_plan['subscription_product_payment']['payment_method_token'],
+                              user: user)
       api_response = File.read(Rails.root.join('spec/support/apis/user_subscription_plan_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/subscription_product_payments/',

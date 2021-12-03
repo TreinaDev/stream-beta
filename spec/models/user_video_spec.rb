@@ -20,10 +20,10 @@ RSpec.describe UserVideo, type: :model do
       { 'Content-Type' => 'application/json', 'company_token' => Rails.configuration.api_pagapaga[:company_token] }
     end
 
-    subject { UserVideo.create!(user_video.merge(video: video, user: user)) }
+    subject { UserVideo.create!(user_video['single_product_payment'].merge(video: video, user: user)) }
 
     it 'successfully' do
-      create(:payment_method, token: user_video['payment_method_token'], user: user)
+      create(:payment_method, token: user_video['single_product_payment']['payment_method_token'], user: user)
       api_response = File.read(Rails.root.join('spec/support/apis/user_video_response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/single_product_payments/',

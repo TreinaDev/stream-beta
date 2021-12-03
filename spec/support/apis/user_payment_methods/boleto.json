@@ -1,4 +1,6 @@
 {
-  "cpf": "76908573885",
-  "payment_type": "boleto"
+  "payment_method": {
+    "cpf": "76908573885",
+    "payment_type": "boleto"
+  }
 }

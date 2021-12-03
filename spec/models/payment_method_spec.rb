@@ -100,6 +100,7 @@ RSpec.describe PaymentMethod, type: :model do
   end
 
   describe '#generate_new_token' do
+    let(:user) { create(:user, create_profile: true) }
     let(:user_payment_method) do
       JSON.parse(File.read(Rails.root.join('spec/support/apis/user_payment_methods/credit_card.json')))
     end
@@ -107,9 +108,12 @@ RSpec.describe PaymentMethod, type: :model do
       { 'Content-Type' => 'application/json', 'company_token' => Rails.configuration.api_pagapaga[:company_token] }
     end
 
-    subject { PaymentMethod.new(user_payment_method: UserPaymentMethod.new(user_payment_method)) }
+    subject do
+      user.payment_methods.new(user_payment_method: UserPaymentMethod.new(user_payment_method['payment_method']))
+    end
 
     it 'successfully' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       api_response = File.read(Rails.root.join('spec/support/apis/user_payment_methods/response.json'))
       fake_response = instance_double(Faraday::Response, status: 201, body: api_response)
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/payment_methods/',
@@ -120,6 +124,7 @@ RSpec.describe PaymentMethod, type: :model do
     end
 
     it 'and fails due to server error' do
+      allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/account_holders/', any_args)
       fake_response = instance_double(Faraday::Response, status: 500, body: '')
       allow(Faraday).to receive(:post).with('http://localhost:4000/api/v1/payment_methods/',
                                             user_payment_method.to_json, header).and_return(fake_response)

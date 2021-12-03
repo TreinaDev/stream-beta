@@ -1,4 +1,6 @@
 {
-  "cpf": "76908573885",
-  "payment_type": "pix"
+  "payment_method": {
+    "cpf": "76908573885",
+    "payment_type": "pix"
+  }
 }
