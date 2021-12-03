@@ -6,19 +6,30 @@
   <p><%= "#{Playlist.human_attribute_name(:video_category)}: "%></p>
   <ul>
     <% @playlist.video_categories.each do |category|  %>
-      <li><%= category.title %></li>
+        <li><%= category.title %></li>
     <% end %>
   </ul>
 <% end %>
 
-<% @playlist.videos.each do |v| %>
-  <%= "#{Video.human_attribute_name(:video)}: #{v.title}"%>
-  Video url:<%= link_to v.video_url %>
-<% end %>
+<table class="table">
+  <tr>
+    <th><%= Video.human_attribute_name(:title) %></th>
+    <th><%= Video.human_attribute_name(:duration) %></th>
+    <th><%= Video.human_attribute_name(:maturity_rating) %></th>
+  </tr>
+  <% @playlist.videos.each do |video| %>
+    <tr>
+      <td><%= link_to video.title, video_path(video) %></td>
+      <td><%= video.duration %></td>
+      <td><%= video.maturity_rating%></td>
+    </tr>
+  <% end %>
+</table>
 
 <% @playlist.streamers.each do |s| %>
   <%= "#{Streamer.human_attribute_name(:streamer)}: #{s.name}"%>
 <% end %>
-
-<div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<% if current_user&.admin? %>
+  <div><%= link_to t('.edit'), edit_playlist_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>
+<% end %>
 <div><%= link_to t('links.go_back'), playlists_path, class: "btn btn-outline-primary mt-3 mb-3" %></div>

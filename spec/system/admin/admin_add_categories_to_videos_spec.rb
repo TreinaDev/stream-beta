@@ -16,7 +16,7 @@ describe 'Administrator add category to video' do
         within 'form' do
           fill_in 'Título', with: 'Jogadas eletrizantes'
           fill_in 'Duração', with: '00:59:12'
-          fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+          fill_in 'Vídeo', with: '123456789'
           fill_in 'Faixa etária', with: '10'
           select 'DarkStar', from: 'Streamer'
           check 'Jogos'
@@ -42,7 +42,7 @@ describe 'Administrator add category to video' do
         within 'form' do
           fill_in 'Título', with: 'As melhores jogadas'
           fill_in 'Duração', with: '00:59:12'
-          fill_in 'URL do vídeo', with: 'https://vimeo.com/123456789'
+          fill_in 'Vídeo', with: '123456789'
           fill_in 'Faixa etária', with: '10'
           select 'DarkStar', from: 'Streamer'
           check 'Jogos'

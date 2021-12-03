@@ -32,5 +32,6 @@ pt-BR:
       success: Playlist editada com sucesso!
     show:
       edit: Editar playlist
+      video_url: URL do vídeo
     inactive:
       success: Playlist desativada com sucesso!
