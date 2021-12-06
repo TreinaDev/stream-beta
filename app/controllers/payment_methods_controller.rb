@@ -32,7 +32,8 @@ class PaymentMethodsController < ApplicationController
   end
 
   def user_payment_method_params
-    user_params = params.require(:payment_method).permit(:payment_type, :card_number, :cvv_number, :expiry_date)
+    user_params = params.require(:payment_method).permit(:card_operator, :payment_type, :card_number, :cvv_number,
+                                                         :expiry_date)
     user_params.merge({ cpf: current_user.user_profile.cpf })
   end
 

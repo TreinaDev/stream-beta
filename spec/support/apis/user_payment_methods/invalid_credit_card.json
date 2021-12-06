@@ -4,6 +4,7 @@
     "payment_type": "credit_card",
     "card_number": "",
     "cvv_number": "",
-    "expiry_date": ""
+    "expiry_date": "",
+    "card_operator": ""
   }
 }

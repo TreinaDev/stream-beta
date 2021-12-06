@@ -92,6 +92,7 @@ describe 'User add payment method' do
       click_link 'Cadastrar método de pagamento'
       within 'form' do
         select 'Cartão de Crédito', from: 'Tipo'
+        fill_in 'Operadora', with: ''
         fill_in 'Número do Cartão', with: ''
         fill_in 'Código de Segurança (CVV)', with: ''
         fill_in 'Validade (MM/AA)', with: ''

@@ -34,8 +34,7 @@ class PaymentMethod < ApplicationRecord
                                                 payment_type: @user_payment_method.payment_type } }
 
     if @user_payment_method.payment_type == 'credit_card'
-      credit_card_params = { card_number: @user_payment_method.card_number, cvv_number: @user_payment_method.cvv_number,
-                             expiry_date: @user_payment_method.expiry_date }
+      credit_card_params = set_credit_card
 
       payment_method_params[:payment_method].merge!(credit_card_params)
     end
@@ -61,5 +60,11 @@ class PaymentMethod < ApplicationRecord
   private_class_method def self.contains_error_message?(available_payment_methods)
     (available_payment_methods.is_a?(Array) && available_payment_methods&.first&.key?(:message)) ||
     (available_payment_methods.is_a?(Hash) && available_payment_methods&.key?(:message))
+  end
+
+  def set_credit_card
+    { card_number: @user_payment_method.card_number, cvv_number: @user_payment_method.cvv_number,
+      expiry_date: @user_payment_method.expiry_date,
+      card_operator: @user_payment_method.card_operator }
   end
 end

@@ -1,5 +1,5 @@
 class UserPaymentMethod
-  attr_accessor :cpf, :payment_type, :card_number, :cvv_number, :expiry_date
+  attr_accessor :cpf, :payment_type, :card_number, :cvv_number, :expiry_date, :card_operator
   attr_reader :attribute_errors
 
   def initialize(params = {})
@@ -10,6 +10,7 @@ class UserPaymentMethod
 
     return unless @payment_type == 'credit_card'
 
+    @card_operator = params['card_operator'] || ''
     @card_number = params['card_number'] || ''
     @cvv_number = params['cvv_number'] || ''
     @expiry_date = params['expiry_date'] || ''

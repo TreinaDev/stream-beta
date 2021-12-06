@@ -20,6 +20,7 @@ pt-BR:
       card_holder_name: Nome do Titular
       cvv_number: Código de Segurança (CVV)
       expiry_date: Validade (MM/AA)
+      card_operator: Operadora
       submit: Enviar
       no_payment_methods_available: Não há formas de pagamento habilitadas
     create:

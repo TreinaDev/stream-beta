@@ -13,7 +13,12 @@
 
     <div id='credit_card_fields'>
       <div class="form-floating mb-3">
-        <%= f.text_field :card_number, placeholder: :card_number, class: "form-control" %>
+        <%= f.text_field :card_operator, placeholder: :card_operator, class: "form-control" %>
+        <%= f.label :card_operator, t('.card_operator') %>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <%= f.number_field :card_number, placeholder: :card_number, class: "form-control" %>
         <%= f.label :card_number, t('.card_number') %>
       </div>
       <div class="form-floating mb-3">
